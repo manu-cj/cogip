@@ -1,12 +1,9 @@
 import express from "express";
 const router = express.Router();
-import { getUsers } from "./../controllers/userController.js";
-import { postCompanies } from "../controllers/companiesController.js";
+import { createUser, getUsers } from "./../controllers/userController.js";
 
 // GET ROUTES
 router.get("/", getUsers);
+router.post("/", createUser);
 
-
-// POST ROUTES 
-router.post("/", postCompanies);
 export default router;
