@@ -1,5 +1,6 @@
 import express from "express";
 import dbConnect from "./dbConnect/connect.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dbConnect();
 
@@ -9,7 +10,7 @@ app.use(express.json());
 
 // Add routes here when they're ready
 
-// app.use("testroute")
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
   console.log("Port successfully open at port", port);

@@ -11,4 +11,4 @@ const hashPassword = async (password) => {
   return hashedPassword;
 };
 
-export default { hashPassword, comparePasswords };
+export { hashPassword, comparePasswords };
