@@ -10,7 +10,7 @@ function NavBar() {
                 <Link to={"/companies"}><li>Companies</li></Link>
                 <Link to={"/contacts"}><li>Contact</li></Link>
             </ul>
-            <div>
+            <div className='loginNav'>
                 <Link to={"/signup"}>Sign up</Link>
                 <Link to={"/login"}>Login</Link>
             </div>

@@ -15,12 +15,14 @@ import Compagnies from './component/pages/Compagnies.tsx';
 import Show_contact from './component/pages/Show_contact.tsx';
 import Show_compagnies from './component/pages/Show_compagnies.tsx';
 import DashBoard from './component/dashboard/DashBoard.tsx'
+import ErrorPage from './component/pages/Error-page';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+    errorElement: <ErrorPage/>,
   },
   {
     path: "/signup",

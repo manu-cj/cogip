@@ -1,4 +1,24 @@
 nav {
     @extend .flexBetweenCenter;
-    width:300px;
+    width:100%;
+    ul {
+        width: 30%;
+        @extend .flexBetweenCenter;
+        gap: 10px
+    }
+
+    .loginNav {
+        @extend .flexEndCenter;
+        gap: 10px;
+        width: 70%;
+        padding: 10px;
+    }
+
+    a {
+        text-decoration-line: none;
+        list-style-type: none;
+        color: black;
+        font-weight: bold;
+    }
 }
+

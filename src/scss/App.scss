@@ -5,11 +5,7 @@
 
 html {
     height: 100%;
-    background: linear-gradient(180deg, var(--background) 0%, black 100%);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
+    
 }
 
 body {
@@ -19,4 +15,6 @@ body {
     color:var(--text);
     overflow-x: hidden;
     overflow-y: scroll;
+    font-family: "Inter", sans-serif;
+    color: black;
 }

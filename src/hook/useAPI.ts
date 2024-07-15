@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Movie, ApiResponseMovie, Categorie, Genre, Details } from "../../types/types";
+import { Movie, ApiResponseMovie, Categorie, Genre, Details } from "./../types/types"; // A adapter
 
 function getResponseType(URL: string): 'movies' | 'categories' | 'details' | "similar" | "topRated" | "trending" {
   if (URL.includes("/movie/now_playing")) {
