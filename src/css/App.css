@@ -46,12 +46,12 @@ input {
   padding: 10px;
 }
 
-.register {
+form {
   width: 400px;
   display: flex;
   flex-direction: column;
 }
-.register input {
+form input {
   height: 50px;
   border-radius: 5px;
 }/*# sourceMappingURL=App.css.map */
