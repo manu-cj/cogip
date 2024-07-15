@@ -1,4 +1,4 @@
-header{
+.dashboard-header{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -33,6 +33,8 @@ header{
             width: 50%;
         }
     }
+
+    // on a un conflit on va utiliser des class 
     img{
         position: absolute;
         top:0;

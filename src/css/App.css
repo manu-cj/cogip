@@ -551,6 +551,36 @@ html[data-theme="dark"] {
   font-family: "Ubuntu";
   src: url("../fonts/Ubuntu_Sans/UbuntuSans-VariableFont_wdth,wght.ttf") format("truetype");
 }
+main {
+  padding: 100px;
+}
+main .home-content {
+  font-weight: bold;
+  font-size: 900;
+  width: 80%;
+  height: 500px;
+}
+main .home-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+main .home-content thead {
+  width: 100%;
+}
+main .home-content th, main .home-content td {
+  width: 10%;
+  border: none;
+  padding: 8px;
+  text-align: left;
+}
+main .home-content th {
+  background-color: #f4d03f;
+  font-weight: bold;
+}
+main .home-content tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 .flexCenterCenter {
   display: flex;
   flex-direction: row;
@@ -558,21 +588,21 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexAroundCenter {
+.flexAroundCenter, header .top-content, header .bottom-content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 
-.flexBetweenCenter {
+.flexBetweenCenter, header nav, header nav ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.flexEndCenter {
+.flexEndCenter, header nav .loginNav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -586,7 +616,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexColumnCenterCenter {
+.flexColumnCenterCenter, main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -636,6 +666,58 @@ html[data-theme="dark"] {
 .pointer {
   cursor: pointer;
   transition: 0.3s;
+}
+
+header {
+  width: 100%;
+  background-color: #f9de4e;
+  color: black;
+}
+header .top-content {
+  width: 100%;
+  padding: 10px;
+  padding-top: 50px;
+}
+header .top-content h2 {
+  display: block;
+  width: 30%;
+  font-weight: bold;
+  font-size: 900;
+}
+header .top-content img {
+  width: 50%;
+}
+header .bottom-content {
+  width: 100%;
+}
+header .bottom-content img {
+  width: 80%;
+}
+header nav {
+  position: fixed;
+  background-color: #f9de4e;
+  width: 100%;
+}
+header nav ul {
+  width: 30%;
+  gap: 10px;
+}
+header nav .loginNav {
+  gap: 10px;
+  width: 70%;
+  padding: 10px;
+}
+header nav .loginNav .sign-up {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
+header nav a {
+  text-decoration-line: none;
+  list-style-type: none;
+  color: black;
+  font-weight: bold;
 }
 
 main::-webkit-scrollbar {
@@ -738,29 +820,29 @@ form input {
   color: var(--text);
 }
 
-header {
+.dashboard-header {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px;
   position: relative;
 }
-header .header__title {
+.dashboard-header .header__title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-header .header__title h1 {
+.dashboard-header .header__title h1 {
   margin: 0;
   font-size: 30px;
   font-weight: 900;
 }
-header .header__title p {
+.dashboard-header .header__title p {
   font-size: 15px;
   font-weight: 300;
   margin-bottom: 25px;
 }
-header .header__content {
+.dashboard-header .header__content {
   background-color: var(--text);
   border-radius: 10px;
   color: white;
@@ -771,10 +853,10 @@ header .header__content {
   justify-content: center;
   margin-top: 50px;
 }
-header .header__content p {
+.dashboard-header .header__content p {
   width: 50%;
 }
-header img {
+.dashboard-header img {
   position: absolute;
   top: 0;
   right: 0;
@@ -805,4 +887,4 @@ body {
   overflow-y: scroll;
   font-family: "Inter", sans-serif;
   color: black;
-}
+}/*# sourceMappingURL=App.css.map */

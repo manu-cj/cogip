@@ -6,7 +6,7 @@ function Header({firstName}: {firstName: string}) {
     const ariane = location.pathname
 
     return (
-        <header>
+        <header className='dashboard-header'>
             <div className='header__title'>
                 <h1>DashBoard</h1>
                 <p>{ariane}</p>

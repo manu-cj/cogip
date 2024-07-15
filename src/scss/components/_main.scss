@@ -1,0 +1,31 @@
+main { 
+    padding: 100px;
+    @extend .flexColumnCenterCenter;
+    .home-content {
+        font-weight: bold;
+        font-size: 900;
+        width: 80%;
+        height: 500px;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+          thead{
+            width: 100%;
+          }
+          th, td {
+            width: 10%;
+            border: none;
+            padding: 8px;
+            text-align: left;
+          }
+          th {
+            background-color: #f4d03f;
+            font-weight: bold;
+          }
+          tr:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+    }
+}
