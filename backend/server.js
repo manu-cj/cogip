@@ -1,5 +1,7 @@
-const express = require("express");
-const dbConnect = require("./dbConnect/connect");
+
+import express from "express";
+import dbConnect from "./dbConnect/connect.js";
+
 
 dbConnect();
 
@@ -8,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 // Add routes here when they're ready
-
+// app.use("/api/companies");
 // app.use("testroute")
 
 app.listen(port, () => {
