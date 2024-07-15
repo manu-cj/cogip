@@ -8,8 +8,7 @@ const port = 3000;
 const app = express();
 app.use(express.json());
 
-// Add routes here when they're ready
-
+// Adding routes
 app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
