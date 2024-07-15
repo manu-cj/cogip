@@ -1,4 +1,3 @@
-import React from 'react';
 import img_dashboard from '../../../../public/assets/img/img_dashboard.svg';
 import { useLocation } from 'react-router-dom';
 

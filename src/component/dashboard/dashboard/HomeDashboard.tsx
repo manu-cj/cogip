@@ -1,4 +1,3 @@
-import React from 'react';
 import Stat from './Stat';
 import LastInvoice from './LastInvoice';
 import LastContact from './LastContact';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import Icon_Companies from '../../../../public/assets/icon/Icon_Companies.svg';
 import Icon_Invoices from '../../../../public/assets/icon/Icon_Invoices.svg';

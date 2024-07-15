@@ -1,4 +1,3 @@
-import React from 'react';
 import { LastCompaniesProps } from '../../../types/types';
 
 function LastCompanies({companies}: LastCompaniesProps) {

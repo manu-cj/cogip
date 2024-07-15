@@ -1,4 +1,3 @@
-import React from 'react';
 import { LastContactProps } from '../../../types/types';
 
 function LastContact({contact}: LastContactProps) {

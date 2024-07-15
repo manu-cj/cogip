@@ -1,4 +1,3 @@
-import React from 'react';
 import { LastInvoiceProps } from '../../../types/types';
 
 function LastInvoice ({invoice}: LastInvoiceProps) {
