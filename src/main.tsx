@@ -1,10 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import App from './App.tsx'
-import Register from './component/Register.tsx'
-import Login from './component/Login.tsx'
-
 import {
   createBrowserRouter,
   RouterProvider,
