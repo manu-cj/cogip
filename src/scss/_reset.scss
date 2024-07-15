@@ -17,6 +17,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 ul,
@@ -42,4 +44,5 @@ table {
 
 input {
     background-color: #fff;
+    padding: 10px;
 }
