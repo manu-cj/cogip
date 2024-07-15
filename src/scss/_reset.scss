@@ -1,4 +1,5 @@
 /* Reset CSS simple en Sass */
+
 *,
 *::before,
 *::after {
@@ -40,15 +41,5 @@ table {
 }
 
 input {
-  background-color: #fff;
+    background-color: #fff;
 }
-
-.register {
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-}
-.register input {
-  height: 50px;
-  border-radius: 5px;
-}/*# sourceMappingURL=App.css.map */
