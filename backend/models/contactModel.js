@@ -1,26 +1,24 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({
-  firstName: {
+const ContactSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
     maxlength: 50,
   },
-  lastName: {
+  companyId: {
     type: String,
     required: true,
-    maxlength: 50,
   },
   email: {
     type: String,
     required: true,
     maxlength: 50,
-    unique: true,
   },
-  password: {
+  phoneNr: {
     type: String,
     required: true,
-    maxlength: 60,
+    maxlength: 50,
   },
   createdAt: {
     type: Date,
@@ -34,4 +32,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model("Contact", ContactSchema);
