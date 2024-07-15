@@ -11,7 +11,7 @@ function NavBar() {
                 <Link to={"/contacts"}><li>Contact</li></Link>
             </ul>
             <div className='loginNav'>
-                <Link to={"/signup"}>Sign up</Link>
+                <Link to={"/signup"} className='sign-up'>Sign up</Link>
                 <Link to={"/login"}>Login</Link>
             </div>
         </nav>

@@ -1,6 +1,9 @@
 nav {
+    position: fixed;
+    background-color: #f9de4e;
     @extend .flexBetweenCenter;
     width:100%;
+
     ul {
         width: 30%;
         @extend .flexBetweenCenter;
@@ -12,6 +15,12 @@ nav {
         gap: 10px;
         width: 70%;
         padding: 10px;
+        .sign-up {
+            padding: 5px;
+            border-radius: 10px;
+            background-color: white;
+            color: black;
+        }
     }
 
     a {
