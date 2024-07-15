@@ -14,7 +14,7 @@ const CompaniesSchema = new mongoose.Schema({
         unique : true
     },
     
-    tva:{
+    vat:{
         type : Number,
         required : true,
         unique : true
