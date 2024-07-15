@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const CompaniesSchema = new mongoose.Schema({
 
     name:{

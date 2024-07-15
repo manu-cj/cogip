@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Companies from "./../models/companiesModel";
+import Companies from "./../models/companiesModel.js";
 
 // returns list of all companies
 
