@@ -10,12 +10,13 @@ function NavBarLat({img, firstName, lastName}: NavBarLatProps) {
 
 
     return (
-        <aside>
-            <div>
+        <aside className='navBarLat'>
+            <div className='navBarLat__logo'>
                 <img src={img} alt={firstName + " " + lastName} />
-                <p>{firstName + " " + lastName}</p>
+                <p>{firstName}</p>
+                <p>{lastName}</p>
             </div>
-            <div>
+            <div className='navBarLat__menu'>
                 <ul>
                     <Link to={"/dashboard"}><li><img src={Icon_dashboard} alt="Dashboard" /> Dashboard</li></Link>
                     <Link to={"/dashboard/invoices"}><li><img src={Icon_Invoices} alt="Invoices" /> Invoices</li></Link>
@@ -23,7 +24,7 @@ function NavBarLat({img, firstName, lastName}: NavBarLatProps) {
                     <Link to={"/dashboard/contact"}><li><img src={Icon_contact} alt="Contact" /> Contact</li></Link>
                 </ul>
             </div>
-            <div>
+            <div className='navBarLat__logout'>
                 <img src={img} alt={firstName + " " + lastName} />
                 <p>Logout</p>
             </div>
