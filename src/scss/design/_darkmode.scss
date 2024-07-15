@@ -1,0 +1,26 @@
+/*html[data-theme="light"] {
+
+}
+
+html[data-theme="dark"] {
+
+}*/
+
+.svgLight {
+    transition: none;
+    filter: invert(0%) sepia(0%) saturate(7456%) hue-rotate(122deg) brightness(91%) contrast(97%);
+}
+
+.svgDark {
+    transition: none;
+    filter: invert(88%) sepia(78%) saturate(6379%) hue-rotate(332deg) brightness(96%) contrast(110%);
+}
+
+.becodeLogoLight {
+    filter:contrast(200%) brightness(150%) hue-rotate(180deg) invert(100%);
+}
+
+.becodeLogoDark {
+    filter:contrast(200%) brightness(150%) hue-rotate(240deg) grayscale(0);
+}
+

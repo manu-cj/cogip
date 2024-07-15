@@ -1,0 +1,12 @@
+@import "navBarDashboard";
+@import "dashboardContent";
+@import "dashboardContentBody";
+
+
+.dashBoard{
+    display: flex;
+    .dashBoard__content{
+        width: 80%;
+        background-color: var(--background);
+    }
+}

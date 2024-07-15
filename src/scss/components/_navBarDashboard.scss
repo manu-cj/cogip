@@ -1,0 +1,69 @@
+.navBarLat{
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #333;
+    .navBarLat__logo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        img{
+            width: 105px;
+            border-radius: 200px;
+        }
+        p{
+            font-size: 25px;
+            font-weight: 900;
+            text-align: center;
+        }
+    }
+    .navBarLat__menu{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        border-top: 1px solid var(--borderDashBoardLight);
+        border-bottom: 1px solid var(--borderDashBoardLight);
+        padding-top: 10px;
+        ul{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            list-style: none;
+            padding: 0;
+            a{
+                text-decoration: none;
+                color: black;
+                font-weight: 200;
+            }
+            
+            li{
+                font-size: 20px;
+                font-weight: 200;
+                display: flex;
+                padding: 10px 0;
+                img{
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    .navBarLat__logout{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        img{
+            width: 48px;
+            border-radius: 50px;
+        }
+        p{
+            color: var(--text);
+        }
+    }
+}

@@ -1,0 +1,33 @@
+nav {
+    position: fixed;
+    background-color: #f9de4e;
+    @extend .flexBetweenCenter;
+    width:100%;
+
+    ul {
+        width: 30%;
+        @extend .flexBetweenCenter;
+        gap: 10px
+    }
+
+    .loginNav {
+        @extend .flexEndCenter;
+        gap: 10px;
+        width: 70%;
+        padding: 10px;
+        .sign-up {
+            padding: 5px;
+            border-radius: 10px;
+            background-color: white;
+            color: black;
+        }
+    }
+
+    a {
+        text-decoration-line: none;
+        list-style-type: none;
+        color: black;
+        font-weight: bold;
+    }
+}
+
