@@ -8,5 +8,5 @@ router.get("/", getUsers);
 
 
 // POST ROUTES 
-router.get("/", postCompanies);
+router.post("/", postCompanies);
 export default router;
