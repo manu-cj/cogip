@@ -1,14 +1,7 @@
 import express from "express";
-// import getCompanies from "../models/companiesModel.js";
-import getCompanies from "../controllers/companiesController.js"
 const router = express.Router();
+import {getCompanies} from "./../controllers/companiesController";
 
-function companiesRoutes(){
-
-    router.get("/", getCompanies);
-}
-
-
-
-module.exports = router;
-export {companiesRoutes};
+// GET ROUTES
+router.get("/", getCompanies);
+export default router;
