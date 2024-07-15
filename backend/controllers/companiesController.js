@@ -7,12 +7,11 @@ const getCompanies = async (req, res) => {
     // console.log("t");
 
     try{
-
       const companies = await Companies.find();
-      res.json(companies);
+      res.status(200).res.json(companies);
 
     } catch(err){
-      console.log(err);
+      res.status(500).json({ message: "SERVER ERROR" });
     }
 
   };
