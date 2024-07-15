@@ -1,0 +1,57 @@
+/* Reset CSS simple en Sass */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  color: #000;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  background-color: #fff;
+  padding: 10px;
+}
+
+form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+form input {
+  height: 50px;
+  border-radius: 5px;
+}/*# sourceMappingURL=App.css.map */

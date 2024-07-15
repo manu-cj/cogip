@@ -1,0 +1,56 @@
+@use "../extends/_extends_dir";
+
+header {
+    @extend .flexAroundCenter;
+    flex-wrap: wrap;
+    height:150px;
+    padding:0px 3% 0px 3%;
+
+    h1 {
+        margin: 0px 25px 0px 25px;
+        @include responsive(600px) {
+            margin:0;
+        }
+
+        @extend .pointer;
+    }
+    section {
+        position: fixed;
+        top:2%;
+        right:5%;
+        @extend .flexBetweenCenter;
+        width:75px;
+        img {
+            height:25px;
+            filter: invert(94%) sepia(3%) saturate(814%) hue-rotate(197deg) brightness(104%) contrast(84%);
+            @extend .pointer;
+        }
+        img:hover {
+            transform: scale(110%);
+            filter: invert(31%) sepia(99%) saturate(3070%) hue-rotate(215deg) brightness(95%) contrast(94%);
+        }
+
+        #loginSvg {
+            display:block;
+            @include responsive(850px) {
+                display:none;
+            }
+        }
+
+        div {
+            @extend .pointer;
+            display:none;
+            @include responsive(850px) {
+                display:block;
+            }
+        }
+        div:hover {
+            transform: scale(110%);
+            color:var(--text2);
+        }
+
+        @include responsive(850px) {
+            position: relative;
+        }
+    }
+}
