@@ -6,9 +6,9 @@ function NavBar() {
             <Link to={"/"}><h1>COGIP</h1></Link>
             <ul>
                 <Link to={"/"}><li>Home</li></Link>
-                <Link to={"/invoice"}><li>Invoices</li></Link>
+                <Link to={"/invoices"}><li>Invoices</li></Link>
                 <Link to={"/companies"}><li>Companies</li></Link>
-                <Link to={"/contact"}><li>Contact</li></Link>
+                <Link to={"/contacts"}><li>Contact</li></Link>
             </ul>
             <div>
                 <Link to={"/signup"}>Sign up</Link>
