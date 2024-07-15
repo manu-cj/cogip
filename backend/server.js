@@ -1,5 +1,5 @@
-const express = require("express");
-const dbConnect = require("./dbConnect/connect");
+import express from "express";
+import dbConnect from "./dbConnect/connect.js";
 
 dbConnect();
 
