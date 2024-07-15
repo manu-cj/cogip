@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import NavBar from '../main/navigation/NavBar';
 
 interface IRegister {
   lastname: string;
@@ -109,6 +110,7 @@ const Register: React.FC = () => {
   return (
     <>
       <h2>Register</h2>
+      <NavBar/>
       <form method="post" action="ROUTE DES BACKENDS EN ATTENTE" className="register" onSubmit={handleSubmit}>
         <label htmlFor="lastname">LastName</label>
         <input
