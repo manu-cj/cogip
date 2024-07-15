@@ -5,19 +5,22 @@ const CompaniesSchema = new mongoose.Schema({
     name:{
         type : String,
         required : true,
-        unique : true
+        unique : true,
+        maxlength : 25
     },
 
     country:{
         type : String,
         required : true,
-        unique : true
+        unique : true,
+        maxlength : 25
     },
     
     vat:{
         type : Number,
         required : true,
-        unique : true
+        unique : true,
+        maxlength : 2
     },
 
     createdAt: {

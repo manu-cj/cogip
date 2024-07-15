@@ -6,7 +6,6 @@ import { sanitize } from "../utils/sanitize.js";
 
 const getCompanies = async (req, res) => {
     // console.log("t");
-
     try{
       const companies = await Companies.find();
       res.status(200).res.json(companies);
@@ -26,11 +25,11 @@ const getCompanies = async (req, res) => {
     const maxLenDate = 12; 
     const maxLenVat = 2;
 
-    // name = sanitize(name);
-    // contry = sanitize(contry);
-    // vat = sanitize(vat);
-    // createdAt = sanitize(createdAt);
-    // updatedOn = sanitize(updatedOn);
+    name = sanitize(name);
+    contry = sanitize(contry);
+    vat = sanitize(vat);
+    createdAt = sanitize(createdAt);
+    updatedOn = sanitize(updatedOn);
 
     if (!name || !contry || !vat) {
       return res.status(400).json({

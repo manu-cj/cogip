@@ -7,6 +7,5 @@ router.get("/", getCompanies);
 
 
 //POST ROUTES 
-
 router.post("/", postCompanies);
 export default router;
