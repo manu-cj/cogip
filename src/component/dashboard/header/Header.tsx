@@ -6,19 +6,17 @@ function Header({firstName}: {firstName: string}) {
     const ariane = location.pathname
 
     return (
-        <div>
-            <div>
-            <h1>DashBoard</h1>
-            <p>{ariane}</p>
+        <header>
+            <div className='header__title'>
+                <h1>DashBoard</h1>
+                <p>{ariane}</p>
             </div>
-            <div>
-                <div>
-                    <h2>Welcome back {firstName}!</h2>
-                    <p>You can here add an invoice, a company and some contacts.</p>
-                </div>
-                <img src={img_dashboard} alt="Un bg qui bosse sur un pc" />
+            <div className='header__content'>
+                <h2>Welcome back {firstName}!</h2>
+                <p>You can here add an invoice, a company and some contacts.</p>
             </div>
-        </div>
+            <img src={img_dashboard} alt="Un bg qui bosse sur un pc" />
+        </header>
     );
 }
 
