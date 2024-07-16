@@ -9,6 +9,7 @@ function Login() {
       </header>
       <main>
         <form action="LA ROUTE DES BACKENDS" method="post">
+            <h2>Login</h2>
           <label htmlFor="mail">Email</label>
           <input type="email" name="mail" id="mail" />
           <label htmlFor="mail">Email</label>
