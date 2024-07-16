@@ -39,3 +39,18 @@ export interface InvoiceData {
     price: string;
     company: string;
 }
+
+export interface CompanyData {
+    name: string;
+    tva: string;
+    country: string;
+    type: string;
+}
+
+export interface ContactData{
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    company: string;
+}

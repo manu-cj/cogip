@@ -39,13 +39,13 @@ function InvoicesDashboard() {
           case 'reference':
             setFormStyles((prevStyles) => ({
               ...prevStyles,
-              lastname: { borderColor: validateReference(value) ? 'lightGreen' : 'red' },
+              reference: { borderColor: validateReference(value) ? 'lightGreen' : 'red' },
             }));
             break;
           case 'price':
             setFormStyles((prevStyles) => ({
               ...prevStyles,
-              firstname: { borderColor: validatePrice(value) ? 'lightGreen' : 'red' },
+              price: { borderColor: validatePrice(value) ? 'lightGreen' : 'red' },
             }));
             break;
           default:
@@ -86,7 +86,7 @@ function InvoicesDashboard() {
             <div className='dashBoard__content'>
                 <Header firstName="Dylan"/>
                 <div className='dashBoard__invoices'>
-                    <h3>New invoices</h3>
+                    <h3>New invoice</h3>
                     <hr />
                     <form action="LA ROUTE DES BACKENDS" method="post" onSubmit={handleSubmit}>
                         <input type="text" name='reference' id='reference' placeholder='Reference' required onChange={handleChange} />

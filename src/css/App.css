@@ -894,7 +894,7 @@ header img {
   background-color: var(--background);
 }
 
-.dashBoard__invoices {
+.dashBoard__invoices, .dashBoard__companies, .dashBoard__contact {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -903,20 +903,20 @@ header img {
   padding: 25px;
   border-radius: 10px;
 }
-.dashBoard__invoices h3 {
+.dashBoard__invoices h3, .dashBoard__companies h3, .dashBoard__contact h3 {
   align-self: flex-start;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 20px;
 }
-.dashBoard__invoices hr {
+.dashBoard__invoices hr, .dashBoard__companies hr, .dashBoard__contact hr {
   width: 100%;
 }
-.dashBoard__invoices form {
+.dashBoard__invoices form, .dashBoard__companies form, .dashBoard__contact form {
   margin-top: 20px;
   width: 100%;
 }
-.dashBoard__invoices form input, .dashBoard__invoices form select {
+.dashBoard__invoices form input, .dashBoard__invoices form select, .dashBoard__companies form input, .dashBoard__companies form select, .dashBoard__contact form input, .dashBoard__contact form select {
   margin: 10px 0;
   border: none;
   background-color: var(--bgcInput);
@@ -924,18 +924,18 @@ header img {
   border-radius: 5px;
   text-indent: 10px;
 }
-.dashBoard__invoices form input::-moz-placeholder {
+.dashBoard__invoices form input::-moz-placeholder, .dashBoard__companies form input::-moz-placeholder, .dashBoard__contact form input::-moz-placeholder {
   color: black;
   font-weight: 100;
 }
-.dashBoard__invoices form input::placeholder {
+.dashBoard__invoices form input::placeholder, .dashBoard__companies form input::placeholder, .dashBoard__contact form input::placeholder {
   color: black;
   font-weight: 100;
 }
-.dashBoard__invoices form input:focus, .dashBoard__invoices form select:focus {
+.dashBoard__invoices form input:focus, .dashBoard__invoices form select:focus, .dashBoard__companies form input:focus, .dashBoard__companies form select:focus, .dashBoard__contact form input:focus, .dashBoard__contact form select:focus {
   outline: none;
 }
-.dashBoard__invoices form select {
+.dashBoard__invoices form select, .dashBoard__companies form select, .dashBoard__contact form select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -947,10 +947,10 @@ header img {
   color: black;
   font-weight: 400;
 }
-.dashBoard__invoices form .default {
+.dashBoard__invoices form .default, .dashBoard__companies form .default, .dashBoard__contact form .default {
   font-weight: 100;
 }
-.dashBoard__invoices form button {
+.dashBoard__invoices form button, .dashBoard__companies form button, .dashBoard__contact form button {
   margin: 10px 0 20px 0;
   background-color: var(--text);
   color: white;
