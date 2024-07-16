@@ -1,0 +1,43 @@
+.dashboard-header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    .header__title{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        h1{
+            margin:0;
+            font-size: 30px;
+            font-weight: 900;
+        }
+        p{
+            font-size: 15px;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+    }
+    .header__content{
+        background-color: var(--text);
+        border-radius: 10px;
+        color: white;
+        padding: 25px;
+        height: 210px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 50px;
+        p{
+            width: 50%;
+        }
+    }
+
+    // on a un conflit on va utiliser des class 
+    img{
+        position: absolute;
+        top:0;
+        right: 0;
+    }
+}
