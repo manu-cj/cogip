@@ -47,10 +47,10 @@ const postCompanies = async (req, res) => {
 const deleteCompanies = async (req, res) => {
  //find of name / country / id 
 
- const name = req.params.name;
+ const id = req.params.id;
 
  try{
-  const deletedCompany = await Companies.contact.findOne(name);
+  const deletedCompany = await Companies.contact.findOneById(id);
   console.log(deletedCompany);
   if(!deletedCompany){
     return res.status(404).json({ message: "Company not found" });

@@ -10,5 +10,5 @@ router.get("/", getCompanies);
 router.post("/", postCompanies);
 
 //DELETE ROUTES 
-router.delete("/:name", deleteCompanies);
+router.delete("/:id", deleteCompanies);
 export default router;
