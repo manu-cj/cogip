@@ -1,0 +1,68 @@
+.dashBoard__invoices, .dashBoard__companies, .dashBoard__contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    h3{
+        align-self: flex-start;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    hr{
+        width: 100%;
+    }
+    form{
+        margin-top: 20px;
+        width: 100%;
+        input, select{
+            margin: 10px 0;
+            border: none;
+            background-color: var(--bgcInput);
+            height: 50px;
+            border-radius: 5px;
+            text-indent: 10px;
+        }
+        input::placeholder{
+            color: black;
+            font-weight: 100;
+        }
+        input:focus, select:focus{
+            outline: none;
+        }
+        select {
+            -webkit-appearance: none; 
+            -moz-appearance: none; 
+            appearance: none;
+            padding-right: 40px; 
+            background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjQUFBIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMiAxMiI+PHBhdGggZD0iTTAgMmwxLjQxNCAxLjQxNEw2IDhsNC41ODctNC41ODdMMTIgMnoiLz48L3N2Zz4='); 
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+            color: black;
+            font-weight: 400;
+        }
+        .default{
+            font-weight: 100;
+        }
+        button{
+            margin: 10px 0 20px 0;
+            background-color: var(--text);
+            color: white;
+            border: none;
+            height: 50px;
+            border-radius: 5px;
+            text-align: start;
+            text-indent: 10px;
+        }
+    }
+}
+hr{
+    border: 0;
+    height: 1px;
+    background-color: var(--borderDashBoardLight);
+}
+

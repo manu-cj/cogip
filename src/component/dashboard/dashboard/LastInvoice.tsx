@@ -3,10 +3,10 @@ import { LastInvoiceProps } from '../../../types/types';
 function LastInvoice ({invoice}: LastInvoiceProps) {
  // Ajouter l'API
     return (
-        <div>
+        <div className='lastInvoice'>
             <h3>Last invoices</h3>
             <hr />
-            <table>
+            <table className='lastInvoice__table'>
                 <thead>
                     <tr>
                         <th>Invoice Number</th>
