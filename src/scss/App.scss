@@ -17,4 +17,9 @@ body {
     overflow-y: scroll;
     font-family: "Inter", sans-serif;
     color: black;
+
+    #root {
+        @extend .flexColumnCenterCenter;
+    }
+    
 }
