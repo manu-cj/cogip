@@ -2,10 +2,10 @@ import { LastContactProps } from '../../../types/types';
 
 function LastContact({contact}: LastContactProps) {
     return (
-        <div>
+        <div className='lastContact'>
             <h3>Last contact</h3>
             <hr />
-            <table>
+            <table className='lastContact__table'>
                 <thead>
                     <tr>
                         <th>Name</th>

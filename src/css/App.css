@@ -520,6 +520,10 @@ template {
   --text: #9698D6;
   --text2:#2563eb;
   --borderDashBoardLight: #e0e0e0;
+  --bgcInvoice: #4d4cac;
+  --bgcContact: #9698D6;
+  --bgcCompanies: #FF808B;
+  --bgcInput: #f5f5f5;
 }
 
 /*html[data-theme="light"] {
@@ -671,11 +675,9 @@ form input {
 
 .navBarLat {
   width: 20%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #333;
 }
 .navBarLat .navBarLat__logo {
   display: flex;
@@ -782,6 +784,106 @@ header img {
 
 .dashBoard__content__body {
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.dashBoard__content__body .dashBoard__content__body--left {
+  width: 45%;
+  min-width: 400px;
+}
+.dashBoard__content__body .dashBoard__content__body--left .statistics {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--left .statistics .statistics__bulle__container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+.dashBoard__content__body .dashBoard__content__body--left .statistics .statistics__bulle__container p {
+  width: 70px;
+  height: 70px;
+  border-radius: 70px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 900;
+}
+.dashBoard__content__body .dashBoard__content__body--left .statistics .statistics__bulle__container .statistics__bulle--invoice {
+  background-color: var(--bgcInvoice);
+}
+.dashBoard__content__body .dashBoard__content__body--left .statistics .statistics__bulle__container .statistics__bulle--contact {
+  background-color: var(--bgcContact);
+}
+.dashBoard__content__body .dashBoard__content__body--left .statistics .statistics__bulle__container .statistics__bulle--companie {
+  background-color: var(--bgcCompanies);
+}
+.dashBoard__content__body .dashBoard__content__body--left .lastContact {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--left .lastContact h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--left .lastContact .lastContact__table {
+  width: 100%;
+  margin-top: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--left .lastContact .lastContact__table thead tr th {
+  text-align: start;
+  font-size: 15px;
+  font-weight: 700;
+}
+.dashBoard__content__body .dashBoard__content__body--right {
+  width: 45%;
+  margin-bottom: 40px;
+  min-width: 400px;
+}
+.dashBoard__content__body .dashBoard__content__body--right .lastInvoice {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--right .lastInvoice h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--right .lastInvoice .lastInvoice__table {
+  width: 100%;
+  margin-top: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--right .lastInvoice .lastInvoice__table thead tr th {
+  text-align: start;
+  font-size: 15px;
+  font-weight: 700;
+}
+.dashBoard__content__body .dashBoard__content__body--right .lastCompanies {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--right .lastCompanies h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--right .lastCompanies .lastCompanies__table {
+  width: 100%;
+  margin-top: 20px;
+}
+.dashBoard__content__body .dashBoard__content__body--right .lastCompanies .lastCompanies__table thead tr th {
+  text-align: start;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .dashBoard {
@@ -790,6 +892,79 @@ header img {
 .dashBoard .dashBoard__content {
   width: 80%;
   background-color: var(--background);
+}
+
+.dashBoard__invoices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+}
+.dashBoard__invoices h3 {
+  align-self: flex-start;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.dashBoard__invoices hr {
+  width: 100%;
+}
+.dashBoard__invoices form {
+  margin-top: 20px;
+  width: 100%;
+}
+.dashBoard__invoices form input, .dashBoard__invoices form select {
+  margin: 10px 0;
+  border: none;
+  background-color: var(--bgcInput);
+  height: 50px;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+.dashBoard__invoices form input::-moz-placeholder {
+  color: black;
+  font-weight: 100;
+}
+.dashBoard__invoices form input::placeholder {
+  color: black;
+  font-weight: 100;
+}
+.dashBoard__invoices form input:focus, .dashBoard__invoices form select:focus {
+  outline: none;
+}
+.dashBoard__invoices form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjQUFBIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMiAxMiI+PHBhdGggZD0iTTAgMmwxLjQxNCAxLjQxNEw2IDhsNC41ODctNC41ODdMMTIgMnoiLz48L3N2Zz4=");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  color: black;
+  font-weight: 400;
+}
+.dashBoard__invoices form .default {
+  font-weight: 100;
+}
+.dashBoard__invoices form button {
+  margin: 10px 0 20px 0;
+  background-color: var(--text);
+  color: white;
+  border: none;
+  height: 50px;
+  border-radius: 5px;
+  text-align: start;
+  text-indent: 10px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--borderDashBoardLight);
 }
 
 html {

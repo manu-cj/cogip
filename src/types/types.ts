@@ -33,3 +33,9 @@ interface Company {
 export interface LastCompaniesProps {
     companies: Company[];
 }
+
+export interface InvoiceData {
+    reference: string;
+    price: string;
+    company: string;
+}

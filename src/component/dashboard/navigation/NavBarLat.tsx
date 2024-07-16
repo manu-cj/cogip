@@ -3,7 +3,8 @@ import Icon_Companies from '../../../../public/assets/icon/Icon_Companies.svg';
 import Icon_Invoices from '../../../../public/assets/icon/Icon_Invoices.svg';
 import Icon_contact from '../../../../public/assets/icon/Icon_contact.svg';
 import Icon_dashboard from '../../../../public/assets/icon/Icon_dashboard.svg';
-import { NavBarLatProps } from './../../../types/type';
+import { NavBarLatProps } from '../../../types/types';
+
 
 function NavBarLat({img, firstName, lastName}: NavBarLatProps) {
 

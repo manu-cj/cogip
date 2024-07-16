@@ -16,6 +16,7 @@ import Show_contact from './component/pages/Show_contact.tsx';
 import Show_compagnies from './component/pages/Show_compagnies.tsx';
 import DashBoard from './component/dashboard/DashBoard.tsx'
 import ErrorPage from './component/pages/Error-page';
+import InvoicesDashboard from './component/dashboard/InvoicesDashboard.tsx';
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
     path: "/show_compagnies",  //On modifiera surement cette route
     element: <Show_compagnies/>,
   },
+  {
+    path: "/dashboard/invoices",
+    element : <InvoicesDashboard/>
+  }
 
 ]);
 
