@@ -1,12 +1,11 @@
 import Contact from "./../models/contactModel.js";
-import Company from "./../models/companiesModel.js";
 import mongoose from "mongoose";
 
 import { sanitize } from "./../utils/sanitize.js";
 
 const getContacts = async (req, res) => {
   try {
-    const contacts = await Contact.find();
+    const contacts = await Contact.find().populate("companyId", "name");
     return res.status(200).json({ contacts });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
@@ -62,7 +61,7 @@ const createContact = async (req, res) => {
 const getContactById = async (req, res) => {
   const id = req.params.id;
   try {
-    const contact = await Contact.findById(id);
+    const contact = await Contact.findById(id).populate("companyId", "name");
     if (!contact) {
       return res.status(404).json({ message: "Contact not found" });
     }

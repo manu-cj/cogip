@@ -3,7 +3,7 @@ import path from "path";
 
 const maxFileSize = 5 * 1024 * 1024;
 const suspiciousExtensions = [".exe", ".sh", ".bat"];
-const allowedExtensions = [".jpg", ".jpeg", "png"];
+const allowedExtensions = [".jpg", ".jpeg", ".png"];
 
 const contactStorage = multer.diskStorage({
   destination: function (req, file, cb) {
