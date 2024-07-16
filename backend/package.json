@@ -16,6 +16,7 @@
     "dotenv": "^16.4.5",
     "env": "^0.0.2",
     "express": "^4.19.2",
+    "i18n-iso-countries": "^7.11.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.1",
     "validator": "^13.12.0"

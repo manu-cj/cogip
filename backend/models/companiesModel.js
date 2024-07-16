@@ -12,15 +12,14 @@ const CompaniesSchema = new mongoose.Schema({
     country:{
         type : String,
         required : true,
-        unique : true,
         maxlength : 25
     },
     
     vat:{
-        type : Number,
+        type : String,
         required : true,
         unique : true,
-        maxlength : 2
+        maxlength : 11
     },
 
     createdAt: {
