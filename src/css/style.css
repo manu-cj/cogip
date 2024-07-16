@@ -703,6 +703,7 @@ form input {
   border-top: 1px solid var(--borderDashBoardLight);
   border-bottom: 1px solid var(--borderDashBoardLight);
   padding-top: 10px;
+  position: relative;
 }
 .navBarLat .navBarLat__menu ul {
   display: flex;
@@ -724,6 +725,17 @@ form input {
 }
 .navBarLat .navBarLat__menu ul li img {
   margin-right: 10px;
+}
+.navBarLat .navBarLat__menu ul .isActive {
+  font-weight: 600;
+}
+.navBarLat .navBarLat__menu ul .isActive::after {
+  content: "";
+  height: 30px;
+  width: 4px;
+  background-color: var(--text);
+  position: absolute;
+  right: 0;
 }
 .navBarLat .navBarLat__logout {
   width: 100%;

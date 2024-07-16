@@ -27,6 +27,7 @@
         border-top: 1px solid var(--borderDashBoardLight);
         border-bottom: 1px solid var(--borderDashBoardLight);
         padding-top: 10px;
+        position: relative;
         ul{
             display: flex;
             flex-direction: column;
@@ -47,6 +48,17 @@
                 img{
                     margin-right: 10px;
                 }
+            }
+            .isActive{
+                font-weight: 600;
+            }
+            .isActive::after{
+                content: "";
+                height: 30px;
+                width: 4px;
+                background-color: var(--text);
+                position: absolute;
+                right: 0;
             }
         }
     }

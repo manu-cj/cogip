@@ -4,9 +4,13 @@ import Icon_Invoices from '../../../../public/assets/icon/Icon_Invoices.svg';
 import Icon_contact from '../../../../public/assets/icon/Icon_contact.svg';
 import Icon_dashboard from '../../../../public/assets/icon/Icon_dashboard.svg';
 import { NavBarLatProps } from '../../../types/types';
+import { useLocation } from 'react-router-dom';
 
 
 function NavBarLat({img, firstName, lastName}: NavBarLatProps) {
+
+    const location = useLocation();
+    const ariane = location.pathname
 
 
     return (
@@ -18,10 +22,10 @@ function NavBarLat({img, firstName, lastName}: NavBarLatProps) {
             </div>
             <div className='navBarLat__menu'>
                 <ul>
-                    <Link to={"/dashboard"}><li><img src={Icon_dashboard} alt="Dashboard" /> Dashboard</li></Link>
-                    <Link to={"/dashboard/invoices"}><li><img src={Icon_Invoices} alt="Invoices" /> Invoices</li></Link>
-                    <Link to={"/dashboard/companies"}><li><img src={Icon_Companies} alt="Companies" /> Companies</li></Link>
-                    <Link to={"/dashboard/contact"}><li><img src={Icon_contact} alt="Contact" /> Contact</li></Link>
+                    <Link to={"/dashboard"}><li className={(ariane === "/dashboard")? "isActive" : ""}><img src={Icon_dashboard} alt="Dashboard" /> Dashboard</li></Link>
+                    <Link to={"/dashboard/invoices"}><li className={(ariane === "/dashboard/invoices")? "isActive" : ""}><img src={Icon_Invoices} alt="Invoices" /> Invoices</li></Link>
+                    <Link to={"/dashboard/companies"}><li className={(ariane === "/dashboard/companies")? "isActive" : ""}><img src={Icon_Companies} alt="Companies" /> Companies</li></Link>
+                    <Link to={"/dashboard/contact"}><li className={(ariane === "/dashboard/contact")? "isActive" : ""}><img src={Icon_contact} alt="Contact" /> Contact</li></Link>
                 </ul>
             </div>
             <div className='navBarLat__logout'>
