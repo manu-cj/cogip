@@ -30,6 +30,12 @@ const ContactSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
+  image: {
+    filename: String,
+    path: String,
+    originalName: String,
+    uploadDate: { type: Date, default: Date.now },
+  },
 });
 
 export default mongoose.model("Contact", ContactSchema);

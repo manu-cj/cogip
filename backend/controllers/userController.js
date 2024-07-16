@@ -60,12 +60,17 @@ const login = async (req, res) => {
 // Creates a new user within DB
 const createUser = async (req, res) => {
   let { firstName, lastName, email, password } = req.body;
+  if (firstName || !lastName || !password) {
+    return res.status(400).json({
+      message: "Invalid request, please make sure all parameters are sent.",
+    });
+  }
   const maxLen = 50;
   firstName = sanitize(firstName);
   lastName = sanitize(lastName);
   email = sanitize(email);
   password = sanitize(password);
-  if (!firstName || !lastName || !password) {
+  if (firstName || !lastName || !password) {
     return res.status(400).json({
       message: "Invalid request, please make sure all parameters are sent.",
     });
