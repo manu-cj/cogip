@@ -1,9 +1,10 @@
 import multer from "multer";
-import path from "path";
+
+const allowedFileTypes = ["image/jpeg", "image/png"];
 
 const contactStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/people/contacts/");
+    cb(null, "public/assets/img/people/contacts");
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}-${file.originalname}`);
@@ -12,14 +13,32 @@ const contactStorage = multer.diskStorage({
 
 const userStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/people/users/");
+    cb(null, "public/assets/img/people/users");
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 
-const uploadContactImage = multer({ storage: contactStorage });
-const uploadUserImage = multer({ storage: userStorage });
+const uploadContactImage = multer({
+  storage: contactStorage,
+  fileFilter: function (req, file, cb) {
+    if (allowedFileTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only JPEG and PNG images are allowed"));
+    }
+  },
+});
+const uploadUserImage = multer({
+  storage: userStorage,
+  fileFilter: function (req, file, cb) {
+    if (allowedFileTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only JPEG and PNG images are allowed"));
+    }
+  },
+});
 
-export default { uploadContactImage, uploadUserImage };
+export { uploadContactImage, uploadUserImage };
