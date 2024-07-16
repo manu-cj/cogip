@@ -130,7 +130,7 @@ const Register: React.FC = () => {
           className="register"
           onSubmit={handleSubmit}
         >
-          <h2>Register</h2>
+          <h2>Sign up</h2>
           <label htmlFor="lastname">LastName</label>
           <input
             type="text"
