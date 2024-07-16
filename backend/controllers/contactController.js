@@ -1,6 +1,6 @@
 import Contact from "./../models/contactModel.js";
 import mongoose from "mongoose";
-import { sanitize, validateEmail } from "./../utils/sanitize.js";
+import { sanitize } from "./../utils/sanitize.js";
 
 const getContacts = async (req, res) => {
   try {
@@ -12,25 +12,20 @@ const getContacts = async (req, res) => {
 };
 
 const createContact = async (req, res) => {
-  let { name, email, companyId } = req.body;
+  let { name, companyId, email, phoneNr } = req.body;
   const maxLen = 50;
-  firstName = sanitize(firstName);
-  lastName = sanitize(lastName);
+  name = sanitize(firstName);
   email = sanitize(email);
-  password = sanitize(password);
-  if (!firstName || !lastName || !password) {
+  phoneNr = sanitize(phoneNr);
+  if (!name || !companyId || !email || !phoneNr) {
     return res.status(400).json({
       message: "Invalid request, please make sure all parameters are sent.",
     });
   }
-  if (!validateEmail(email)) {
-    return res.status(400).json({
-      message: "Invalid email address.",
-    });
-  }
+  // ADD logic to check if company ID exists.
   if (
-    firstName.length > maxLen ||
-    lastName.length > maxLen ||
+    name.length > maxLen ||
+    phoneNr.length > maxLen ||
     email.length > maxLen
   ) {
     return res.status(400).json({
@@ -38,19 +33,14 @@ const createContact = async (req, res) => {
     });
   }
   try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "Email already in use" });
-    }
-    const hashedPassword = await hashPassword(password);
-    let user = new User({
-      firstName,
-      lastName,
+    let contact = new Contact({
+      name,
+      companyId,
       email,
-      password: hashedPassword,
+      phoneNr,
     });
-    user.save();
-    return res.status(201).json({ message: "Registration successful" });
+    contact.save();
+    return res.status(201).json({ message: "Contact successfully created" });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR ${error.message}` });
   }
@@ -68,4 +58,10 @@ const deleteContact = async (req, res) => {
   // TO DO
 };
 
-export { getContacts, createContact };
+export {
+  getContacts,
+  createContact,
+  getContactById,
+  updateContact,
+  deleteContact,
+};
