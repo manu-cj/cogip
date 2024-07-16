@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 
 dotenv.config();
 
+mongoose.set("strictQuery", true);
+
 const dbConnect = () => {
   try {
     mongoose.connect(process.env.DB_CONNECT);
