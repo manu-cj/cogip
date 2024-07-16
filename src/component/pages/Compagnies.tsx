@@ -1,13 +1,18 @@
+import Footer from "../main/Footer";
 import NavBar from "../main/navigation/NavBar";
 
 function Compagnies() {
-    return (
-       <>
-        <div>
-            <NavBar/>
-            <h2>Compagnies</h2>
-        </div></>
-    );
+  return (
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <h2>Compagnies</h2>
+      </main>
+      <Footer/>
+    </>
+  );
 }
 
 export default Compagnies;

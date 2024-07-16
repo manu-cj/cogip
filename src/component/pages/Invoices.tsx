@@ -1,15 +1,18 @@
+import Footer from "../main/Footer";
 import NavBar from "../main/navigation/NavBar";
 
-
 function Invoices() {
-    return (
-        <>
-        <div>
-            <NavBar/>
-            <h2>Invoices</h2>
-        </div>
-        </>
-    );
+  return (
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <h2>Invoices</h2>
+      </main>
+      <Footer/>
+    </>
+  );
 }
 
 export default Invoices;

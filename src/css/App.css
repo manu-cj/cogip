@@ -640,6 +640,7 @@ html[data-theme="dark"] {
 
 header {
   width: 100%;
+  min-height: 100px;
   background-color: #f9de4e;
   color: black;
 }
@@ -675,7 +676,7 @@ header nav ul {
 }
 header nav .loginNav {
   gap: 10px;
-  width: 70%;
+  width: 50%;
   padding: 10px;
 }
 header nav .loginNav .sign-up {
@@ -693,6 +694,7 @@ header nav a {
 
 main {
   width: 100%;
+  min-height: 100vh;
 }
 main .home-content {
   font-weight: bold;

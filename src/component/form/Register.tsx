@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import NavBar from '../main/navigation/NavBar';
+import { useState } from "react";
+import NavBar from "../main/navigation/NavBar";
+import Footer from "../main/Footer";
 
 interface IRegister {
   lastname: string;
@@ -11,19 +12,19 @@ interface IRegister {
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState<IRegister>({
-    lastname: '',
-    firstname: '',
-    email: '',
-    password: '',
-    passwordRepeat: '',
+    lastname: "",
+    firstname: "",
+    email: "",
+    password: "",
+    passwordRepeat: "",
   });
 
   const [formStyles, setFormStyles] = useState({
-    lastname: { borderColor: 'black' },
-    firstname: { borderColor: 'black' },
-    email: { borderColor: 'black' },
-    password: { borderColor: 'black' },
-    passwordRepeat: { borderColor: 'black' },
+    lastname: { borderColor: "black" },
+    firstname: { borderColor: "black" },
+    email: { borderColor: "black" },
+    password: { borderColor: "black" },
+    passwordRepeat: { borderColor: "black" },
   });
 
   const validateLastname = (lastname: string) => {
@@ -56,34 +57,44 @@ const Register: React.FC = () => {
     }));
 
     switch (name) {
-      case 'lastname':
+      case "lastname":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          lastname: { borderColor: validateLastname(value) ? 'lightGreen' : 'red' },
+          lastname: {
+            borderColor: validateLastname(value) ? "lightGreen" : "red",
+          },
         }));
         break;
-      case 'firstname':
+      case "firstname":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          firstname: { borderColor: validateFirstname(value) ? 'lightGreen' : 'red' },
+          firstname: {
+            borderColor: validateFirstname(value) ? "lightGreen" : "red",
+          },
         }));
         break;
-      case 'email':
+      case "email":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          email: { borderColor: validateEmail(value) ? 'lightGreen' : 'red' },
+          email: { borderColor: validateEmail(value) ? "lightGreen" : "red" },
         }));
         break;
-      case 'password':
+      case "password":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          password: { borderColor: validatePassword(value) ? 'lightGreen' : 'red' },
+          password: {
+            borderColor: validatePassword(value) ? "lightGreen" : "red",
+          },
         }));
         break;
-      case 'passwordRepeat':
+      case "passwordRepeat":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          passwordRepeat: { borderColor: validatePasswordRepeat(formData.password, value) ? 'lightGreen' : 'red' },
+          passwordRepeat: {
+            borderColor: validatePasswordRepeat(formData.password, value)
+              ? "lightGreen"
+              : "red",
+          },
         }));
         break;
       default:
@@ -101,74 +112,84 @@ const Register: React.FC = () => {
       validatePasswordRepeat(formData.password, formData.passwordRepeat)
     ) {
       // Implement form submission logic here
-      console.log('Form submitted:', formData);
+      console.log("Form submitted:", formData);
     } else {
-      console.log('Form validation failed');
+      console.log("Form validation failed");
     }
   };
 
   return (
     <>
-      <h2>Register</h2>
-      <NavBar/>
-      <form method="post" action="ROUTE DES BACKENDS EN ATTENTE" className="register" onSubmit={handleSubmit}>
-        <label htmlFor="lastname">LastName</label>
-        <input
-          type="text"
-          name="lastname"
-          id="lastname"
-          placeholder="Enter your lastname"
-          value={formData.lastname}
-          onChange={handleChange}
-          style={formStyles.lastname}
-          required
-        />
-        <label htmlFor="firstname">FirstName</label>
-        <input
-          type="text"
-          name="firstname"
-          id="firstname"
-          placeholder="Enter your firstname"
-          value={formData.firstname}
-          onChange={handleChange}
-          style={formStyles.firstname}
-          required
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Enter your email address"
-          value={formData.email}
-          onChange={handleChange}
-          style={formStyles.email}
-          required
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Enter your password ex: un mot de passe de 8 lettres"
-          value={formData.password}
-          onChange={handleChange}
-          style={formStyles.password}
-          required
-        />
-        <label htmlFor="passwordRepeat">Repeat Password</label>
-        <input
-          type="password"
-          name="passwordRepeat"
-          id="passwordRepeat"
-          placeholder="Repeat your password"
-          value={formData.passwordRepeat}
-          onChange={handleChange}
-          style={formStyles.passwordRepeat}
-          required
-        />
-        <input type="submit" value="Register" />
-      </form>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <form
+          method="post"
+          action="ROUTE DES BACKENDS EN ATTENTE"
+          className="register"
+          onSubmit={handleSubmit}
+        >
+          <h2>Register</h2>
+          <label htmlFor="lastname">LastName</label>
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            placeholder="Enter your lastname"
+            value={formData.lastname}
+            onChange={handleChange}
+            style={formStyles.lastname}
+            required
+          />
+          <label htmlFor="firstname">FirstName</label>
+          <input
+            type="text"
+            name="firstname"
+            id="firstname"
+            placeholder="Enter your firstname"
+            value={formData.firstname}
+            onChange={handleChange}
+            style={formStyles.firstname}
+            required
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email address"
+            value={formData.email}
+            onChange={handleChange}
+            style={formStyles.email}
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter your password ex: un mot de passe de 8 lettres"
+            value={formData.password}
+            onChange={handleChange}
+            style={formStyles.password}
+            required
+          />
+          <label htmlFor="passwordRepeat">Repeat Password</label>
+          <input
+            type="password"
+            name="passwordRepeat"
+            id="passwordRepeat"
+            placeholder="Repeat your password"
+            value={formData.passwordRepeat}
+            onChange={handleChange}
+            style={formStyles.passwordRepeat}
+            required
+          />
+          <input type="submit" value="Register" />
+        </form>
+      </main>
+      <Footer/> 
     </>
   );
 };

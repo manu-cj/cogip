@@ -1,5 +1,6 @@
 import { useRouteError } from "react-router-dom";
 import NavBar from "../main/navigation/NavBar";
+import Footer from "../main/Footer";
 
 
 interface RouteError {
@@ -27,6 +28,7 @@ export default function ErrorPage() {
   
       </div>
     </main>
+    <Footer/>
     </>
   );
 }
