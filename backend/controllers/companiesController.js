@@ -67,16 +67,48 @@ const postCompanies = async (req, res) => {
 
 const deleteByNameCompanies = async (req, res) =>{
 
-  // const name = req.params.name;
-  // try{
-  //   const deletedCompanyByName = await Companies.(name);
-  //   if (!deletedCompanyByName) {
-  //     return res.status(404).json({ message: "Company not found" });
-  //   }
-  //   return res.status(200).json({ message: "Company successfully deleted" });
-  // } catch(err){
-  //   res.status(500).json({ message: `SERVER ERROR: ${err.message}` });
-  // }
+  const identifier = req.params.identifier;
+
+    // Vérifiez si l'identifiant est un ID (supposons que les ID sont des nombres)
+    if (!isNaN(identifier)) {
+        // Si c'est un nombre, traitez-le comme un ID
+        try {
+            await deleteCompaniesById(identifier);  // Remplacez cette fonction par votre logique de suppression par ID
+            res.status(200).send({ message: "Company deleted by ID" });
+        } catch (error) {
+            res.status(500).send({ error: "Error deleting company by ID" });
+        }
+    } else {
+        // Sinon, traitez-le comme un nom
+        try {
+            await deleteCompaniesByName(identifier);  // Remplacez cette fonction par votre logique de suppression par nom
+            res.status(200).send({ message: "Company deleted by name" });
+        } catch (error) {
+            res.status(500).send({ error: "Error deleting company by name" });
+        }
+    }
+    // Exemple de fonctions de suppression (à remplacer par votre propre logique)
+const deleteCompaniesById = async (id) => {
+  // Votre logique de suppression par ID
+
+  const name = req.params.name;
+  try{
+    const deletedCompanyByName = await Companies(name);
+    if (!deletedCompanyByName) {
+      return res.status(404).json({ message: "Company not found" });
+    }
+    return res.status(200).json({ message: "Company successfully deleted" });
+  } catch(err){
+    res.status(500).json({ message: `SERVER ERROR: ${err.message}` });
+  }
+};
+
+const deleteCompaniesByName = async (name) => {
+  // Votre logique de suppression par nom
+};
+  
+
+
 };
 
 export { getCompanies, postCompanies, deleteCompanies , deleteByNameCompanies};
