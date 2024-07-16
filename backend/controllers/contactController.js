@@ -94,6 +94,7 @@ const updateContact = async (req, res) => {
     });
   }
   try {
+    const now = new Date();
     const modifiedContact = await Contact.findByIdAndUpdate(
       id,
       {
@@ -107,12 +108,10 @@ const updateContact = async (req, res) => {
     if (!modifiedContact) {
       return res.status(404).json({ message: "Contact not found" });
     }
-    return res
-      .status(200)
-      .json({
-        message: "Contact successfully updated",
-        contact: modifiedContact,
-      });
+    return res.status(200).json({
+      message: "Contact successfully updated",
+      contact: modifiedContact,
+    });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR ${error.message}` });
   }
