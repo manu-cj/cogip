@@ -1,5 +1,7 @@
 import Contact from "./../models/contactModel.js";
+import Company from "./../models/companiesModel.js";
 import mongoose from "mongoose";
+
 import { sanitize } from "./../utils/sanitize.js";
 
 const getContacts = async (req, res) => {
@@ -27,7 +29,13 @@ const createContact = async (req, res) => {
       message: "Invalid request, please make sure all parameters are sent.",
     });
   }
-  // ADD logic to check if company ID exists.
+  if (!mongoose.Types.ObjectId.isValid(companyId)) {
+    return res.status(400).json({ message: "Invalid company ID format" });
+  }
+  const company = await Company.findById(companyId);
+  if (!company) {
+    return res.status(404).json({ message: "Company not found" });
+  }
   if (
     name.length > maxLen ||
     phoneNr.length > maxLen ||
@@ -101,10 +109,10 @@ const updateContact = async (req, res) => {
         name: name,
         email: email,
         phoneNr: phoneNr,
+        updatedOn: now,
       },
       { new: true }
     );
-
     if (!modifiedContact) {
       return res.status(404).json({ message: "Contact not found" });
     }

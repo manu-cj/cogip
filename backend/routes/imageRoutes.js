@@ -3,7 +3,7 @@ import { saveContactImage } from "./../controllers/imageController.js";
 
 const router = express.Router();
 
-router.post("/contacts/:contactId", saveContactImage);
+router.patch("/contacts/:contactId", saveContactImage);
 
 // router.post("/users/:userId", uploadUserImage.single("image"), (req, res) => {
 //   // Handle successful upload

@@ -1,6 +1,9 @@
 import multer from "multer";
+import path from "path";
 
-const allowedFileTypes = ["image/jpeg", "image/png"];
+const maxFileSize = 5 * 1024 * 1024;
+const suspiciousExtensions = [".exe", ".sh", ".bat"];
+const allowedExtensions = [".jpg", ".jpeg", "png"];
 
 const contactStorage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -20,25 +23,31 @@ const userStorage = multer.diskStorage({
   },
 });
 
+const fileFilter = (req, file, cb) => {
+  const fileExtension = path.extname(file.originalname).toLowerCase();
+  if (!allowedExtensions.includes(fileExtension)) {
+    return cb(new Error("Only JPEG and PNG images are allowed"));
+  }
+  if (
+    suspiciousExtensions.some((ext) =>
+      file.originalname.toLowerCase().includes(ext)
+    )
+  ) {
+    return cb(new Error("Suspicious file detected"));
+  }
+  cb(null, true);
+};
+
 const uploadContactImage = multer({
   storage: contactStorage,
-  fileFilter: function (req, file, cb) {
-    if (allowedFileTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error("Only JPEG and PNG images are allowed"));
-    }
-  },
+  limits: { fileSize: maxFileSize },
+  fileFilter: fileFilter,
 });
+
 const uploadUserImage = multer({
   storage: userStorage,
-  fileFilter: function (req, file, cb) {
-    if (allowedFileTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error("Only JPEG and PNG images are allowed"));
-    }
-  },
+  limits: { fileSize: maxFileSize },
+  fileFilter: fileFilter,
 });
 
 export { uploadContactImage, uploadUserImage };

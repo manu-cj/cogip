@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
 const ContactSchema = new mongoose.Schema({
   name: {
@@ -7,7 +8,8 @@ const ContactSchema = new mongoose.Schema({
     maxlength: 50,
   },
   companyId: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "Company",
     required: true,
   },
   email: {
@@ -22,19 +24,29 @@ const ContactSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    required: true,
     default: Date.now,
   },
   updatedOn: {
     type: Date,
-    required: true,
     default: Date.now,
   },
   image: {
-    filename: String,
-    path: String,
-    originalName: String,
-    uploadDate: { type: Date, default: Date.now },
+    filename: {
+      type: String,
+      default: "default.jpg", // Default image filename
+    },
+    path: {
+      type: String,
+      default: "public/assets/img/people/default.jpg", // Default image path
+    },
+    originalName: {
+      type: String,
+      default: "default.jpg", // Default original name
+    },
+    uploadDate: {
+      type: Date,
+      default: Date.now,
+    },
   },
 });
 
