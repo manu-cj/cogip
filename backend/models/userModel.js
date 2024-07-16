@@ -24,13 +24,29 @@ const UserSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    required: true,
     default: Date.now,
   },
   updatedOn: {
     type: Date,
-    required: true,
     default: Date.now,
+  },
+  image: {
+    filename: {
+      type: String,
+      default: "default.jpg",
+    },
+    path: {
+      type: String,
+      default: "public/assets/img/people/default.jpg",
+    },
+    originalName: {
+      type: String,
+      default: "default.jpg",
+    },
+    uploadDate: {
+      type: Date,
+      default: Date.now,
+    },
   },
 });
 

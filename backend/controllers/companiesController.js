@@ -17,11 +17,6 @@ const getCompanies = async (req, res) => {
   }
 };
 
-const getByIdCompanies = async (req, res) =>{
-
-};
-
-
 const postCompanies = async (req, res) => {
   try {
     const { name, country, vat } = req.body;
@@ -44,71 +39,63 @@ const postCompanies = async (req, res) => {
   }
 };
 
+const deleteCompany = async (req, res) => {
+  const identifier = req.params.identifier;
 
- //find of name / country / id 
-
- const deleteCompanies = async (req, res) => {
-
-  const id = req.params.id;
   try {
-    const deletedCompany = await Companies.findByIdAndDelete(id);
-    if (!deletedCompany) {
-      return res.status(404).json({ message: "Company not found" });
+    if (!identifier) {
+      return res.status(400).json({ error: "L'identifiant de l'entreprise à supprimer n'est pas fourni." });
     }
-    return res.status(200).json({ message: "Company successfully deleted" });
-  } catch (error) {
-    res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+
+    // Vérifiez si l'identifiant est un ID (supposons que les ID sont des nombres ou des ObjectId)
+    if (!isNaN(identifier) || /^[0-9a-fA-F]{24}$/.test(identifier)) {
+      // Si c'est un nombre ou un ObjectId, traitez-le comme un ID
+      try {
+        const deleteResult = await deleteCompaniesById(identifier);
+        res.status(200).json({ message: `Entreprise supprimée avec l'ID ${identifier}.` });
+      } catch (error) {
+        res.status(500).json({ error: `Erreur lors de la suppression de l'entreprise par ID: ${error.message}` });
+      }
+    } else {
+      // Sinon, traitez-le comme un nom
+      try {
+        const deleteResult = await deleteCompaniesByName(identifier);
+        res.status(200).json({ message: `Entreprise supprimée avec le nom ${identifier}.` });
+      } catch (error) {
+        res.status(500).json({ error: `Erreur lors de la suppression de l'entreprise par nom: ${error.message}` });
+      }
+    }
+  } catch (err) {
+    console.error('Erreur lors de la suppression de l\'entreprise : ', err);
+    res.status(500).json({ error: 'Erreur serveur lors de la suppression de l\'entreprise.' });
   }
 };
 
-
-
-
-
-const deleteByNameCompanies = async (req, res) =>{
-
-  const identifier = req.params.identifier;
-
-    // Vérifiez si l'identifiant est un ID (supposons que les ID sont des nombres)
-    if (!isNaN(identifier)) {
-        // Si c'est un nombre, traitez-le comme un ID
-        try {
-            await deleteCompaniesById(identifier);  // Remplacez cette fonction par votre logique de suppression par ID
-            res.status(200).send({ message: "Company deleted by ID" });
-        } catch (error) {
-            res.status(500).send({ error: "Error deleting company by ID" });
-        }
-    } else {
-        // Sinon, traitez-le comme un nom
-        try {
-            await deleteCompaniesByName(identifier);  // Remplacez cette fonction par votre logique de suppression par nom
-            res.status(200).send({ message: "Company deleted by name" });
-        } catch (error) {
-            res.status(500).send({ error: "Error deleting company by name" });
-        }
-    }
-    // Exemple de fonctions de suppression (à remplacer par votre propre logique)
 const deleteCompaniesById = async (id) => {
-  // Votre logique de suppression par ID
-
-  const name = req.params.name;
-  try{
-    const deletedCompanyByName = await Companies(name);
-    if (!deletedCompanyByName) {
-      return res.status(404).json({ message: "Company not found" });
+  try {
+    const deletedCompany = await Companies.findByIdAndDelete(id);
+    if (!deletedCompany) {
+      throw new Error("Entreprise non trouvée");
     }
-    return res.status(200).json({ message: "Company successfully deleted" });
-  } catch(err){
-    res.status(500).json({ message: `SERVER ERROR: ${err.message}` });
+  } catch (error) {
+    throw new Error(`Erreur du serveur : ${error.message}`);
   }
 };
 
 const deleteCompaniesByName = async (name) => {
-  // Votre logique de suppression par nom
+  try {
+    const deletedCompany = await Companies.findOneAndDelete({ name: name });
+    if (!deletedCompany) {
+      throw new Error("Entreprise non trouvée");
+    }
+  } catch (error) {
+    throw new Error(`Erreur du serveur : ${error.message}`);
+  }
 };
+
+
+const updateCompanies = async (req, res) =>{
   
+}
 
-
-};
-
-export { getCompanies, postCompanies, deleteCompanies , deleteByNameCompanies};
+export { getCompanies, postCompanies, deleteCompany};

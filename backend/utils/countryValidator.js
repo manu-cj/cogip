@@ -1,6 +1,6 @@
 // validation.js
-import countries from 'i18n-iso-countries';
-import enLocale from 'i18n-iso-countries/langs/en.json' assert { type: 'json' };
+import countries from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json" assert { type: "json" };
 
 // Load the English locale for country names
 countries.registerLocale(enLocale);
@@ -12,8 +12,8 @@ export function validateCountryCode(code) {
 
 // Function to validate the country name
 export function validateCountryName(name) {
-  const countryCode = countries.getAlpha2Code(name, 'en');
+  const countryCode = countries.getAlpha2Code(name, "en");
   return countryCode !== undefined;
 }
 
-export default {validateCountryName};
+export default { validateCountryName };
