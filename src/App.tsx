@@ -35,7 +35,7 @@ function App() {
         </div>
       </header>
       <main>
-        <section className="home-content">
+        <section className="main-content">
           <h2>Last invoices</h2>
           <table>
             <thead>
@@ -56,8 +56,9 @@ function App() {
               </tr>
             </tbody>
           </table>
+          <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (16) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="invoice-img" />
         </section>
-        <section className="home-content">
+        <section className="main-content">
           <h2>Last contacts</h2>
           <table>
             <thead>
@@ -77,10 +78,12 @@ function App() {
                 <td>Raviga</td>
                 <td>25/09/2020</td>
               </tr>
+              
             </tbody>
           </table>
+          <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (15) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="contact-img" />
         </section>
-        <section className="home-content">
+        <section className="main-content">
           <h2>Last compagnies</h2>
           <table>
             <thead>

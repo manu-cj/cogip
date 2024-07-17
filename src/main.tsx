@@ -23,7 +23,7 @@ import ContactDashboard from './component/dashboard/ContactDashboard.tsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "*",
     element: <App/>,
     errorElement: <ErrorPage/>,
   },
