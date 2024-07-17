@@ -28,6 +28,12 @@
     justify-content: flex-start;
     align-items: center;
 }
+.flexColumnStartCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
 .flexColumnCenterCenter {
     display: flex;
     flex-direction: column;
@@ -51,4 +57,11 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+}
+.flexColumnCenterEnd {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    align-content: end;
 }

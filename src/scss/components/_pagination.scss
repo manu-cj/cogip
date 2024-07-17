@@ -1,0 +1,33 @@
+.pagination {
+    width: 25%;
+    @extend .flexAroundCenter;
+    
+
+    .fa-chevron-left, .fa-chevron-right {
+        color: #f4d03f;
+        transition: 0.4s ease-in;
+    }
+
+    a {
+        display: block;
+        padding: 5px;
+        width: 30px;
+        border: 1px black solid;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration-line: none;
+        color: black;
+        transition: 0.3s ease-in;
+        &:hover {
+            scale: 1.1;
+            background-color: #f4d03f;
+            color: black;
+            .fa-chevron-left {
+                color: black;
+            }
+            .fa-chevron-right {
+                color: black;
+            }
+        }
+    }
+}

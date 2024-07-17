@@ -1,16 +1,9 @@
-import Footer from "../main/Footer";
-import NavBar from "../main/navigation/NavBar";
+import TemplatePages from "./components/Template-pages";
 
 function Contacts() {
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
-      <main>
-        <h2>Contacts</h2>
-      </main>
-      <Footer/>
+      <TemplatePages/>
     </>
   );
 }

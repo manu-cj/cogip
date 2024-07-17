@@ -113,8 +113,7 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -562,21 +561,21 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexAroundCenter {
+.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, main .pagination, header .top-content, header .bottom-content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 
-.flexBetweenCenter {
+.flexBetweenCenter, footer .footer-bottom nav ul, header nav, header nav ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.flexEndCenter {
+.flexEndCenter, footer .footer-bottom .copyright, main .searchBar-section, main .bottom-content .bottom-content-picture-div, main .bottom-content, header nav .loginNav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -590,7 +589,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexColumnCenterCenter {
+.flexColumnCenterCenter, body #root, main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -618,6 +617,14 @@ html[data-theme="dark"] {
   align-items: flex-start;
 }
 
+.flexColumnCenterEnd, header .bottom-content-other-pages {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  align-content: end;
+}
+
 .absoluteCenter {
   position: absolute;
   top: 50%;
@@ -640,6 +647,234 @@ html[data-theme="dark"] {
 .pointer {
   cursor: pointer;
   transition: 0.3s;
+}
+
+header {
+  width: 100%;
+  min-height: 150px;
+  background-color: #f9de4e;
+  color: black;
+}
+header .top-content {
+  width: 100%;
+  padding: 10px;
+  padding-top: 50px;
+}
+header .top-content h2 {
+  display: block;
+  width: 30%;
+  font-weight: bold;
+  font-size: 900;
+}
+header .top-content img {
+  width: 50%;
+}
+header .bottom-content {
+  width: 100%;
+}
+header .bottom-content img {
+  width: 90%;
+}
+header .bottom-content-other-pages {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+}
+header .bottom-content-other-pages img {
+  position: relative;
+  bottom: 0;
+  width: 90%;
+}
+header nav {
+  position: fixed;
+  background-color: #f9de4e;
+  width: 100%;
+  z-index: 10;
+}
+header nav ul {
+  width: 30%;
+  gap: 10px;
+}
+header nav .loginNav {
+  gap: 10px;
+  width: 50%;
+  padding: 10px;
+}
+header nav .loginNav .sign-up {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
+header nav a {
+  text-decoration-line: none;
+  list-style-type: none;
+  color: black;
+  font-weight: bold;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+}
+main .main-content {
+  font-weight: bold;
+  font-size: 900;
+  width: 80%;
+  height: 500px;
+}
+main .main-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+main .main-content thead {
+  width: 100%;
+}
+main .main-content th,
+main .main-content td {
+  width: 10%;
+  border: none;
+  padding: 8px;
+  text-align: left;
+}
+main .main-content th {
+  background-color: #f4d03f;
+  font-weight: bold;
+}
+main .main-content tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+main .main-content .invoice-img {
+  position: absolute;
+  left: 90%;
+}
+main .main-content .contact-img {
+  position: absolute;
+  right: 91%;
+}
+main .bottom-content {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+}
+main .bottom-content .slogan {
+  width: 20%;
+}
+main .bottom-content h2 {
+  font-weight: bold;
+  font-size: 900;
+  text-align: left;
+}
+main .bottom-content .bottom-content-picture-div {
+  width: 60%;
+  position: relative;
+  height: 250px;
+}
+main .bottom-content .bottom-content-picture-div img {
+  position: absolute;
+}
+main .bottom-content .bottom-content-picture-div .picture1 {
+  top: 20px;
+  z-index: 0;
+}
+main .bottom-content .bottom-content-picture-div .picture2 {
+  width: 480px;
+  top: -50px;
+  left: 200px;
+  z-index: 1;
+}
+main .searchBar-section {
+  width: 80%;
+  height: 100px;
+}
+main .searchBar-section input {
+  padding: 10px;
+  border-color: #ececec;
+  border-radius: 10px;
+}
+main .pagination {
+  width: 25%;
+}
+main .pagination .fa-chevron-left, main .pagination .fa-chevron-right {
+  color: #f4d03f;
+  transition: 0.4s ease-in;
+}
+main .pagination a {
+  display: block;
+  padding: 5px;
+  width: 30px;
+  border: 1px black solid;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration-line: none;
+  color: black;
+  transition: 0.3s ease-in;
+}
+main .pagination a:hover {
+  scale: 1.1;
+  background-color: #f4d03f;
+  color: black;
+}
+main .pagination a:hover .fa-chevron-left {
+  color: black;
+}
+main .pagination a:hover .fa-chevron-right {
+  color: black;
+}
+
+footer {
+  margin-top: 50px;
+  width: 80%;
+  height: 300px;
+}
+footer .footer-content {
+  width: 100%;
+  height: 80%;
+  border-top: 1px #f4d03f solid;
+  border-bottom: 1px #c3c3c3 solid;
+}
+footer .footer-content .title-footer {
+  border: 5px #f4d03f solid;
+  text-align: center;
+}
+footer .footer-content .about-section {
+  width: 50%;
+}
+footer .footer-content .about-section p {
+  margin: 5px;
+}
+footer .footer-content .about-section .fa-location-dot, footer .footer-content .about-section .fa-phone-flip, footer .footer-content .about-section .fa-fax {
+  color: #f4d03f;
+  margin: 5px;
+}
+footer .footer-content .about-section .fa-fax {
+  margin-left: 150px;
+}
+footer .footer-content .about-section .social-links {
+  width: 100%;
+  padding: 20px;
+}
+footer .footer-content .about-section .social-links a {
+  color: #f4d03f;
+  margin: 5px;
+}
+footer .footer-bottom {
+  width: 100%;
+}
+footer .footer-bottom nav {
+  width: 60%;
+}
+footer .footer-bottom nav ul {
+  gap: 10px;
+  list-style-type: none;
+}
+footer .footer-bottom nav ul a {
+  text-decoration-line: none;
+  color: #7b7b7b;
+}
+footer .footer-bottom .copyright {
+  width: 40%;
 }
 
 main::-webkit-scrollbar {
@@ -752,29 +987,29 @@ form input {
   color: var(--text);
 }
 
-header {
+.dashboard-header {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px;
   position: relative;
 }
-header .header__title {
+.dashboard-header .header__title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-header .header__title h1 {
+.dashboard-header .header__title h1 {
   margin: 0;
   font-size: 30px;
   font-weight: 900;
 }
-header .header__title p {
+.dashboard-header .header__title p {
   font-size: 15px;
   font-weight: 300;
   margin-bottom: 25px;
 }
-header .header__content {
+.dashboard-header .header__content {
   background-color: var(--text);
   border-radius: 10px;
   color: white;
@@ -785,10 +1020,10 @@ header .header__content {
   justify-content: center;
   margin-top: 50px;
 }
-header .header__content p {
+.dashboard-header .header__content p {
   width: 50%;
 }
-header img {
+.dashboard-header img {
   position: absolute;
   top: 0;
   right: 0;
@@ -936,10 +1171,6 @@ header img {
   border-radius: 5px;
   text-indent: 10px;
 }
-.dashBoard__invoices form input::-moz-placeholder, .dashBoard__companies form input::-moz-placeholder, .dashBoard__contact form input::-moz-placeholder {
-  color: black;
-  font-weight: 100;
-}
 .dashBoard__invoices form input::placeholder, .dashBoard__companies form input::placeholder, .dashBoard__contact form input::placeholder {
   color: black;
   font-weight: 100;
@@ -981,16 +1212,15 @@ hr {
 
 html {
   height: 100%;
-  overflow: hidden;
 }
 
 body {
-  width: 100%;
   height: 100%;
   min-height: 100dvh;
   font-family: Ubuntu;
+  color: var(--text);
   overflow-x: hidden;
   overflow-y: scroll;
+  font-family: "Inter", sans-serif;
   color: black;
-  font-weight: 400;
-}
+}/*# sourceMappingURL=App.css.map */
