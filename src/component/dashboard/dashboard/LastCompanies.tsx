@@ -2,10 +2,10 @@ import { LastCompaniesProps } from '../../../types/types';
 
 function LastCompanies({companies}: LastCompaniesProps) {
     return (
-        <div>
+        <div className='lastCompanies'>
             <h3>Last companies</h3>
             <hr />
-            <table>
+            <table className='lastCompanies__table'>
                 <thead>
                     <tr>
                         <th>Name</th>

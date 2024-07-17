@@ -1,14 +1,18 @@
+import Footer from "../main/Footer";
 import NavBar from "../main/navigation/NavBar";
 
-
 function Show_contact() {
-    return (
-        <>
-        <div>
-            <NavBar/>
-            <h2>Show Contact</h2>
-        </div></>
-    );
+  return (
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <h2>Show Contact</h2>
+      </main>
+      <Footer/>
+    </>
+  );
 }
 
 export default Show_contact;

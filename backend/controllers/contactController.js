@@ -1,4 +1,5 @@
 import Contact from "./../models/contactModel.js";
+import Companies from "./../models/companiesModel.js";
 import mongoose from "mongoose";
 
 import { sanitize } from "./../utils/sanitize.js";
@@ -9,6 +10,37 @@ const getContacts = async (req, res) => {
     return res.status(200).json({ contacts });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
+};
+
+const getContactsByCompany = async (req, res) => {
+  const id = req.params.companyId;
+  try {
+    const companyValid = await Companies.findById(id);
+    if (!companyValid) {
+      return res
+        .status(404)
+        .json({ message: "Company not found. Make sure to send a valid ID." });
+    }
+    const contacts = await Contact.find({ companyId: id }).populate(
+      "companyId",
+      "name"
+    );
+    return res.status(200).json({ contacts });
+  } catch (error) {
+    res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
+  }
+};
+
+const getLatestContacts = async (req, res) => {
+  try {
+    const contacts = await Contact.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .populate("companyId", "name");
+    return res.status(200).json({ contacts });
+  } catch (error) {
+    return res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
   }
 };
 
@@ -141,6 +173,8 @@ export {
   getContacts,
   createContact,
   getContactById,
+  getLatestContacts,
   updateContact,
   deleteContact,
+  getContactsByCompany,
 };

@@ -2,6 +2,15 @@ import "./css/App.css";
 import { Route, Routes } from "react-router-dom";
 import DashBoard from "./component/dashboard/DashBoard";
 import NavBar from "./component/main/navigation/NavBar";
+import Footer from "./component/main/Footer";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(fas);
+library.add(fab);
+
 
 function App() {
   return (
@@ -19,7 +28,10 @@ function App() {
           />
         </div>
         <div className="bottom-content">
-          <img src="./../public/assets/img/home/Rectangle 10.svg" alt="" />
+          <img
+            src="./../public/assets/img/home/Rectangle 10.svg"
+            alt="Rectangle 10.svg"
+          />
         </div>
       </header>
       <main>
@@ -91,7 +103,26 @@ function App() {
             </tbody>
           </table>
         </section>
+        <div className="bottom-content">
+          <div className="slogan">
+            <h2>WORK BETTER </h2>
+            <h2>IN YOUR COMPANY</h2>
+          </div>
+          <div className="bottom-content-picture-div">
+            <img
+              src="./../public/assets/img/home/Rectangle 17.svg"
+              alt="Rectangle 17"
+              className="picture1"
+            />
+            <img
+              src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (19) 1.svg"
+              alt="DrawKit Vector Illustration Project Manager"
+              className="picture2"
+            />
+          </div>
+        </div>
       </main>
+      <Footer />
     </>
   );
 }

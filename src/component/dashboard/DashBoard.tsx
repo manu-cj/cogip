@@ -12,10 +12,14 @@ function DashBoard() {
             <div className='dashBoard__content'>
                 <Header firstName="Dylan"/>
                 <div className='dashBoard__content__body'>
-                    <Stat />
-                    <LastInvoice invoice={[]}/>
-                    <LastContact contact={[]}/>
-                    <LastCompanies companies={[]}/>
+                    <div className="dashBoard__content__body--left">
+                        <Stat />
+                        <LastContact contact={[{name: "Dylan", phone: "06 12 34 56 78", email: "pFQw5@example.com"}]}/>
+                    </div>
+                    <div className="dashBoard__content__body--right">
+                        <LastInvoice invoice={[{number: "0001", date: "01/01/2021", company: "Company 1"}]}/>
+                        <LastCompanies companies={[{tva: "FR123456789", name: "Company 1", country: "France"}, {tva: "FR123456789", name: "Company 2", country: "France"}, {tva: "FR123456789", name: "Company 3", country: "France"}, {tva: "FR123456789", name: "Company 4", country: "France"}]}/>
+                    </div>
                 </div>
             </div>
         </div>
