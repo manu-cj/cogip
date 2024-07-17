@@ -4,13 +4,17 @@ import {
   getContacts,
   createContact,
   getContactById,
+  getLatestContacts,
   updateContact,
   deleteContact,
+  getContactsByCompany,
 } from "./../controllers/contactController.js";
 
 // GET ROUTES
 router.get("/", getContacts);
+router.get("/latest", getLatestContacts);
 router.get("/:id", getContactById);
+router.get("/company/:companyId", getContactsByCompany);
 
 // POST ROUTES
 router.post("/", createContact);
