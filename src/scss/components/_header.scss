@@ -14,6 +14,7 @@ header {
     .top-content { 
         width: 100%;
         padding: 10px; 
+        margin-bottom: 50px;
         @extend .flexBetweenCenter;
         h2 {
             display: block;

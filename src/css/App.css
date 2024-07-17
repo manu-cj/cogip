@@ -695,6 +695,7 @@ header nav a {
 header .top-content {
   width: 100%;
   padding: 10px;
+  margin-bottom: 50px;
 }
 header .top-content h2 {
   display: block;
