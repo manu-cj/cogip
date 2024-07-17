@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import Companies from "./../models/companiesModel.js";
+import Invoice from "./../models/invoiceModel.js"
 import { sanitize } from "../utils/sanitize.js";
-import {validateCountryName} from "../utils/countryValidator.js";
+import { validateCountryName } from "../utils/countryValidator.js";
 
 
 //Delete *Patch  *get by id 
@@ -25,15 +26,15 @@ const postCompanies = async (req, res) => {
 
     if (!validateCountryName(country)) {
       return res.status(400).json({ error: "Invalid country" });
-    }  
-    
+    }
+
     const existingCompanies = await Companies.findOne({ name });
     if (existingCompanies) {
-      return res.status(400).json({ message: `Company name alreay use : ${existingCompanies} `});
+      return res.status(400).json({ message: `Company name alreay use : ${existingCompanies} ` });
     }
-    
+
     await companies.save(); //save companies
-   return res.status(201).json({ message: "Country is valid and data saved" });
+    return res.status(201).json({ message: "Country is valid and data saved" });
 
   } catch (err) {
     res.status(500).json({ message: `SERVER ERROR ${err.message}` });
@@ -96,41 +97,37 @@ const deleteCompaniesByName = async (name) => {
 
 // Update of one company
 
-const updateCompany = async (req, res) =>{
-  
-const id = req.params.id;
-const maxLen = 25;
+const updateCompany = async (req, res) => {
+  const id = req.params.id;
+  const maxLen = 25;
 
-  try{
-
-    let name = req.body;
-    if(!name){
-      return res.status(400).json({message: "Company name not found"});
+  try {
+    const name = req.body.name; // Récupérer directement la valeur de 'name' depuis req.body
+   
+    if (!name) {
+      return res.status(400).json({ message: "Company name not found" });
     }
 
-    name = sanitize(name);
-
-    if(name === ""){ // verify after sanitize if the name is empty 
-      res.status(400).json({message: "Your name = '' " });
+    // Vérification de la longueur du nom
+    if (name.length > maxLen) {
+      return res.status(400).json({ message: "Name too long, max allowed is 25 characters" });
     }
+
+    // Mettre à jour la compagnie
+    const updatedCompany = await Companies.findByIdAndUpdate(id, { name: name, updatedOn : new Date()}, { new: true });
+
+    if (!updatedCompany) {
+      return res.status(404).json({ message: "Company ID not found" });
+    }
+
+    // Envoyer une réponse avec le message et les données mises à jour
+    res.status(200).json({ message: "Company updated", updatedCompany });
     
-    if(name.length > maxLen){ // verify is the name is longer than 25 
-      res.status(400).json({message: "Name to long max allowed to 25 chars"});
-    }
-
-    const updatedCompany = await Companies.findAndUpdade(id, {name: name},{new: true});
-
-    if(!updatedCompany){
-     return res.status(404).json({message: "id Not found"});
-    }
-
-    res.status(200).status.json({message : "Company updated"},{updatedCompany});
-
-
-  } catch(error){
-    res.status(500).json({ message : error.message})
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-}
+};
 
 
-export { getCompanies, postCompanies, deleteCompany, updateCompany};
+
+export { getCompanies, postCompanies, deleteCompany, updateCompany };
