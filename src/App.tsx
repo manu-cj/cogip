@@ -1,12 +1,12 @@
 import "./css/App.css";
-import { Route, Routes } from "react-router-dom";
-import DashBoard from "./component/dashboard/DashBoard";
 import NavBar from "./component/main/navigation/NavBar";
 import Footer from "./component/main/Footer";
+import Notification from "./component/pages/components/Notification";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from '@fortawesome/free-brands-svg-icons';
+
 
 library.add(fas);
 library.add(fab);
@@ -17,6 +17,7 @@ function App() {
     <>
       <header>
         <NavBar />
+        <Notification/>
         <div className="top-content">
           <h2>MANAGE YOUR CUSTOMERS AND INVOICES EASLY</h2>
           <img

@@ -1,5 +1,6 @@
 import Footer from "../main/Footer";
 import NavBar from "../main/navigation/NavBar";
+import Notification from "../pages/components/Notification";
 
 function Login() {
   return (
@@ -8,6 +9,7 @@ function Login() {
         <NavBar />
       </header>
       <main>
+        <Notification/>
         <form action="http://localhost:3000/api/users/login" method="post">
             <h2>Login</h2>
           <label htmlFor="mail">Email</label>
