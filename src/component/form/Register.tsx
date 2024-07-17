@@ -1,6 +1,6 @@
-import { useState } from "react";
 import NavBar from "../main/navigation/NavBar";
 import Footer from "../main/Footer";
+import { useState } from 'react';
 
 interface IRegister {
   lastName: string;
@@ -102,6 +102,21 @@ const Register: React.FC = () => {
     }
   };
 
+  // const useLocalStorage = <T,>(storageKey: string, fallbackState: T): [T, Dispatch<SetStateAction<T>>] => {
+  //   const [value, setValue] = useState<T>(
+  //     () => {
+  //       const storedValue = localStorage.getItem(storageKey);
+  //       return storedValue ? JSON.parse(storedValue) as T : fallbackState;
+  //     }
+  //   );
+  
+  //   useEffect(() => {
+  //     localStorage.setItem(storageKey, JSON.stringify(value));
+  //   }, [value, storageKey]);
+  
+  //   return [value, setValue];
+  // };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
@@ -111,8 +126,6 @@ const Register: React.FC = () => {
       validatePassword(formData.password) &&
       validatePasswordRepeat(formData.password, formData.passwordRepeat)
     ) {
-      // Implement form submission logic here
-      console.log("Form submitted:", formData);
       try {
         const response = await fetch('http://localhost:3000/api/users', {
           method: 'POST',
@@ -122,6 +135,11 @@ const Register: React.FC = () => {
           body: JSON.stringify(formData)
         });
         const result = await response.json();
+        result.message === "Email already in use" ?
+          localStorage.setItem("errors", JSON.stringify(result))
+          :
+        localStorage.setItem("notification", JSON.stringify(result));
+        
         console.log(result);
       } catch (error) {
         console.error(error);
