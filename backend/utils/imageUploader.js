@@ -33,7 +33,7 @@ const fileFilter = (req, file, cb) => {
       file.originalname.toLowerCase().includes(ext)
     )
   ) {
-    return cb(new Error("Suspicious file detected"));
+    return cb(new Error("Je vois ce que t'as essayé de faire, Manu"));
   }
   cb(null, true);
 };
