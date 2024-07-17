@@ -93,9 +93,27 @@ const deleteCompaniesByName = async (name) => {
   }
 };
 
+// Update of one company
+const updateCompany = async (req, res) =>{
+  const companyName = req.params.name;  
+  const updateData = req.body // 
 
-const updateCompanies = async (req, res) =>{
-  
+  try{
+    /*const findByNameCompanies = await Companies.findOneAndUpdate({ name: companyName});
+    console.log(findByNameCompanies);
+    if (!findByNameCompanies) {
+      return res.status(404).json({ error: 'Company not found' });
+    }*/
+    const updateCompany = await Companies.FindOneAndupdate({ name : companyName}, { $set: updateData});
+    console.log(updateCompany);
+    res.json({updateCompany});
+    if(updateCompany.nModified ===0){
+      return res.status(400).json({ message: "No changes made to the company"});
+    }
+    res.status(200).json({ message: 'Update successful for ' + companyName });
+  } catch(err){
+    res.status(500).json({ error: "Erreur serveur lors de l'update de l'entreprise." });
+  }
 }
 
-export { getCompanies, postCompanies, deleteCompany};
+export { getCompanies, postCompanies, deleteCompany, updateCompany};

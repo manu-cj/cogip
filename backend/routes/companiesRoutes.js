@@ -3,7 +3,8 @@ const router = express.Router();
 import {
   getCompanies,
   postCompanies,
-  deleteCompany
+  deleteCompany,
+  updateCompany
 } from "./../controllers/companiesController.js";
 
 // GET ROUTES
@@ -14,4 +15,7 @@ router.post("/", postCompanies);
 
 //DELETE ROUTES
 router.delete("/:identifier", deleteCompany);
+
+//Update ROUTES
+router.patch("/", updateCompany);
 export default router;
