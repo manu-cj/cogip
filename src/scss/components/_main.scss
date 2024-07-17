@@ -34,6 +34,15 @@ main {
     tr:nth-child(even) {
       background-color: #f2f2f2;
     }
+
+    .invoice-img {
+      position: absolute;
+      left: 90%;
+    }
+    .contact-img {
+      position: absolute;
+      right: 91%;
+    }
   } 
    
   .bottom-content { 
@@ -75,6 +84,19 @@ main {
       
     }
   }
+  .searchBar-section {
+    width: 80%;
+    height: 100px;
+    @extend .flexEndCenter;
+
+    input {
+      padding: 10px;
+      border-color: #ececec;
+      border-radius: 10px;
+    }
+  }
+
+  @import "pagination";
 
 
 }

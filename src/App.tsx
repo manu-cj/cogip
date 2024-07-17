@@ -56,6 +56,7 @@ function App() {
               </tr>
             </tbody>
           </table>
+          <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (16) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="invoice-img" />
         </section>
         <section className="main-content">
           <h2>Last contacts</h2>
@@ -77,8 +78,10 @@ function App() {
                 <td>Raviga</td>
                 <td>25/09/2020</td>
               </tr>
+              
             </tbody>
           </table>
+          <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (15) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="contact-img" />
         </section>
         <section className="main-content">
           <h2>Last compagnies</h2>

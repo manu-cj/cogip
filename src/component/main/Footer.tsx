@@ -12,7 +12,9 @@ const Footer = () => {
     <>
       <footer>
         <section className="footer-content">
+          <div className="title-footer">
           <h2>Cogip</h2>
+          </div>
           <section className="about-section">
             <div className="about">
               <p>

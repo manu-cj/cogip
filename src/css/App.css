@@ -558,7 +558,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, header .top-content, header .bottom-content {
+.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, main .pagination, header .top-content, header .bottom-content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -572,7 +572,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexEndCenter, footer .footer-bottom .copyright, main .bottom-content .bottom-content-picture-div, main .bottom-content, header nav .loginNav {
+.flexEndCenter, footer .footer-bottom .copyright, main .searchBar-section, main .bottom-content .bottom-content-picture-div, main .bottom-content, header nav .loginNav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -675,7 +675,7 @@ header .bottom-content img {
 header .bottom-content-other-pages {
   position: relative;
   width: 100%;
-  min-height: 150px;
+  min-height: 200px;
 }
 header .bottom-content-other-pages img {
   position: relative;
@@ -741,6 +741,14 @@ main .main-content th {
 main .main-content tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+main .main-content .invoice-img {
+  position: absolute;
+  left: 90%;
+}
+main .main-content .contact-img {
+  position: absolute;
+  right: 91%;
+}
 main .bottom-content {
   position: relative;
   width: 100%;
@@ -773,6 +781,44 @@ main .bottom-content .bottom-content-picture-div .picture2 {
   left: 200px;
   z-index: 1;
 }
+main .searchBar-section {
+  width: 80%;
+  height: 100px;
+}
+main .searchBar-section input {
+  padding: 10px;
+  border-color: #ececec;
+  border-radius: 10px;
+}
+main .pagination {
+  width: 25%;
+}
+main .pagination .fa-chevron-left, main .pagination .fa-chevron-right {
+  color: #f4d03f;
+  transition: 0.4s ease-in;
+}
+main .pagination a {
+  display: block;
+  padding: 5px;
+  width: 30px;
+  border: 1px black solid;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration-line: none;
+  color: black;
+  transition: 0.3s ease-in;
+}
+main .pagination a:hover {
+  scale: 1.1;
+  background-color: #f4d03f;
+  color: black;
+}
+main .pagination a:hover .fa-chevron-left {
+  color: black;
+}
+main .pagination a:hover .fa-chevron-right {
+  color: black;
+}
 
 footer {
   margin-top: 50px;
@@ -784,6 +830,10 @@ footer .footer-content {
   height: 80%;
   border-top: 1px #f4d03f solid;
   border-bottom: 1px #c3c3c3 solid;
+}
+footer .footer-content .title-footer {
+  border: 5px #f4d03f solid;
+  text-align: center;
 }
 footer .footer-content .about-section {
   width: 50%;
