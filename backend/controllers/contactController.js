@@ -6,7 +6,9 @@ import { sanitize } from "./../utils/sanitize.js";
 
 const getContacts = async (req, res) => {
   try {
-    const contacts = await Contact.find().populate("companyId", "name");
+    const contacts = await Contact.find()
+      .sort({ name: 1 })
+      .populate("companyId", "name");
     return res.status(200).json({ contacts });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
@@ -63,7 +65,7 @@ const createContact = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(companyId)) {
     return res.status(400).json({ message: "Invalid company ID format" });
   }
-  const company = await Company.findById(companyId);
+  const company = await Companies.findById(companyId);
   if (!company) {
     return res.status(404).json({ message: "Company not found" });
   }
