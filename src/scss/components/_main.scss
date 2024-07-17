@@ -1,31 +1,80 @@
-main { 
-    padding: 100px;
-    @extend .flexColumnCenterCenter;
-    .home-content {
-        font-weight: bold;
-        font-size: 900;
-        width: 80%;
-        height: 500px;
+main {
+  width: 100%;
+  min-height: 100vh;
+  @extend .flexColumnCenterCenter;
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-          }
-          thead{
-            width: 100%;
-          }
-          th, td {
-            width: 10%;
-            border: none;
-            padding: 8px;
-            text-align: left;
-          }
-          th {
-            background-color: #f4d03f;
-            font-weight: bold;
-          }
-          tr:nth-child(even) {
-            background-color: #f2f2f2;
-          }
+  .home-content {
+    font-weight: bold;
+    font-size: 900;
+    width: 80%;
+    height: 500px;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
     }
+
+    thead {
+      width: 100%;
+    }
+
+    th,
+    td {
+      width: 10%;
+      border: none;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4d03f;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  } 
+   
+  .bottom-content { 
+    position: relative;
+    width: 100%;
+    height: 450px;
+    @extend .flexEndCenter;
+    overflow: hidden;
+    
+    .slogan {
+      width: 20%;
+    }
+    h2 { 
+     
+      font-weight: bold;
+      font-size: 900;
+      text-align: left;
+    } 
+ 
+    .bottom-content-picture-div {
+      width: 60%;
+      position: relative;
+      height: 250px;
+      @extend .flexEndCenter;
+
+      img {
+        position: absolute;
+      }
+     .picture1 { 
+      top: 20px; 
+      z-index: 0;
+     }  
+     .picture2 {
+      width: 480px;   
+      top: -50px;
+      left: 200px;
+      z-index: 1;
+     }
+      
+    }
+  }
+
+
 }

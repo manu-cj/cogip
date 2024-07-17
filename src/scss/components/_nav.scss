@@ -3,6 +3,7 @@ nav {
     background-color: #f9de4e;
     @extend .flexBetweenCenter;
     width:100%;
+    z-index: 10;
 
     ul {
         width: 30%;
@@ -10,10 +11,10 @@ nav {
         gap: 10px
     }
 
-    .loginNav {
+    .loginNav { 
         @extend .flexEndCenter;
         gap: 10px;
-        width: 70%;
+        width: 50%;
         padding: 10px;
         .sign-up {
             padding: 5px;

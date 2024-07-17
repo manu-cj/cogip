@@ -8,7 +8,7 @@ import {validateCountryName} from "../utils/countryValidator.js";
 // returns list of all companies
 
 const getCompanies = async (req, res) => {
-  // console.log("t");
+
   try {
     const companies = await Companies.find();
     return res.status(200).json({ companies });
@@ -16,6 +16,11 @@ const getCompanies = async (req, res) => {
     res.status(500).json({ message: `SERVER ERROR : ${err.message}` });
   }
 };
+
+const getByIdCompanies = async (req, res) =>{
+
+};
+
 
 const postCompanies = async (req, res) => {
   try {
@@ -39,4 +44,14 @@ const postCompanies = async (req, res) => {
   }
 };
 
-export { getCompanies, postCompanies };
+const deleteCompanies = async (req, res) => {
+ //find of name / country / id 
+
+ console.log("deleted");
+};
+
+const deleteByIdCompanies = async (req, res) =>{
+
+};
+
+export { getCompanies, postCompanies, deleteCompanies };
