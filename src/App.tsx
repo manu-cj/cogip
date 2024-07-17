@@ -35,7 +35,7 @@ function App() {
         </div>
       </header>
       <main>
-        <section className="home-content">
+        <section className="main-content">
           <h2>Last invoices</h2>
           <table>
             <thead>
@@ -57,7 +57,7 @@ function App() {
             </tbody>
           </table>
         </section>
-        <section className="home-content">
+        <section className="main-content">
           <h2>Last contacts</h2>
           <table>
             <thead>
@@ -80,7 +80,7 @@ function App() {
             </tbody>
           </table>
         </section>
-        <section className="home-content">
+        <section className="main-content">
           <h2>Last compagnies</h2>
           <table>
             <thead>

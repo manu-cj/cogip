@@ -614,6 +614,14 @@ html[data-theme="dark"] {
   align-items: flex-start;
 }
 
+.flexColumnCenterEnd, header .bottom-content-other-pages {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  align-content: end;
+}
+
 .absoluteCenter {
   position: absolute;
   top: 50%;
@@ -640,7 +648,7 @@ html[data-theme="dark"] {
 
 header {
   width: 100%;
-  min-height: 100px;
+  min-height: 150px;
   background-color: #f9de4e;
   color: black;
 }
@@ -662,6 +670,16 @@ header .bottom-content {
   width: 100%;
 }
 header .bottom-content img {
+  width: 90%;
+}
+header .bottom-content-other-pages {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+}
+header .bottom-content-other-pages img {
+  position: relative;
+  bottom: 0;
   width: 90%;
 }
 header nav {
@@ -696,31 +714,31 @@ main {
   width: 100%;
   min-height: 100vh;
 }
-main .home-content {
+main .main-content {
   font-weight: bold;
   font-size: 900;
   width: 80%;
   height: 500px;
 }
-main .home-content table {
+main .main-content table {
   width: 100%;
   border-collapse: collapse;
 }
-main .home-content thead {
+main .main-content thead {
   width: 100%;
 }
-main .home-content th,
-main .home-content td {
+main .main-content th,
+main .main-content td {
   width: 10%;
   border: none;
   padding: 8px;
   text-align: left;
 }
-main .home-content th {
+main .main-content th {
   background-color: #f4d03f;
   font-weight: bold;
 }
-main .home-content tr:nth-child(even) {
+main .main-content tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 main .bottom-content {

@@ -4,12 +4,13 @@ import { useLocation } from 'react-router-dom';
 function Header({firstName}: {firstName: string}) {
     const location = useLocation()
     const ariane = location.pathname
+    const newPath = ariane.replace("/", "");
 
     return (
         <header className='dashboard-header'>
             <div className='header__title'>
                 <h1>DashBoard</h1>
-                <p>{ariane}</p>
+                <p>{newPath}</p>
             </div>
             <div className='header__content'>
                 <h2>Welcome back {firstName}!</h2>
