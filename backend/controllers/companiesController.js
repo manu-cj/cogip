@@ -94,23 +94,14 @@ const deleteCompaniesByName = async (name) => {
 };
 
 // Update of one company
-async function updateCompany(id, newName, newVat) {
-  try {
-      // Utiliser findByIdAndUpdate pour mettre à jour
-      const updatedCompany = await Companies.findByIdAndUpdate(
-          id, // ID de l'entreprise à mettre à jour
-          { $set: { name: newName, vat: newVat } }, // Nouvelles valeurs à mettre à jour
-          { new: true } // Pour retourner le document mis à jour plutôt que l'ancien
-      );
+const updateCompany = async (req, res) =>{
 
-      if (!updatedCompany) {
-          throw new Error("Entreprise non trouvée ou mise à jour impossible.");
-      }
 
-      return updatedCompany;
-  } catch (error) {
-      console.error("Erreur lors de la mise à jour de l'entreprise:", error.message);
-      throw error;
+  try{
+     
+    
+  } catch(err){
+    res.status(500).json({ error: "Erreur serveur lors de l'update de l'entreprise." });
   }
 }
 
