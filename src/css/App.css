@@ -562,14 +562,14 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, main .pagination, header .top-content, header .bottom-content {
+.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, main .pagination, header .bottom-content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 
-.flexBetweenCenter, footer .footer-bottom nav ul, header nav, header nav ul {
+.flexBetweenCenter, footer .footer-bottom nav ul, header nav, header nav ul, header .top-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -586,6 +586,13 @@ html[data-theme="dark"] {
 .flexStartCenter {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flexColumnStartCenter {
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
@@ -651,46 +658,18 @@ html[data-theme="dark"] {
 }
 
 header {
+  position: relative;
   width: 100%;
-  min-height: 150px;
   background-color: #f9de4e;
   color: black;
-}
-header .top-content {
-  width: 100%;
-  padding: 10px;
-  padding-top: 50px;
-}
-header .top-content h2 {
-  display: block;
-  width: 30%;
-  font-weight: bold;
-  font-size: 900;
-}
-header .top-content img {
-  width: 50%;
-}
-header .bottom-content {
-  width: 100%;
-}
-header .bottom-content img {
-  width: 90%;
-}
-header .bottom-content-other-pages {
-  position: relative;
-  width: 100%;
-  min-height: 200px;
-}
-header .bottom-content-other-pages img {
-  position: relative;
-  bottom: 0;
-  width: 90%;
+  padding-top: 250px;
 }
 header nav {
   position: fixed;
   background-color: #f9de4e;
   width: 100%;
   z-index: 10;
+  top: 0;
 }
 header nav ul {
   width: 30%;
@@ -712,6 +691,37 @@ header nav a {
   list-style-type: none;
   color: black;
   font-weight: bold;
+}
+header .top-content {
+  width: 100%;
+  padding: 10px;
+}
+header .top-content h2 {
+  display: block;
+  width: 30%;
+  font-weight: bold;
+  font-size: 900;
+}
+header .top-content img {
+  width: 50%;
+}
+header .bottom-content {
+  width: 100%;
+}
+header .bottom-content img {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+}
+header .bottom-content-other-pages {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+}
+header .bottom-content-other-pages img {
+  position: relative;
+  bottom: 0;
+  width: 90%;
 }
 
 main {

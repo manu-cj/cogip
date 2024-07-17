@@ -3,16 +3,18 @@
 
 
 header {
+    position: relative;
+    @import "nav";
     width: 100%; 
-    min-height: 150px;
-    background-color: #f9de4e;
-    color: black;
+    background-color: #f9de4e; 
+    color: black;   
+    padding-top: 250px;
 
-    .top-content {
+
+    .top-content { 
         width: 100%;
-        padding: 10px;
-        padding-top: 50px;
-        @extend .flexAroundCenter;
+        padding: 10px; 
+        @extend .flexBetweenCenter;
         h2 {
             display: block;
             width: 30%;
@@ -24,9 +26,12 @@ header {
         }
     }
     .bottom-content {
+       
         width: 100%;
         @extend .flexAroundCenter;
         img { 
+            position: absolute;
+            bottom: 0;
             width: 90%;
         }
     }
@@ -42,6 +47,6 @@ header {
             width: 90%;
         }
     }
-    @import "nav";
+    
     
 }
