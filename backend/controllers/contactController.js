@@ -63,7 +63,7 @@ const createContact = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(companyId)) {
     return res.status(400).json({ message: "Invalid company ID format" });
   }
-  const company = await Company.findById(companyId);
+  const company = await Companies.findById(companyId);
   if (!company) {
     return res.status(404).json({ message: "Company not found" });
   }
