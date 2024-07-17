@@ -15,9 +15,6 @@ library.add(fab);
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/dashboard" element={<DashBoard />}></Route>
-      </Routes>
       <header>
         <NavBar />
         <div className="top-content">

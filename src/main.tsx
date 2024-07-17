@@ -12,8 +12,8 @@ import Login from './component/form/Login.tsx'
 import Invoices from './component/pages/Invoices.tsx'
 import Contacts from './component/pages/Contacts.tsx';
 import Compagnies from './component/pages/Compagnies.tsx';
-import Show_contact from './component/pages/Show_contact.tsx';
-import Show_compagnies from './component/pages/Show_compagnies.tsx';
+import Show_contact from './component/show-details/Show_contact.tsx';
+import Show_compagnies from './component/show-details/Show_compagnies.tsx';
 import DashBoard from './component/dashboard/DashBoard.tsx'
 import ErrorPage from './component/pages/Error-page';
 import InvoicesDashboard from './component/dashboard/InvoicesDashboard.tsx';
@@ -52,11 +52,11 @@ const router = createBrowserRouter([
     element: <Compagnies/>,
   },
   {
-    path: "/show_contact",  //On modifiera surement cette route
+    path: "/show_contact/:id",  //On modifiera surement cette route
     element: <Show_contact/>,
   },
   {
-    path: "/show_compagnies",  //On modifiera surement cette route
+    path: "/show_companies",  //On modifiera surement cette route
     element: <Show_compagnies/>,
   },
   {

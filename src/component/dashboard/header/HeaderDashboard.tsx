@@ -7,7 +7,7 @@ function Header({firstName}: {firstName: string}) {
     const newPath = ariane.replace("/", "");
 
     return (
-        <header className='dashboard-header'>
+        <div className='dashboard-header'>
             <div className='header__title'>
                 <h1>DashBoard</h1>
                 <p>{newPath}</p>
@@ -17,7 +17,7 @@ function Header({firstName}: {firstName: string}) {
                 <p>You can here add an invoice, a company and some contacts.</p>
             </div>
             <img src={img_dashboard} alt="Un bg qui bosse sur un pc" />
-        </header>
+        </div>
     );
 }
 

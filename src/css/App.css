@@ -524,6 +524,7 @@ template {
   --bgcContact: #9698D6;
   --bgcCompanies: #FF808B;
   --bgcInput: #f5f5f5;
+  --bgcHr: #CDCDCD;
 }
 
 /*html[data-theme="light"] {
@@ -723,6 +724,44 @@ header .bottom-content-other-pages img {
   position: relative;
   bottom: 0;
   width: 90%;
+}
+header .bottom-content-other-pages {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+}
+header .bottom-content-other-pages img {
+  position: relative;
+  bottom: 0;
+  width: 90%;
+}
+header nav {
+  position: fixed;
+  background-color: #f9de4e;
+  width: 100%;
+  z-index: 10;
+  top: 0;
+}
+header nav ul {
+  width: 30%;
+  gap: 10px;
+}
+header nav .loginNav {
+  gap: 10px;
+  width: 50%;
+  padding: 10px;
+}
+header nav .loginNav .sign-up {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
+header nav a {
+  text-decoration-line: none;
+  list-style-type: none;
+  color: black;
+  font-weight: bold;
 }
 
 main {
@@ -1147,6 +1186,7 @@ form input {
 
 .dashBoard {
   display: flex;
+  width: 100%;
 }
 .dashBoard .dashBoard__content {
   width: 80%;
@@ -1226,6 +1266,156 @@ hr {
   background-color: var(--borderDashBoardLight);
 }
 
+.show-contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+}
+.show-contact .show-contact__infos h2 {
+  font-size: 60px;
+  font-weight: 900;
+}
+.show-contact .show-contact__infos h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 35px;
+  background-color: #f4d03f;
+  margin-top: -40px;
+  margin-left: 25px;
+}
+.show-contact .show-contact__infos .show-contact__details {
+  margin-top: 60px;
+}
+.show-contact .show-contact__infos .show-contact__details p {
+  font-size: 20px;
+  font-weight: 700;
+}
+.show-contact .show-contact__infos .show-contact__details p span {
+  font-weight: 400;
+}
+.show-contact img {
+  width: 255px;
+  border-radius: 255px;
+}
+
+.show-companies {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-left: 100px;
+}
+.show-companies hr {
+  width: 80%;
+  height: 1px;
+  background-color: var(--bgcHr);
+}
+.show-companies h2 {
+  font-size: 40px;
+}
+.show-companies .show-companies__infos {
+  margin: 50px 0;
+}
+.show-companies .show-companies__infos h2 {
+  font-size: 60px;
+  font-weight: 900;
+}
+.show-companies .show-companies__infos h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 35px;
+  background-color: #f4d03f;
+  margin-top: -40px;
+  margin-left: 25px;
+}
+.show-companies .show-companies__infos .show-companies__details {
+  margin-top: 60px;
+}
+.show-companies .show-companies__infos .show-companies__details p {
+  font-size: 20px;
+  font-weight: 700;
+}
+.show-companies .show-companies__infos .show-companies__details p span {
+  font-weight: 400;
+}
+.show-companies .show-companies__contact {
+  margin: 50px 0;
+  width: 100%;
+}
+.show-companies .show-companies__contact h2 {
+  margin-bottom: 50px;
+}
+.show-companies .show-companies__contact .show-companies__contacts {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+.show-companies .show-companies__contact .show-companies__contacts .hand {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+.show-companies .show-companies__contact .show-companies__contacts .show-companies__contact-card {
+  background: #F5F5F5;
+  box-shadow: 0px 0px 60px -29px rgba(0, 0, 0, 0.2509803922);
+  padding: 20px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  margin: 20px;
+}
+.show-companies .show-companies__contact .show-companies__contacts .show-companies__contact-card img {
+  width: 130px;
+  border-radius: 255px;
+}
+.show-companies .show-companies__contact .show-companies__contacts .show-companies__contact-card p {
+  margin-left: 20px;
+  font-family: Roboto;
+  font-size: 35px;
+  font-weight: 900;
+  line-height: 41.02px;
+  text-align: left;
+  width: 45%;
+}
+.show-companies .show-companies__invoice {
+  margin: 50px 0;
+  width: 100%;
+  padding-right: 100px;
+}
+.show-companies .show-companies__invoice h2 {
+  margin-bottom: 50px;
+}
+.show-companies .show-companies__invoice div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.show-companies .show-companies__invoice div table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.show-companies .show-companies__invoice div thead {
+  width: 100%;
+}
+.show-companies .show-companies__invoice div th,
+.show-companies .show-companies__invoice div td {
+  width: 10%;
+  border: none;
+  padding: 8px;
+  text-align: left;
+}
+.show-companies .show-companies__invoice div th {
+  background-color: #f4d03f;
+  font-weight: bold;
+}
+.show-companies .show-companies__invoice div tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 html {
   height: 100%;
 }
@@ -1239,4 +1429,4 @@ body {
   overflow-y: scroll;
   font-family: "Inter", sans-serif;
   color: black;
-}/*# sourceMappingURL=App.css.map */
+}

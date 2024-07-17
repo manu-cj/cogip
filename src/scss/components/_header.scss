@@ -48,6 +48,17 @@ header {
             width: 90%;
         }
     }
-    
+    .bottom-content-other-pages {
+        position: relative;
+        width: 100%;
+        min-height: 150px;
+        @extend .flexColumnCenterEnd;
+        img { 
+            position: relative;
+            bottom: 0;
+            width: 90%;
+        }
+    }
+    @import "nav";
     
 }
