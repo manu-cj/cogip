@@ -94,25 +94,23 @@ const deleteCompaniesByName = async (name) => {
 };
 
 // Update of one company
-const updateCompany = async (req, res) =>{
-  const companyName = req.params.name;  
-  const updateData = req.body // 
+async function updateCompany(id, newName, newVat) {
+  try {
+      // Utiliser findByIdAndUpdate pour mettre à jour
+      const updatedCompany = await Companies.findByIdAndUpdate(
+          id, // ID de l'entreprise à mettre à jour
+          { $set: { name: newName, vat: newVat } }, // Nouvelles valeurs à mettre à jour
+          { new: true } // Pour retourner le document mis à jour plutôt que l'ancien
+      );
 
-  try{
-    /*const findByNameCompanies = await Companies.findOneAndUpdate({ name: companyName});
-    console.log(findByNameCompanies);
-    if (!findByNameCompanies) {
-      return res.status(404).json({ error: 'Company not found' });
-    }*/
-    const updateCompany = await Companies.FindOneAndupdate({ name : companyName}, { $set: updateData});
-    console.log(updateCompany);
-    res.json({updateCompany});
-    if(updateCompany.nModified ===0){
-      return res.status(400).json({ message: "No changes made to the company"});
-    }
-    res.status(200).json({ message: 'Update successful for ' + companyName });
-  } catch(err){
-    res.status(500).json({ error: "Erreur serveur lors de l'update de l'entreprise." });
+      if (!updatedCompany) {
+          throw new Error("Entreprise non trouvée ou mise à jour impossible.");
+      }
+
+      return updatedCompany;
+  } catch (error) {
+      console.error("Erreur lors de la mise à jour de l'entreprise:", error.message);
+      throw error;
   }
 }
 
