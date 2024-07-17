@@ -17,5 +17,5 @@ router.post("/", postCompanies);
 router.delete("/:identifier", deleteCompany);
 
 //Update ROUTES
-router.patch("/", updateCompany);
+router.patch("/:id", updateCompany);
 export default router;

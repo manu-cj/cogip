@@ -17,6 +17,7 @@ const getCompanies = async (req, res) => {
   }
 };
 
+
 const postCompanies = async (req, res) => {
   try {
     const { name, country, vat } = req.body;
@@ -94,15 +95,42 @@ const deleteCompaniesByName = async (name) => {
 };
 
 // Update of one company
-const updateCompany = async (req, res) =>{
 
+const updateCompany = async (req, res) =>{
+  
+const id = req.params.id;
+const maxLen = 25;
 
   try{
-     
+
+    let name = req.body;
+    if(!name){
+      return res.status(400).json({message: "Company name not found"});
+    }
+
+    name = sanitize(name);
+
+    if(name === ""){ // verify after sanitize if the name is empty 
+      res.status(400).json({message: "Your name = '' " });
+    }
     
-  } catch(err){
-    res.status(500).json({ error: "Erreur serveur lors de l'update de l'entreprise." });
+    if(name.length > maxLen){ // verify is the name is longer than 25 
+      res.status(400).json({message: "Name to long max allowed to 25 chars"});
+    }
+
+    const updatedCompany = await Companies.findAndUpdade(id, {name: name},{new: true});
+
+    if(!updatedCompany){
+     return res.status(404).json({message: "id Not found"});
+    }
+
+    res.status(200).status.json({message : "Company updated"},{updatedCompany});
+
+
+  } catch(error){
+    res.status(500).json({ message : error.message})
   }
 }
+
 
 export { getCompanies, postCompanies, deleteCompany, updateCompany};
