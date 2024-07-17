@@ -1,32 +1,33 @@
 import Header from "./../pages/components/Header";
 import Footer from "./../main/Footer";
+import { useParams } from "react-router-dom";
+import useAPI from "../../hook/useAPI";
 
 function Show_contact() {
 
-  // const { id } = useParams()
-  // const { contact } = useApi() // rajouter l'url de l'api
+  const { id } = useParams()
+  const { contacts, error, loading } = useAPI(`http://localhost:3000/api/contacts/${id}`)
 
+
+  if(loading) return <p>Loading...</p>
+  if(error) return <p>Error</p>
+
+  
 
   return (
     <>
       <Header />
       <main className="show-contact">
         <div className="show-contact__infos">
-          {/* <h2>{contact.firstName + " " + contact.lastName}</h2> */}
-          <h2>Dylan Feys</h2>
+          <h2>{contacts.name}</h2>
           <div className="show-contact__details">
-            {/* <p>Contact: <span>{contact.firstName + " " + contact.lastName}</span></p> */}
-            {/* <p>Phone: <span>{contact.phone}</span></p> */}
-            {/* <p>Mail: <span>{contact.mail}</span></p> */}
-            {/* <p>Company: <span>{contact.company}</span></p> */}
-            <p>Contact: <span>Dylan Feys</span></p> 
-            <p>Phone: <span>0476/588358</span></p>
-            <p>Mail: <span>feys.dylan.dev@gmail.com</span></p> 
-            <p>Company: <span>BeCode</span></p>
+            <p>Contact: <span>{contacts.name}</span></p>
+            <p>Phone: <span>{contacts.phoneNr}</span></p>
+            <p>Mail: <span>{contacts.email}</span></p>
+            <p>Company: <span>{contacts.companyId.name}</span></p>
           </div>
         </div>
-          {/* <img src={contact.img} alt={contact.lastName}/> */}
-        <img src="./../../../public/assets/img/unbgcommeunautre.jpg" alt="Dylan Feys" className="show-contact__img"/>
+          <img src={contacts.image.path} alt={contacts.name}/>
       </main>
       <Footer/>
     </>
