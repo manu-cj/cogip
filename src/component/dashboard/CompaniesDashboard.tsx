@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Header from './header/Header';
+import Header from './header/HeaderDashboard';
 import NavBarLat from './navigation/NavBarLat';
 import { CompanyData } from '../../types/types';
 

@@ -1,4 +1,4 @@
-import Header from './header/Header';
+import Header from './header/HeaderDashboard';
 import NavBarLat from './navigation/NavBarLat';
 import Stat from './dashboard/Stat';
 import LastContact from './dashboard/LastContact';

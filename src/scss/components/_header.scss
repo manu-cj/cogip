@@ -7,6 +7,7 @@ header {
     min-height: 100px;
     background-color: #f9de4e;
     color: black;
+    padding : 0px;
 
     .top-content {
         width: 100%;
@@ -27,6 +28,17 @@ header {
         width: 100%;
         @extend .flexAroundCenter;
         img { 
+            width: 90%;
+        }
+    }
+    .bottom-content-other-pages {
+        position: relative;
+        width: 100%;
+        min-height: 150px;
+        @extend .flexColumnCenterEnd;
+        img { 
+            position: relative;
+            bottom: 0;
             width: 90%;
         }
     }
