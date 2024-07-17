@@ -8,12 +8,12 @@ function Login() {
         <NavBar />
       </header>
       <main>
-        <form action="LA ROUTE DES BACKENDS" method="post">
+        <form action="http://localhost:3000/api/users/login" method="post">
             <h2>Login</h2>
           <label htmlFor="mail">Email</label>
-          <input type="email" name="mail" id="mail" />
+          <input type="email" name="email" id="mail" />
           <label htmlFor="mail">Email</label>
-          <input type="email" name="mail" id="mail" />
+          <input type="password" name="password" id="mail" />
           <input type="submit" value="Connect" />
         </form>
       </main>

@@ -4,11 +4,14 @@ import userRoutes from "./routes/userRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import companiesRoutes from "./routes/companiesRoutes.js";
 import imageRoutes from "./routes/imageRoutes.js";
+import cors from "cors";
+
 
 dbConnect();
 
 const app = express();
 const port = 3000;
+app.use(cors());
 
 app.use(express.json());
 

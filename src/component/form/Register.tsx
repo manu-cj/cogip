@@ -3,8 +3,8 @@ import NavBar from "../main/navigation/NavBar";
 import Footer from "../main/Footer";
 
 interface IRegister {
-  lastname: string;
-  firstname: string;
+  lastName: string;
+  firstName: string;
   email: string;
   password: string;
   passwordRepeat: string;
@@ -12,8 +12,8 @@ interface IRegister {
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState<IRegister>({
-    lastname: "",
-    firstname: "",
+    lastName: "",
+    firstName: "",
     email: "",
     password: "",
     passwordRepeat: "",
@@ -27,12 +27,12 @@ const Register: React.FC = () => {
     passwordRepeat: { borderColor: "black" },
   });
 
-  const validateLastname = (lastname: string) => {
-    return lastname.length > 2;
+  const validateLastname = (lastName: string) => {
+    return lastName.length > 2;
   };
 
-  const validateFirstname = (firstname: string) => {
-    return firstname.length > 2;
+  const validateFirstname = (firstName: string) => {
+    return firstName.length > 2;
   };
 
   const validateEmail = (email: string) => {
@@ -102,17 +102,30 @@ const Register: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      validateLastname(formData.lastname) &&
-      validateFirstname(formData.firstname) &&
+      validateLastname(formData.lastName) &&
+      validateFirstname(formData.firstName) &&
       validateEmail(formData.email) &&
       validatePassword(formData.password) &&
       validatePasswordRepeat(formData.password, formData.passwordRepeat)
     ) {
       // Implement form submission logic here
       console.log("Form submitted:", formData);
+      try {
+        const response = await fetch('http://localhost:3000/api/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        const result = await response.json();
+        console.log(result);
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       console.log("Form validation failed");
     }
@@ -126,7 +139,7 @@ const Register: React.FC = () => {
       <main>
         <form
           method="post"
-          action="ROUTE DES BACKENDS EN ATTENTE"
+          action="http://localhost:3000/api/users"
           className="register"
           onSubmit={handleSubmit}
         >
@@ -134,10 +147,10 @@ const Register: React.FC = () => {
           <label htmlFor="lastname">LastName</label>
           <input
             type="text"
-            name="lastname"
+            name="lastName"
             id="lastname"
             placeholder="Enter your lastname"
-            value={formData.lastname}
+            value={formData.lastName}
             onChange={handleChange}
             style={formStyles.lastname}
             required
@@ -145,10 +158,10 @@ const Register: React.FC = () => {
           <label htmlFor="firstname">FirstName</label>
           <input
             type="text"
-            name="firstname"
+            name="firstName"
             id="firstname"
-            placeholder="Enter your firstname"
-            value={formData.firstname}
+            placeholder="Enter your firstName"
+            value={formData.firstName}
             onChange={handleChange}
             style={formStyles.firstname}
             required
