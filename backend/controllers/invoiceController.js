@@ -1,6 +1,7 @@
 import Invoice from "./../models/invoiceModel.js";
 import Companies from "./../models/companiesModel.js";
 import { sanitize } from "./../utils/sanitize.js";
+import mongoose from "mongoose";
 
 const getInvoices = async (req, res) => {
   try {
@@ -47,15 +48,57 @@ const createInvoice = async (req, res) => {
 };
 
 const updateInvoice = async (req, res) => {
-  // TO DO
+  // Sort of useless, invoices only have companyId and ref?
 };
 
 const deleteInvoice = async (req, res) => {
-  // TO DO
+  const id = req.params.id;
+  try {
+    const deletedInvoice = await Invoice.findByIdAndDelete(id);
+    if (!deletedInvoice) {
+      return res.status(404).json({ message: "Invoice not found." });
+    }
+    return res.status(200).json({ message: "Invoice successfully deleted." });
+  } catch (error) {
+    res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
 };
 
 const getInvoiceById = async (req, res) => {
-  // TO DO
+  const id = req.params.id;
+  try {
+    const invoice = await Invoice.findById(id).populate("companyId", "name");
+    if (!invoice) {
+      return res.status(404).json({ message: "Invoice not found" });
+    }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid invoice ID" });
+    }
+    return res.status(200).json(invoice);
+  } catch (error) {
+    res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
+  }
+};
+
+const getLatestInvoices = async (req, res) => {
+  try {
+    const invoices = await Invoice.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .populate("companyId", "name");
+    return res.status(200).json({ invoices });
+  } catch (error) {
+    return res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
+  }
+};
+
+const getInvoicesByCompany = async (req, res) => {
+  try {
+    const invoices = await Invoice.find().populate("companyId", "name");
+    return res.status(200).json({ invoices });
+  } catch (error) {
+    res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
 };
 
 export {
@@ -63,5 +106,6 @@ export {
   createInvoice,
   getInvoiceById,
   deleteInvoice,
-  updateInvoice,
+  getLatestInvoices,
+  getInvoicesByCompany,
 };

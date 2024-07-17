@@ -40,9 +40,7 @@ const getLatestContacts = async (req, res) => {
       .populate("companyId", "name");
     return res.status(200).json({ contacts });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ message: `SERVER ERROR BOOs : ${error.message}` });
+    return res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
   }
 };
 

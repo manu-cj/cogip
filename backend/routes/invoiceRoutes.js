@@ -4,20 +4,23 @@ import {
   createInvoice,
   getInvoiceById,
   deleteInvoice,
-  updateInvoice,
+  getLatestInvoices,
+  getInvoicesByCompany,
 } from "./../controllers/invoiceController.js";
 
 const router = express.Router();
 
 // GET ROUTES
 router.get("/", getInvoices);
-router.get("/", getInvoiceById);
+router.get("/latest", getLatestInvoices);
+router.get("/:id", getInvoiceById);
+router.get("/company/:companyId", getInvoicesByCompany);
 
 // POST ROUTES
 router.post("/", createInvoice);
 
 // PATCH ROUTES
-router.patch("/:id", updateInvoice);
+// router.patch("/:id", updateInvoice); -> No use for now
 
 // DELETE ROUTES
 router.delete("/:id", deleteInvoice);
