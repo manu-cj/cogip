@@ -591,14 +591,14 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexColumnStartCenter {
+.flexColumnStartCenter, main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.flexColumnCenterCenter, body #root, main {
+.flexColumnCenterCenter, body #root {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -945,6 +945,7 @@ form {
   width: 400px;
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 }
 form input {
   height: 50px;
@@ -1523,6 +1524,70 @@ hr {
   background-color: #f2f2f2;
 }
 
+.notification {
+  width: 300px;
+  padding: 15px;
+  border: 1px #f4d03f solid;
+  border-radius: 15px;
+  text-align: center;
+  animation: NotifEntrance 2s ease 0s 1 normal forwards;
+  color: white;
+}
+
+.error {
+  background-color: tomato;
+}
+
+.success {
+  background-color: lightgreen;
+}
+
+@keyframes NotifEntrance {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    transform: translateY(-250px);
+  }
+  38% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  55% {
+    animation-timing-function: ease-in;
+    transform: translateY(-65px);
+  }
+  72% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
+  81% {
+    animation-timing-function: ease-in;
+    transform: translateY(-28px);
+  }
+  90% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
+  95% {
+    animation-timing-function: ease-in;
+    transform: translateY(-8px);
+  }
+  100% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
+}
+@keyframes notifOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
 .hamburger {
   cursor: pointer;
   position: fixed;
@@ -1559,4 +1624,4 @@ body {
   overflow-y: scroll;
   font-family: "Inter", sans-serif;
   color: black;
-}
+}/*# sourceMappingURL=App.css.map */
