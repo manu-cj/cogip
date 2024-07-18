@@ -11,7 +11,7 @@ import { validateCountryName } from "../utils/countryValidator.js";
 
 const getCompanies = async (req, res) => {
   try {
-    const companies = await Companies.find();
+    const companies = await Companies.find().sort({ name: 1});
     return res.status(200).json({ companies });
   } catch (err) {
     res.status(500).json({ message: `SERVER ERROR : ${err.message}` });
@@ -126,17 +126,7 @@ const updateCompany = async (req, res) => {
     }
 
     // Mettre à jour la compagnie
-    const updatedCompany = await Companies.findByIdAndUpdate(
-      id,
-      { name: name, updatedOn: new Date() },
-      { new: true }
-    );
-    const updatedCompany = await Companies.findByIdAndUpdate(
-      id,
-      { name: name, updatedOn: new Date() },
-      { new: true }
-    );
-
+    const updatedCompany = await Companies.findByIdAndUpdate(id,{ name: name, updatedOn: new Date() }, { new: true });
     if (!updatedCompany) {
       return res.status(404).json({ message: "Company ID not found" });
     }
