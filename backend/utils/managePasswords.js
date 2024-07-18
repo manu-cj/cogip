@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
-const comparePasswords = async (hashedPassword, password) => {
-  const isMatch = await bcrypt.compare(hashedPassword, password);
+const comparePasswords = async (password, hashedPassword) => {
+  const isMatch = await bcrypt.compare(password, hashedPassword);
   return isMatch;
 };
 

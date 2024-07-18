@@ -47,7 +47,7 @@ const login = async (req, res) => {
         .status(404)
         .json({ message: "No user found with that email address" });
     }
-    const isMatch = await comparePasswords(user.password, password);
+    const isMatch = await comparePasswords(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid Password" });
     }
