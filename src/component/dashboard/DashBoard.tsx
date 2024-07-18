@@ -4,11 +4,20 @@ import Stat from './dashboard/Stat';
 import LastContact from './dashboard/LastContact';
 import LastCompanies from './dashboard/LastCompanies';
 import LastInvoice from './dashboard/LastInvoice';
+import Hamburger from './navigation/Hamburger';
+import { useState } from 'react';
 
 function DashBoard() {
+    const [isOpen, setIsOpen] = useState(true);
+
+    const handleClick = () => {
+        setIsOpen(!isOpen);
+    }
+
     return (
         <div className='dashBoard'>
-            <NavBarLat img="./../../../public/assets/img/unbgcommeunautre.jpg" firstName="Dylan"  lastName="Feys"/>
+            <Hamburger className={`hamburger ${isOpen ? '' : 'hidden'}`} toggle={handleClick}/>
+            <NavBarLat img="./../../../public/assets/img/unbgcommeunautre.jpg" firstName="Dylan"  lastName="Feys" className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick}/>
             <div className='dashBoard__content'>
                 <Header firstName="Dylan"/>
                 <div className='dashBoard__content__body'>

@@ -1,26 +1,21 @@
 import { useState, useEffect } from "react";
 import { Contact, Contacts } from "../types/contactsType"; // A adapter
 
-function getResponseType(URL: string): 'contacts' | 'categories' | 'details' | "similar" | "topRated" | "trending" {
-  if (URL.includes("/contacts/")) {
+function getResponseType(URL: string): 'contact' | 'contacts' {
+  if (/\/api\/contacts\/[a-f0-9]+$/.test(URL)) {
+      return 'contact';
+  } else if (/\/api\/contacts$/.test(URL)) {
       return 'contacts';
-  } else if (URL.includes("/genre/movie/list")) {
-      return 'categories';
-  } else if(URL.includes("/similar")){
-    return 'similar';
-  } else if(URL.includes("/top_rated")){
-    return 'topRated'
-  } else if(URL.includes("/movie/week")){
-    return 'trending'
   } else {
-      return 'details';
+    throw new Error("Invalid URL format");
   }
 }
 
 export default function useAPI(URL : string) {
-    const [contacts, setContacts] = useState<Contact>({} as Contact);
+    const [contact, setContact] = useState<Contact>({} as Contact);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [contacts, setContacts] = useState<Contact[]>([]);
     
 
     useEffect(() => {
@@ -41,26 +36,13 @@ export default function useAPI(URL : string) {
 
               const responseType = getResponseType(URL);
 
-                if (responseType === 'contacts') {
+                if (responseType === 'contact') {
                     const data: Contact = await response.json();
-                    setContacts(data);
-                // } else if (responseType === 'categories') {
-                //     const data: Categorie = await response.json();
-                //     setCategorie(data.genres);
-                // } else if (responseType === 'details') {
-                //     const data: Details = await response.json();
-                //     setDetails(data);
-                // } else if (responseType === 'similar') {
-                //     const data: ApiResponseMovie = await response.json();
-                //     setSimilar(data.results);
-                // } else if (responseType === 'topRated') {
-                //     const data: ApiResponseMovie = await response.json();
-                //     setTopRated(data.results);
-                // } else if(responseType === 'trending') {
-                //     const data: ApiResponseMovie = await response.json();
-                //     setTrending(data.results);
+                    setContact(data);
+                } else if (responseType === 'contacts') {
+                    const data: Contacts = await response.json();
+                    setContacts(data.contacts);
                 }
-
               setLoading(false);
             } catch (error : any) {
               console.log(error.message);
@@ -72,6 +54,6 @@ export default function useAPI(URL : string) {
           fetchData();
         }, [URL]);
 
-    return { contacts, loading, error};
+    return { loading, error, contacts, contact };
 
 }

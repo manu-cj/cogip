@@ -22,4 +22,6 @@ export type Contact = {
     __v: number;
 };
 
-export type Contacts = Contact[];
+export type Contacts = {
+    contacts: Contact[];
+};

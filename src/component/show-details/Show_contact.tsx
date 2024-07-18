@@ -6,7 +6,7 @@ import useAPI from "../../hook/useAPI";
 function Show_contact() {
 
   const { id } = useParams()
-  const { contacts, error, loading } = useAPI(`http://localhost:3000/api/contacts/${id}`)
+  const { contact, error, loading } = useAPI(`http://localhost:3000/api/contacts/${id}`)
 
 
   if(loading) return <p>Loading...</p>
@@ -19,15 +19,15 @@ function Show_contact() {
       <Header />
       <main className="show-contact">
         <div className="show-contact__infos">
-          <h2>{contacts.name}</h2>
+          <h2>{contact.name}</h2>
           <div className="show-contact__details">
-            <p>Contact: <span>{contacts.name}</span></p>
-            <p>Phone: <span>{contacts.phoneNr}</span></p>
-            <p>Mail: <span>{contacts.email}</span></p>
-            <p>Company: <span>{contacts.companyId.name}</span></p>
+            <p>Contact: <span>{contact.name}</span></p>
+            <p>Phone: <span>{contact.phoneNr}</span></p>
+            <p>Mail: <span>{contact.email}</span></p>
+            <p>Company: <span>{contact.companyId.name}</span></p>
           </div>
         </div>
-          <img src={contacts.image.path} alt={contacts.name}/>
+          <img src={contact.image.path} alt={contact.name}/>
       </main>
       <Footer/>
     </>
