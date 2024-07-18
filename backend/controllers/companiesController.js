@@ -28,9 +28,7 @@ const postCompanies = async (req, res) => {
 
     const existingCompanies = await Companies.findOne({ name });
     if (existingCompanies) {
-      return res
-        .status(400)
-        .json({ message: `Company name alreay use : ${existingCompanies} ` });
+      return res.status(400).json({ message: `Company name alreay use : ${existingCompanies} ` });
     }
 
     await companies.save(); //save companies
@@ -44,11 +42,7 @@ const deleteCompany = async (req, res) => {
   const identifier = req.params.identifier;
 
   if (!identifier) {
-    return res
-      .status(400)
-      .json({
-        error: "L'identifiant de l'entreprise à supprimer n'est pas fourni.",
-      });
+    return res.status(400).json({ message: "The identifier of the company to delete is not provided." });
   }
 
   try {
@@ -77,7 +71,7 @@ const deleteCompaniesById = async (id, session) => {
     const deletedCompany = await Companies.findByIdAndDelete(id);
 
     if (!deletedCompany) {
-      res.status(400).json({ message: "Compnay not found" });
+      res.status(404).json({ message: "Compnay not found" });
     }
 
     // Delete associated invoices and contacts
@@ -93,7 +87,7 @@ const deleteCompaniesByName = async (name, session) => {
     const deletedCompany = await Companies.findOneAndDelete({ name: name });
 
     if (!deletedCompany) {
-      throw new Error("Entreprise non trouvée");
+      return res.status(404).json({ message: "Company name not found" });
     }
 
     // Delete associated invoices and contacts
@@ -114,14 +108,12 @@ const updateCompany = async (req, res) => {
     const name = req.body.name; // Récupérer directement la valeur de 'name' depuis req.body
 
     if (!name) {
-      return res.status(400).json({ message: "Company name not found" });
+      return res.status(404).json({ message: "Company name not found" });
     }
 
     // Vérification de la longueur du nom
     if (name.length > maxLen) {
-      return res
-        .status(400)
-        .json({ message: "Name too long, max allowed is 25 characters" });
+      return res.status(400).json({ message: "Name too long, max allowed is 25 characters" });
     }
 
     // Mettre à jour la compagnie
