@@ -38,13 +38,12 @@ const getPaginatedContacts = async (req, res) => {
     const pageResults = await Contact.find()
       .sort({ name: 1 })
       .limit(resultsPerPage)
+      .populate("companyId", "name")
       .skip((page - 1) * resultsPerPage);
     return res.status(200).json({ totalResults, totalPages, pageResults });
   } catch (error) {
     return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
   }
-
-  // Need to return : total results, the amount of pages, the contacts for that page.
 };
 
 const getContactsByCompany = async (req, res) => {

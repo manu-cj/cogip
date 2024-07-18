@@ -103,6 +103,7 @@ const getPaginatedInvoices = async (req, res) => {
     const pageResults = await Invoice.find()
       .sort({ name: 1 })
       .limit(resultsPerPage)
+      .populate("companyId", "name")
       .skip((page - 1) * resultsPerPage);
     return res.status(200).json({ totalResults, totalPages, pageResults });
   } catch (error) {
