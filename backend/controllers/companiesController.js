@@ -5,6 +5,7 @@ import { sanitize } from "../utils/sanitize.js";
 import { validateCountryName } from "../utils/countryValidator.js";
 
 
+
 //Delete *Patch  *get by id 
 // returns list of all companies
 
@@ -54,7 +55,7 @@ const deleteCompany = async (req, res) => {
       // Si c'est un nombre ou un ObjectId, traitez-le comme un ID
       try {
         const deleteResult = await deleteCompaniesById(identifier);
-        res.status(200).json({ message: `Entreprise supprimée avec l'ID ${identifier}.` });
+        res.status(200).json({ message: `Entreprise supprimée avec l'ID ${identifier}.`, deleteResult });
       } catch (error) {
         res.status(500).json({ error: `Erreur lors de la suppression de l'entreprise par ID: ${error.message}` });
       }
@@ -62,7 +63,7 @@ const deleteCompany = async (req, res) => {
       // Sinon, traitez-le comme un nom
       try {
         const deleteResult = await deleteCompaniesByName(identifier);
-        res.status(200).json({ message: `Entreprise supprimée avec le nom ${identifier}.` });
+        res.status(200).json({ message: `Entreprise supprimée avec le nom ${identifier}.`, deleteResult });
       } catch (error) {
         res.status(500).json({ error: `Erreur lors de la suppression de l'entreprise par nom: ${error.message}` });
       }
@@ -75,25 +76,49 @@ const deleteCompany = async (req, res) => {
 
 const deleteCompaniesById = async (id) => {
   try {
-    const deletedCompany = await Companies.findByIdAndDelete(id);
-    if (!deletedCompany) {
-      throw new Error("Entreprise non trouvée");
+
+    const db = client.db(dbName);
+
+    // Collections
+    const companiesCollection = db.collection('Companies');
+    const invoicesCollection = db.collection('Invoices');
+    const contactsCollection = db.collection('Contacts');
+
+    // Suppression de la compagnie
+    const deletedCompany = await companiesCollection.findOneAndDelete({ _id: new ObjectId(id) });
+
+    if (!deletedCompany.value) {
+      throw new Error('Entreprise non trouvée');
     }
+
+    // Suppression des documents associés dans la collection Invoices
+    const invoicesDeleteResult = await invoicesCollection.deleteMany({ companyId: new ObjectId(id) });
+    console.log(`${invoicesDeleteResult.deletedCount} documents deleted from Invoices collection`);
+
+    // Suppression des documents associés dans la collection Contacts
+    const contactsDeleteResult = await contactsCollection.deleteMany({ companyId: new ObjectId(id) });
+    console.log(`${contactsDeleteResult.deletedCount} documents deleted from Contacts collection`);
+
+    return deletedCompany.value;
   } catch (error) {
     throw new Error(`Erreur du serveur : ${error.message}`);
-  }
+  } 
 };
 
 const deleteCompaniesByName = async (name) => {
   try {
     const deletedCompany = await Companies.findOneAndDelete({ name: name });
+
     if (!deletedCompany) {
       throw new Error("Entreprise non trouvée");
     }
+
+    return deletedCompany;
   } catch (error) {
     throw new Error(`Erreur du serveur : ${error.message}`);
   }
 };
+
 
 // Update of one company
 
