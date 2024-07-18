@@ -24,11 +24,11 @@ function ContactDashboard() {
 
   const [notification, setNotification] = useState<string>("");
 
-  const validateLastname = (name: string) => {
+  const validateName = (name: string) => {
     return name.length > 2;
   };
 
-  const validateFirstname = (companyId: string) => {
+  const validateCompany = (companyId: string) => {
     return companyId.length > 2;
   };
 
@@ -69,7 +69,7 @@ function ContactDashboard() {
         setFormStyles((prevStyles) => ({
           ...prevStyles,
           name: {  
-            border: validateFirstname(value) ? "1px lightGreen solid" : "none",
+            border: validateName(value) ? "1px lightGreen solid" : "none",
           },
         }));
         break;
@@ -77,7 +77,7 @@ function ContactDashboard() {
         setFormStyles((prevStyles) => ({
           ...prevStyles,
           companyId: {
-            border: validateFirstname(value) ? "1px lightGreen solid" : "none",
+            border: validateCompany(value) ? "1px lightGreen solid" : "none",
           },
         }));
         break;
@@ -85,15 +85,15 @@ function ContactDashboard() {
         setFormStyles((prevStyles) => ({
           ...prevStyles,
           email: {
-            border: validateFirstname(value) ? "1px lightGreen solid" : "none",
+            border: validateEmail(value) ? "1px lightGreen solid" : "none",
           },
         }));
         break;
       case "phoneNr":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          phone: {
-            border: validateFirstname(value) ? "1px lightGreen solid" : "none",
+          phoneNr: {
+            border: validatePhone(value) ? "1px lightGreen solid" : "none",
           },
         }));
         break;
@@ -105,8 +105,8 @@ function ContactDashboard() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      validateFirstname(formData.name) &&
-      validateLastname(formData.companyId) &&
+      validateName(formData.name) &&
+      validateCompany(formData.companyId) &&
       validateEmail(formData.email) &&
       validatePhone(formData.phoneNr) === true
     ) {
@@ -201,7 +201,7 @@ function ContactDashboard() {
               value={formData.companyId}
             />
             <input
-              type="text"
+              type="phone"
               name="phoneNr"
               id="phoneNr"
               placeholder="phoneNr"
