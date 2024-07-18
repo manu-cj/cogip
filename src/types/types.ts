@@ -61,3 +61,9 @@ export interface HamburgerProps {
     className : string;
     toggle : () => void;
 }
+
+export interface StatsDashboard {
+    totalInvoices:number;
+    totalCompanies:number;
+    totalContacts:number;
+}

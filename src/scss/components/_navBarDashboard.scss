@@ -21,6 +21,9 @@
         margin-top: 10px;
         margin-right: 10px;
         cursor: pointer;
+        @include responsive(768px){
+            display: none;
+        }
     }
     .navBarLat__logo{
         display: flex;
