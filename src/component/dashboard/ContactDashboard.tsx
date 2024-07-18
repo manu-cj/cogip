@@ -16,10 +16,10 @@ function ContactDashboard() {
     email: "",
   });
   const [formStyles, setFormStyles] = useState({
-    name: { borderColor: "black" },
-    companyId: { borderColor: "black" },
-    phone: { borderColor: "black" },
-    email: { borderColor: "black" },
+    name: { border: "none" },
+    companyId: { border: "none" },
+    phoneNr: { border: "none" },
+    email: { border: "none" },
   });
 
   const [notification, setNotification] = useState<string>("");
@@ -37,10 +37,24 @@ function ContactDashboard() {
     return emailRegex.test(email);
   };
 
-  // const validatePhone = (phoneNr: string) => {
-  //   const regex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
-  //   return regex.test(phoneNr);
-  // };
+  const validatePhone = (phoneNr: string): boolean => {
+    const regexes = [
+      /^\+\d{1,3} \(\d{3}\) \d{3}-\d{4}$/,  // +1 (344) 947-9959
+      /^\+\d{1,3}-\d{3}-\d{3}-\d{4}$/,      // +1-344-947-9959
+      /^\(\d{3}\) \d{3}-\d{4}$/,            // (344) 947-9959
+      /^\d{3}-\d{3}-\d{4}$/                 // 344-947-9959
+      // Ajoutez d'autres formats de numéros ici si nécessaire
+    ];
+  
+    const isValid = regexes.some((regex) => {
+      const isMatch = regex.test(phoneNr);
+      console.log(`Testing ${phoneNr} with regex ${regex}: ${isMatch}`);
+      return isMatch;
+    });
+  
+    console.log(`Phone validation result: ${isValid}`);
+    return isValid;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -54,8 +68,8 @@ function ContactDashboard() {
       case "name":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          name: {
-            borderColor: validateFirstname(value) ? "lightGreen" : "red",
+          name: {  
+            border: validateFirstname(value) ? "1px lightGreen solid" : "none",
           },
         }));
         break;
@@ -63,20 +77,24 @@ function ContactDashboard() {
         setFormStyles((prevStyles) => ({
           ...prevStyles,
           companyId: {
-            borderColor: validateLastname(value) ? "lightGreen" : "red",
+            border: validateFirstname(value) ? "1px lightGreen solid" : "none",
           },
         }));
         break;
       case "email":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          email: { borderColor: validateEmail(value) ? "lightGreen" : "red" },
+          email: {
+            border: validateFirstname(value) ? "1px lightGreen solid" : "none",
+          },
         }));
         break;
       case "phoneNr":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          phoneNr: { borderColor: validateEmail(value) ? "lightGreen" : "red" },
+          phone: {
+            border: validateFirstname(value) ? "1px lightGreen solid" : "none",
+          },
         }));
         break;
       default:
@@ -89,30 +107,47 @@ function ContactDashboard() {
     if (
       validateFirstname(formData.name) &&
       validateLastname(formData.companyId) &&
-      validateEmail(formData.email) 
-      
+      validateEmail(formData.email) &&
+      validatePhone(formData.phoneNr) === true
     ) {
       try {
-        const response = await fetch('http://localhost:3000/api/contacts', {
-          method: 'POST',
+        const response = await fetch("http://localhost:3000/api/contacts", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify(formData),
         });
         const result = await response.json();
-        result.message === "Email already in use" ?
-          setNotification(result.message)
-          :
-          setNotification(result.message)
-        
+
+        setNotification(result.message);
+
+        // Réinitialisation du formulaire après succès
+        setFormData({
+          name: "",
+          companyId: "",
+          phoneNr: "",
+          email: "",
+        });
+
+         setFormStyles({
+           name: { border: "none" },
+           companyId: { border: "none" },
+           phoneNr: { border: "none" },
+           email: { border: "none" },
+         });
+
+        setTimeout(() => {
+          setNotification("");
+        }, 10000);
+
         console.log(result);
       } catch (error) {
         console.error(error);
       }
       console.log("Form submitted:", formData);
     } else {
-      console.log("Form validation failed");
+      console.log("Form validation failed", formData);
     }
   };
 
@@ -151,6 +186,7 @@ function ContactDashboard() {
               required
               onChange={handleChange}
               style={formStyles.name}
+              value={formData.name}
             />
             <input
               type="text"
@@ -160,15 +196,17 @@ function ContactDashboard() {
               required
               onChange={handleChange}
               style={formStyles.companyId}
+              value={formData.companyId}
             />
             <input
-              type="phone"
+              type="text"
               name="phoneNr"
               id="phoneNr"
               placeholder="phoneNr"
               required
               onChange={handleChange}
-              style={formStyles.phone}
+              style={formStyles.phoneNr}
+              value={formData.phoneNr}
             />
             <input
               type="email"
@@ -178,6 +216,7 @@ function ContactDashboard() {
               required
               onChange={handleChange}
               style={formStyles.email}
+              value={formData.email}
             />
             <button type="submit">Save</button>
           </form>
