@@ -15,6 +15,38 @@ const getContacts = async (req, res) => {
   }
 };
 
+const getPaginatedContacts = async (req, res) => {
+  const resultsPerPage = parseInt(req.params.nbPerPage, 10);
+  let page = 1;
+  if (req.params.page) {
+    page = parseInt(req.params.page, 10);
+  }
+  if (isNaN(resultsPerPage) || resultsPerPage < 1 || isNaN(page) || page < 1) {
+    return res.status(400).json({
+      message:
+        "Bad request: make sure the nbPerPage and page are of type int and superior to 0.",
+    });
+  }
+  try {
+    const totalResults = await Contact.countDocuments();
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    if (page > totalPages) {
+      return res.status(400).json({
+        message: `No result found for page ${page}, last page is ${totalPages}`,
+      });
+    }
+    const pageResults = await Contact.find()
+      .sort({ name: 1 })
+      .limit(resultsPerPage)
+      .skip((page - 1) * resultsPerPage);
+    return res.status(200).json({ totalResults, totalPages, pageResults });
+  } catch (error) {
+    return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
+
+  // Need to return : total results, the amount of pages, the contacts for that page.
+};
+
 const getContactsByCompany = async (req, res) => {
   const id = req.params.companyId;
   try {
@@ -179,4 +211,5 @@ export {
   updateContact,
   deleteContact,
   getContactsByCompany,
+  getPaginatedContacts,
 };

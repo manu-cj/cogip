@@ -80,6 +80,36 @@ const getInvoiceById = async (req, res) => {
   }
 };
 
+const getPaginatedInvoices = async (req, res) => {
+  const resultsPerPage = parseInt(req.params.nbPerPage, 10);
+  let page = 1;
+  if (req.params.page) {
+    page = parseInt(req.params.page, 10);
+  }
+  if (isNaN(resultsPerPage) || resultsPerPage < 1 || isNaN(page) || page < 1) {
+    return res.status(400).json({
+      message:
+        "Bad request: make sure the nbPerPage and page are of type int and superior to 0.",
+    });
+  }
+  try {
+    const totalResults = await Invoice.countDocuments();
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    if (page > totalPages) {
+      return res.status(400).json({
+        message: `No result found for page ${page}, last page is ${totalPages}`,
+      });
+    }
+    const pageResults = await Invoice.find()
+      .sort({ name: 1 })
+      .limit(resultsPerPage)
+      .skip((page - 1) * resultsPerPage);
+    return res.status(200).json({ totalResults, totalPages, pageResults });
+  } catch (error) {
+    return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
+};
+
 const getLatestInvoices = async (req, res) => {
   try {
     const invoices = await Invoice.find()
@@ -108,4 +138,5 @@ export {
   deleteInvoice,
   getLatestInvoices,
   getInvoicesByCompany,
+  getPaginatedInvoices,
 };
