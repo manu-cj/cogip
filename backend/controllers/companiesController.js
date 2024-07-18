@@ -127,8 +127,6 @@ const updateCompany = async (req, res) => {
 
     // Mettre à jour la compagnie
     const updatedCompany = await Companies.findByIdAndUpdate(id,{ name: name, updatedOn: new Date() }, { new: true });
-    const updatedCompany = await Companies.findByIdAndUpdate(id,{ name: name, updatedOn: new Date() }, { new: true });
-
     if (!updatedCompany) {
       return res.status(404).json({ message: "Company ID not found" });
     }
