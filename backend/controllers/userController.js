@@ -106,7 +106,11 @@ const createUser = async (req, res) => {
       password: hashedPassword,
     });
     user.save();
-    return res.status(201).json({ message: "Registration successful" });
+    const userObject = user.toObject();
+    delete userObject.password;
+    return res
+      .status(201)
+      .json({ message: "Registration successful", userObject });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR ${error.message}` });
   }

@@ -22,7 +22,7 @@ Ensure to always use `http://localhost:3000/api` as the root endpoint for any ki
 | `/contacts/latest`      | GET    | None                                                                          | Returns the 5 last added contacts                             |
 | `/contacts/:id`         | GET    | None                                                                          | Returns contact details for the given ID                      |
 | `/contacts/company/:companyId`| GET | None                                                                       | Returns list of contacts for the companyId given in URL                   |
-| `/contacts`             | POST   | `name` (str), `companyID` (str), `email` (str), `phoneNr` (str)               | Creates a new contact in the DB, then returns the contact in response |
+| `/contacts`             | POST   | `name` (str), `companyId` (str), `email` (str), `phoneNr` (str)               | Creates a new contact in the DB, then returns the contact in response |
 | `/contacts/:id`         | PATCH  | `name` (str), `email` (str), `phoneNr` (str)                                  | Edit contact details for the given contact ID                 |
 | `/contacts/:id`         | DELETE | None                                                                          | Delete contact entry with matching id                         |
 |                         |        |                                                                               |                                                               |
