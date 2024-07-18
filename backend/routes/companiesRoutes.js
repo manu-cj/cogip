@@ -4,7 +4,7 @@ import {
   getCompanies,
   postCompanies,
   deleteCompany,
-  updateCompany
+  updateCompany,
 } from "./../controllers/companiesController.js";
 
 // GET ROUTES
