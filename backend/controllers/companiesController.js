@@ -1,15 +1,13 @@
 import mongoose from "mongoose";
 import Companies from "./../models/companiesModel.js";
-import Invoice from "./../models/invoiceModel.js"
+import Invoice from "./../models/invoiceModel.js";
 import { sanitize } from "../utils/sanitize.js";
 import { validateCountryName } from "../utils/countryValidator.js";
 
-
-//Delete *Patch  *get by id 
+//Delete *Patch  *get by id
 // returns list of all companies
 
 const getCompanies = async (req, res) => {
-
   try {
     const companies = await Companies.find();
     return res.status(200).json({ companies });
@@ -17,7 +15,6 @@ const getCompanies = async (req, res) => {
     res.status(500).json({ message: `SERVER ERROR : ${err.message}` });
   }
 };
-
 
 const postCompanies = async (req, res) => {
   try {
@@ -30,12 +27,13 @@ const postCompanies = async (req, res) => {
 
     const existingCompanies = await Companies.findOne({ name });
     if (existingCompanies) {
-      return res.status(400).json({ message: `Company name alreay use : ${existingCompanies} ` });
+      return res
+        .status(400)
+        .json({ message: `Company name alreay use : ${existingCompanies} ` });
     }
 
     await companies.save(); //save companies
     return res.status(201).json({ message: "Country is valid and data saved" });
-
   } catch (err) {
     res.status(500).json({ message: `SERVER ERROR ${err.message}` });
   }
@@ -46,7 +44,11 @@ const deleteCompany = async (req, res) => {
 
   try {
     if (!identifier) {
-      return res.status(400).json({ error: "L'identifiant de l'entreprise à supprimer n'est pas fourni." });
+      return res
+        .status(400)
+        .json({
+          error: "L'identifiant de l'entreprise à supprimer n'est pas fourni.",
+        });
     }
 
     // Vérifiez si l'identifiant est un ID (supposons que les ID sont des nombres ou des ObjectId)
@@ -54,22 +56,38 @@ const deleteCompany = async (req, res) => {
       // Si c'est un nombre ou un ObjectId, traitez-le comme un ID
       try {
         const deleteResult = await deleteCompaniesById(identifier);
-        res.status(200).json({ message: `Entreprise supprimée avec l'ID ${identifier}.` });
+        res
+          .status(200)
+          .json({ message: `Entreprise supprimée avec l'ID ${identifier}.` });
       } catch (error) {
-        res.status(500).json({ error: `Erreur lors de la suppression de l'entreprise par ID: ${error.message}` });
+        res
+          .status(500)
+          .json({
+            error: `Erreur lors de la suppression de l'entreprise par ID: ${error.message}`,
+          });
       }
     } else {
       // Sinon, traitez-le comme un nom
       try {
         const deleteResult = await deleteCompaniesByName(identifier);
-        res.status(200).json({ message: `Entreprise supprimée avec le nom ${identifier}.` });
+        res
+          .status(200)
+          .json({ message: `Entreprise supprimée avec le nom ${identifier}.` });
       } catch (error) {
-        res.status(500).json({ error: `Erreur lors de la suppression de l'entreprise par nom: ${error.message}` });
+        res
+          .status(500)
+          .json({
+            error: `Erreur lors de la suppression de l'entreprise par nom: ${error.message}`,
+          });
       }
     }
   } catch (err) {
-    console.error('Erreur lors de la suppression de l\'entreprise : ', err);
-    res.status(500).json({ error: 'Erreur serveur lors de la suppression de l\'entreprise.' });
+    console.error("Erreur lors de la suppression de l'entreprise : ", err);
+    res
+      .status(500)
+      .json({
+        error: "Erreur serveur lors de la suppression de l'entreprise.",
+      });
   }
 };
 
@@ -103,18 +121,24 @@ const updateCompany = async (req, res) => {
 
   try {
     const name = req.body.name; // Récupérer directement la valeur de 'name' depuis req.body
-   
+
     if (!name) {
       return res.status(400).json({ message: "Company name not found" });
     }
 
     // Vérification de la longueur du nom
     if (name.length > maxLen) {
-      return res.status(400).json({ message: "Name too long, max allowed is 25 characters" });
+      return res
+        .status(400)
+        .json({ message: "Name too long, max allowed is 25 characters" });
     }
 
     // Mettre à jour la compagnie
-    const updatedCompany = await Companies.findByIdAndUpdate(id, { name: name, updatedOn : new Date()}, { new: true });
+    const updatedCompany = await Companies.findByIdAndUpdate(
+      id,
+      { name: name, updatedOn: new Date() },
+      { new: true }
+    );
 
     if (!updatedCompany) {
       return res.status(404).json({ message: "Company ID not found" });
@@ -122,12 +146,9 @@ const updateCompany = async (req, res) => {
 
     // Envoyer une réponse avec le message et les données mises à jour
     res.status(200).json({ message: "Company updated", updatedCompany });
-    
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
-
 
 export { getCompanies, postCompanies, deleteCompany, updateCompany };

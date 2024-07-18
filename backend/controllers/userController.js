@@ -6,7 +6,7 @@ import { sanitize, validateEmail } from "./../utils/sanitize.js";
 // returns list of all users
 const getUsers = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().select("-password");
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: "SERVER ERROR" });
@@ -17,7 +17,7 @@ const getUsers = async (req, res) => {
 const getUserById = async (req, res) => {
   const id = req.params.id;
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -51,7 +51,11 @@ const login = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid Password" });
     }
-    return res.status(200).json({ user });
+    const userObject = user.toObject();
+    delete userObject.password;
+    return res
+      .status(200)
+      .json({ message: "Authentication successful", userObject });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
   }
