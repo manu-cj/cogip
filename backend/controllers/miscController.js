@@ -7,8 +7,8 @@ const getStats = async (req, res) => {
   try {
     const totalInvoices = await Invoice.countDocuments();
     const totalCompanies = await Companies.countDocuments();
-    const totalContact = await Contact.countDocuments();
-    res.status(200).json({ totalInvoices, totalCompanies, totalContact });
+    const totalContacts = await Contact.countDocuments();
+    res.status(200).json({ totalInvoices, totalCompanies, totalContacts });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
   }

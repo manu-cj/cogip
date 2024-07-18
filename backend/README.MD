@@ -18,6 +18,7 @@ Ensure to always use `http://localhost:3000/api` as the root endpoint for any ki
 | `/users/login`          | POST   | `email` (str), `password` (str)                                               | Attempts to log in user, if attempt successful, returns user as object |
 |                         |        |                                                                               |                                                               |
 | `/contacts`             | GET    | None                                                                          | Returns the list of all contacts in alphabetical order        |
+| `/contacts/pagination/:nbPerPage/:page?`             | GET    | None                                                                          | nbPerPage represents the count of results you want to show per page, the page is the page number you want to show the results for. If no page sent, page default will be 1. Returns results for the page, the totalResults and the totalPages        |
 | `/contacts/latest`      | GET    | None                                                                          | Returns the 5 last added contacts                             |
 | `/contacts/:id`         | GET    | None                                                                          | Returns contact details for the given ID                      |
 | `/contacts/company/:companyId`| GET | None                                                                       | Returns list of contacts for the companyId given in URL                   |
@@ -32,8 +33,11 @@ Ensure to always use `http://localhost:3000/api` as the root endpoint for any ki
 | `/invoices/latest` | GET  | None                                                    | Returns the list of the 5 latest invoices            |
 | `/invoices/:id` | GET  | None                                                    | Returns the details of the invoice matching the ID given as param            |
 | `/invoices/company/:companyId` | GET  | None                                                    | Returns the list of invoices for the company matching company ID sent in URL        |
+| `/invoices/pagination/:nbPerPage/:page?`             | GET    | None                                                                          | nbPerPage represents the count of results you want to show per page, the page is the page number you want to show the results for. If no page sent, page default will be 1. Returns results for the page, the totalResults and the totalPages        |
 | `/invoices` | POST  | `companyId` (str), `reference` (str)                 | Creates a new invoice in the DB, and returns the invoice details in response |
 | `/invoices/:id` | DELETE  | None                 | Deletes the invoice matching the id sent in URL |
+|                         |        |                                                                               |      
+|  `/stats`          |   GET     |      NONE                                                                         |     Returns the total of existing invoices, contacts and companies
 
 ---
 
