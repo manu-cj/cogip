@@ -122,20 +122,22 @@ function ContactDashboard() {
 
         setNotification(result.message);
 
-        // Réinitialisation du formulaire après succès
-        setFormData({
-          name: "",
-          companyId: "",
-          phoneNr: "",
-          email: "",
-        });
+        if (result.message == "Contact successfully created") {
+          // Réinitialisation du formulaire après succès
+          setFormData({
+            name: "",
+            companyId: "",
+            phoneNr: "",
+            email: "",
+          });
 
-         setFormStyles({
-           name: { border: "none" },
-           companyId: { border: "none" },
-           phoneNr: { border: "none" },
-           email: { border: "none" },
-         });
+          setFormStyles({
+            name: { border: "none" },
+            companyId: { border: "none" },
+            phoneNr: { border: "none" },
+            email: { border: "none" },
+          });
+        }
 
         setTimeout(() => {
           setNotification("");
