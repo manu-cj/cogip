@@ -6,8 +6,7 @@ import contactRoutes from "./routes/contactRoutes.js";
 import companiesRoutes from "./routes/companiesRoutes.js";
 import invoiceRoutes from "./routes/invoiceRoutes.js";
 import imageRoutes from "./routes/imageRoutes.js";
-import cors from "cors";
-
+import miscRoutes from "./routes/miscRoutes.js";
 
 dbConnect();
 
@@ -22,6 +21,7 @@ app.use("/api/contacts", contactRoutes);
 app.use("/api/companies", companiesRoutes);
 app.use("/api/images", imageRoutes);
 app.use("/api/invoices", invoiceRoutes);
+app.use("/api/", miscRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

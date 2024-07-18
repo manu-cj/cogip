@@ -6,10 +6,43 @@ import { sanitize } from "./../utils/sanitize.js";
 
 const getContacts = async (req, res) => {
   try {
-    const contacts = await Contact.find().populate("companyId", "name");
+    const contacts = await Contact.find()
+      .sort({ name: 1 })
+      .populate("companyId", "name");
     return res.status(200).json({ contacts });
   } catch (error) {
     res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
+};
+
+const getPaginatedContacts = async (req, res) => {
+  const resultsPerPage = parseInt(req.params.nbPerPage, 10);
+  let page = 1;
+  if (req.params.page) {
+    page = parseInt(req.params.page, 10);
+  }
+  if (isNaN(resultsPerPage) || resultsPerPage < 1 || isNaN(page) || page < 1) {
+    return res.status(400).json({
+      message:
+        "Bad request: make sure the nbPerPage and page are of type int and superior to 0.",
+    });
+  }
+  try {
+    const totalResults = await Contact.countDocuments();
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    if (page > totalPages) {
+      return res.status(400).json({
+        message: `No result found for page ${page}, last page is ${totalPages}`,
+      });
+    }
+    const pageResults = await Contact.find()
+      .sort({ name: 1 })
+      .limit(resultsPerPage)
+      .populate("companyId", "name")
+      .skip((page - 1) * resultsPerPage);
+    return res.status(200).json({ totalResults, totalPages, pageResults });
+  } catch (error) {
+    return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
   }
 };
 
@@ -63,7 +96,7 @@ const createContact = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(companyId)) {
     return res.status(400).json({ message: "Invalid company ID format" });
   }
-  const company = await Company.findById(companyId);
+  const company = await Companies.findById(companyId);
   if (!company) {
     return res.status(404).json({ message: "Company not found" });
   }
@@ -177,4 +210,5 @@ export {
   updateContact,
   deleteContact,
   getContactsByCompany,
+  getPaginatedContacts,
 };
