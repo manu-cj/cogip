@@ -6,6 +6,7 @@ import {
   deleteInvoice,
   getLatestInvoices,
   getInvoicesByCompany,
+  getPaginatedInvoices,
 } from "./../controllers/invoiceController.js";
 
 const router = express.Router();
@@ -14,6 +15,7 @@ const router = express.Router();
 router.get("/", getInvoices);
 router.get("/latest", getLatestInvoices);
 router.get("/:id", getInvoiceById);
+router.get("/pagination/:nbPerPage/:page?", getPaginatedInvoices);
 router.get("/company/:companyId", getInvoicesByCompany);
 
 // POST ROUTES

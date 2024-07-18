@@ -1,10 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Header from './header/Header';
+import Header from './header/HeaderDashboard';
 import NavBarLat from './navigation/NavBarLat';
 import { InvoiceData } from '../../types/types';
+import Hamburger from './navigation/Hamburger';
 
 function InvoicesDashboard() {
+    const [isOpen, setIsOpen] = useState(true);
+
+    const handleClick = () => {
+        setIsOpen(!isOpen);
+    }
     const [companyValue, setCompanyValue] = useState('default')
     const [formData, setFormData] = useState<InvoiceData>({
         reference:'',
@@ -82,7 +88,8 @@ function InvoicesDashboard() {
 
     return (
         <div className='dashBoard'>
-            <NavBarLat img="./../../../public/assets/img/unbgcommeunautre.jpg" firstName="Dylan"  lastName="Feys"/>
+            <Hamburger className={`hamburger ${isOpen ? '' : 'hidden'}`} toggle={handleClick}/>
+            <NavBarLat img="./../../../public/assets/img/unbgcommeunautre.jpg" firstName="Dylan"  lastName="Feys" className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick}/>
             <div className='dashBoard__content'>
                 <Header firstName="Dylan"/>
                 <div className='dashBoard__invoices'>
