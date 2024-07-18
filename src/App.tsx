@@ -1,7 +1,6 @@
 import "./css/App.css";
 import NavBar from "./component/main/navigation/NavBar";
 import Footer from "./component/main/Footer";
-import Notification from "./component/pages/components/Notification";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +16,6 @@ function App() {
     <>
       <header>
         <NavBar />
-        <Notification/>
         <div className="top-content">
           <h2>MANAGE YOUR CUSTOMERS AND INVOICES EASLY</h2>
           <img

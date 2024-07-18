@@ -1,7 +1,7 @@
 main {
   width: 100%;
   min-height: 100vh;
-  @extend .flexColumnCenterCenter;
+  @extend .flexColumnStartCenter;
 
   .main-content {
     font-weight: bold;

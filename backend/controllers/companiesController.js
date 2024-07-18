@@ -6,6 +6,7 @@ import { sanitize } from "../utils/sanitize.js";
 import { validateCountryName } from "../utils/countryValidator.js";
 
 //Delete *Patch  *get by id
+//Delete *Patch  *get by id
 // returns list of all companies
 
 const getCompanies = async (req, res) => {
@@ -28,7 +29,9 @@ const postCompanies = async (req, res) => {
 
     const existingCompanies = await Companies.findOne({ name });
     if (existingCompanies) {
-      return res.status(400).json({ message: `Company name alreay use : ${existingCompanies} ` });
+      return res
+        .status(400)
+        .json({ message: `Company name alreay use : ${existingCompanies} ` });
     }
 
     await companies.save(); //save companies
@@ -42,7 +45,11 @@ const deleteCompany = async (req, res) => {
   const identifier = req.params.identifier;
 
   if (!identifier) {
-    return res.status(400).json({ message: "The identifier of the company to delete is not provided." });
+    return res
+      .status(400)
+      .json({
+        message: "The identifier of the company to delete is not provided.",
+      });
   }
 
   try {
@@ -113,10 +120,17 @@ const updateCompany = async (req, res) => {
 
     // Vérification de la longueur du nom
     if (name.length > maxLen) {
-      return res.status(400).json({ message: "Name too long, max allowed is 25 characters" });
+      return res
+        .status(400)
+        .json({ message: "Name too long, max allowed is 25 characters" });
     }
 
     // Mettre à jour la compagnie
+    const updatedCompany = await Companies.findByIdAndUpdate(
+      id,
+      { name: name, updatedOn: new Date() },
+      { new: true }
+    );
     const updatedCompany = await Companies.findByIdAndUpdate(
       id,
       { name: name, updatedOn: new Date() },
