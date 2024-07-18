@@ -6,12 +6,18 @@ import {
     faChevronLeft,
     faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import useAPI from "../../../hook/useAPI";
+import { Contact, Contacts } from "../../../types/contactsType";
 
 function TemplatePages() {
   const location = useLocation();
   const ariane = location.pathname;
   const newPath: string = ariane.replace("/", "");
   let placeHolder: string = "";
+  const {contacts, loading } = useAPI("http://localhost:3000/api/contacts")
+
+  console.log(contacts);
+  if (loading) return <p>Loading...</p>;
 
   const definePlaceHolder = () => {
     switch (newPath) {
@@ -29,7 +35,7 @@ function TemplatePages() {
 
   definePlaceHolder();
 
-  const tableData = (newPath: string): JSX.Element => {
+  const tableData = (newPath: string, contacts: Contact[]): JSX.Element => {
     switch (newPath) {
       case "companies":
         return (
@@ -54,29 +60,33 @@ function TemplatePages() {
             </tbody>
           </table>
         );
-      case "contacts":
-        return (
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Mail</th>
-                <th>Company</th>
-                <th>Created at</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Peter Gregory</td>
-                <td>555-4567</td>
-                <td>peter.gregory@raviga.com</td>
-                <td>Raviga</td>
-                <td>25/09/2020</td>
-              </tr>
-            </tbody>
-          </table>
-        );
+        case "contacts":
+          return Array.isArray(contacts) ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Mail</th>
+                  <th>Company</th>
+                  <th>Created at</th>
+                </tr>
+              </thead>
+              <tbody>
+                {contacts.map((contact) => (
+                  <tr key={contact._id}>
+                    <td>{contact.name}</td>
+                    <td>{contact.phoneNr}</td>
+                    <td>{contact.email}</td>
+                    <td>{contact.companyId?.name}</td>
+                    <td>{contact.createdAt}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No contacts available</p>
+          );
       case "invoices":
         return (
           <table>
@@ -117,7 +127,7 @@ function TemplatePages() {
             placeholder={placeHolder}
           />
         </section>
-        <section className="main-content">{tableData(newPath)}</section>
+        <section className="main-content">{tableData(newPath, contacts)}</section>
         <section className="pagination">
           <a href=""><FontAwesomeIcon icon={faChevronLeft} /></a>
           <a href="">1</a>
