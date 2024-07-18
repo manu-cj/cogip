@@ -35,6 +35,50 @@ const getCompaniesById = async (req, res) => {
   return res.status(201).json({ message : "Company found"});
 };
 
+const getLatestCompanies = async (req, res) => {
+  try {
+    const companies = await Companies.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .exec(); // Removed populate("id") as it's not needed based on the screenshot
+    return res.status(200).json({ companies });
+  } catch (error) {
+    return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
+};
+
+
+const getPaginatedCompanies = async (req, res) => {
+  const resultsPerPage = parseInt(req.params.nbPerPage, 10);
+  let page = 1;
+  if (req.params.page) {
+    page = parseInt(req.params.page, 10);
+  }
+  if (isNaN(resultsPerPage) || resultsPerPage < 1 || isNaN(page) || page < 1) {
+    return res.status(400).json({
+      message:
+        "Bad request: make sure the nbPerPage and page are of type int and superior to 0.",
+    });
+  }
+  try {
+    const totalResults = await Companies.countDocuments();
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    if (page > totalPages) {
+      return res.status(400).json({
+        message: `No result found for page ${page}, last page is ${totalPages}`,
+      });
+    }
+    const pageResults = await Companies.find()
+      .sort({ name: 1 })
+      .limit(resultsPerPage)
+      .skip((page - 1) * resultsPerPage);
+    return res.status(200).json({ totalResults, totalPages, pageResults });
+  } catch (error) {
+    return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
+};
+
+
 const postCompanies = async (req, res) => {
   try {
     const { name, country, vat } = req.body;
@@ -123,8 +167,6 @@ const deleteCompaniesByName = async (name, session) => {
   }
 };
 
-// Update of one company
-
 const updateCompany = async (req, res) => {
   const id = req.params.id;
   const maxLen = 25;
@@ -156,4 +198,4 @@ const updateCompany = async (req, res) => {
   }
 };
 
-export { getCompanies, getCompaniesById, postCompanies, deleteCompany, updateCompany };
+export { getCompanies, getCompaniesById, getPaginatedCompanies ,getLatestCompanies, postCompanies, deleteCompany, updateCompany };

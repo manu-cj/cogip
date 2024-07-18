@@ -37,14 +37,14 @@ const CompaniesSchema = new Schema({
   },
 });
 
-CompaniesSchema.pre('remove', async function(next) {
-  try {
-    await Invoice.deleteMany({ companyId: this._id });
-    await Contact.deleteMany({ companyId: this._id });
-    next();
-  } catch (err) {
-    next(err);
-  }
-});
+// CompaniesSchema.pre('remove', async function(next) {
+//   try {
+//     await Invoice.deleteMany({ companyId: this._id });
+//     await Contact.deleteMany({ companyId: this._id });
+//     next();
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 export default mongoose.model("Companies", CompaniesSchema);
