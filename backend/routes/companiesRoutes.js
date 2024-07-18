@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import {
   getCompanies,
+  getCompaniesById,
   postCompanies,
   deleteCompany,
   updateCompany,
@@ -9,6 +10,7 @@ import {
 
 // GET ROUTES
 router.get("/", getCompanies);
+router.get("/:id", getCompaniesById);
 
 //POST ROUTES
 router.post("/", postCompanies);

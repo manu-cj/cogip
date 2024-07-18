@@ -11,11 +11,28 @@ import { validateCountryName } from "../utils/countryValidator.js";
 
 const getCompanies = async (req, res) => {
   try {
-    const companies = await Companies.find().sort({ name: 1});
+    const companies = await Companies.find().sort({ name: 1}).collation({locale: 'fr', strength: 1});
     return res.status(200).json({ companies });
   } catch (err) {
     res.status(500).json({ message: `SERVER ERROR : ${err.message}` });
   }
+};
+
+const getCompaniesById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const company = await Companies.findById(id);
+    if (!company) {
+      return res.status(404).json({ message: "Company not found" });
+    }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid Company ID" });
+    }
+    return res.status(200).json(company);
+  } catch (error) {
+    res.status(500).json({ message: "SERVER ERROR" });
+  }
+  return res.status(201).json({ message : "Company found"});
 };
 
 const postCompanies = async (req, res) => {
@@ -24,6 +41,7 @@ const postCompanies = async (req, res) => {
     const companies = new Companies({ name, vat, country });
 
     if (!validateCountryName(country)) {
+
       return res.status(400).json({ error: "Invalid country" });
     }
 
@@ -138,4 +156,4 @@ const updateCompany = async (req, res) => {
   }
 };
 
-export { getCompanies, postCompanies, deleteCompany, updateCompany };
+export { getCompanies, getCompaniesById, postCompanies, deleteCompany, updateCompany };
