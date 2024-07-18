@@ -57,6 +57,13 @@ export interface ContactData{
     company: string;
 }
 
+export interface ContactForm{
+    name: string;
+    companyId: string;
+    email: string;
+    phoneNr: string;
+}
+
 export interface HamburgerProps {
     className : string;
     toggle : () => void;
