@@ -1,13 +1,21 @@
 .dashboard-header{
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 20px;
     position: relative;
+    @include responsive(768px){
+        flex-direction: column;
+        
+    }
     .header__title{
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        margin-top: 20px;
+        @include responsive(768px){
+            margin-top: 0;
+        }
         h1{
             margin:0;
             font-size: 30px;
@@ -28,16 +36,26 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-top: 50px;
+        margin-top: 130px;
+        @include responsive(768px){
+            
+            margin-top: 50px;
+        }
         p{
             width: 50%;
         }
     }
-
-    // on a un conflit on va utiliser des class 
     img{
+        width: 190px;
         position: absolute;
         top:0;
         right: 0;
+
+        @include responsive(768px){
+            width: 300px;
+        }
+        @include responsive(1000px){
+            width: 417px;
+        }
     }
 }

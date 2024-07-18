@@ -1,0 +1,19 @@
+.hamburger{
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    @include responsive(768px){
+        display: none;
+    }
+    .hamburgerElement{
+        width: 30px;
+        height: 3px;
+        background-color: black;
+        margin: 5px;
+    }
+}
+.hamburger.hidden{
+    display: none;
+}

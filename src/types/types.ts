@@ -2,6 +2,8 @@ export interface NavBarLatProps {
     img : string;
     firstName: string;
     lastName: string;
+    className : string;
+    toggle : () => void;
 }
 
 interface Invoice {
@@ -53,4 +55,9 @@ export interface ContactData{
     email: string;
     phone: string;
     company: string;
+}
+
+export interface HamburgerProps {
+    className : string;
+    toggle : () => void;
 }
