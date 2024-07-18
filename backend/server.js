@@ -6,7 +6,7 @@ import contactRoutes from "./routes/contactRoutes.js";
 import companiesRoutes from "./routes/companiesRoutes.js";
 import invoiceRoutes from "./routes/invoiceRoutes.js";
 import imageRoutes from "./routes/imageRoutes.js";
-import cors from "cors";
+
 
 
 dbConnect();

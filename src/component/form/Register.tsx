@@ -1,6 +1,7 @@
-import NavBar from "../main/navigation/NavBar";
 import Footer from "../main/Footer";
 import { useState } from 'react';
+import Header from "../pages/components/Header";
+import Notification from "../pages/components/Notification";
 
 interface IRegister {
   lastName: string;
@@ -26,6 +27,8 @@ const Register: React.FC = () => {
     password: { borderColor: "black" },
     passwordRepeat: { borderColor: "black" },
   });
+
+  const [notification, setNotification] = useState<string>("");
 
   const validateLastname = (lastName: string) => {
     return lastName.length > 2;
@@ -102,20 +105,6 @@ const Register: React.FC = () => {
     }
   };
 
-  // const useLocalStorage = <T,>(storageKey: string, fallbackState: T): [T, Dispatch<SetStateAction<T>>] => {
-  //   const [value, setValue] = useState<T>(
-  //     () => {
-  //       const storedValue = localStorage.getItem(storageKey);
-  //       return storedValue ? JSON.parse(storedValue) as T : fallbackState;
-  //     }
-  //   );
-  
-  //   useEffect(() => {
-  //     localStorage.setItem(storageKey, JSON.stringify(value));
-  //   }, [value, storageKey]);
-  
-  //   return [value, setValue];
-  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -136,9 +125,9 @@ const Register: React.FC = () => {
         });
         const result = await response.json();
         result.message === "Email already in use" ?
-          localStorage.setItem("errors", JSON.stringify(result))
+          setNotification(result.message)
           :
-        localStorage.setItem("notification", JSON.stringify(result));
+          setNotification(result.message)
         
         console.log(result);
       } catch (error) {
@@ -151,10 +140,9 @@ const Register: React.FC = () => {
 
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
+      <Header/>
       <main>
+        <Notification notification={notification} />
         <form
           method="post"
           action="http://localhost:3000/api/users"
