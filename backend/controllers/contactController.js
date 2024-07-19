@@ -2,7 +2,7 @@ import Contact from "./../models/contactModel.js";
 import Companies from "./../models/companiesModel.js";
 import mongoose from "mongoose";
 
-import { sanitize } from "./../utils/sanitize.js";
+import { sanitize, validateEmail } from "./../utils/sanitize.js";
 
 const getContacts = async (req, res) => {
   try {
@@ -100,6 +100,10 @@ const createContact = async (req, res) => {
   if (!company) {
     return res.status(404).json({ message: "Company not found" });
   }
+
+  if (!validateEmail(email)) {
+    return res.status(400).json({ message: "Invalid email." });
+  }
   if (
     name.length > maxLen ||
     phoneNr.length > maxLen ||
@@ -110,6 +114,13 @@ const createContact = async (req, res) => {
     });
   }
   try {
+    const emailExists = await Contact.findOne({ email });
+    if (emailExists) {
+      return res.status(400).json({
+        message: "Another contact exists with this mail address.",
+      });
+    }
+
     let contact = new Contact({
       name,
       companyId,
