@@ -3,7 +3,7 @@ import Type from "./../models/typeModel.js";
 
 const createType = async (req, res) => {
   try {
-    const name = req.body;
+    const { name } = req.body;
     const type = await new Type({ name });
     type.save();
     return res.status(201).json({ message: "Type saved" });

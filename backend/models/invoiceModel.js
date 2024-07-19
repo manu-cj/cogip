@@ -14,6 +14,11 @@ const InvoiceSchema = new Schema({
     ref: "Companies",
     required: true,
   },
+  dueDate: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

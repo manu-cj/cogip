@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import Invoice from './invoiceModel.js'
-import Contact from './contactModel.js'
+import Invoice from "./invoiceModel.js";
+import Contact from "./contactModel.js";
 
 const Schema = mongoose.Schema;
 
@@ -10,6 +10,12 @@ const CompaniesSchema = new Schema({
     required: true,
     unique: true,
     maxlength: 25,
+  },
+
+  typeId: {
+    type: Schema.Types.ObjectId,
+    ref: "Type",
+    required: true,
   },
 
   country: {
@@ -37,14 +43,14 @@ const CompaniesSchema = new Schema({
   },
 });
 
-// CompaniesSchema.pre('remove', async function(next) {
-//   try {
-//     await Invoice.deleteMany({ companyId: this._id });
-//     await Contact.deleteMany({ companyId: this._id });
-//     next();
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+CompaniesSchema.pre("remove", async function (next) {
+  try {
+    await Invoice.deleteMany({ companyId: this._id });
+    await Contact.deleteMany({ companyId: this._id });
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default mongoose.model("Companies", CompaniesSchema);

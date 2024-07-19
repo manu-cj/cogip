@@ -1,6 +1,7 @@
 import Invoice from "./../models/invoiceModel.js";
 import Companies from "./../models/companiesModel.js";
 import { sanitize } from "./../utils/sanitize.js";
+import { isValidDate } from "./../utils/dateValidator.js";
 import mongoose from "mongoose";
 
 const getInvoices = async (req, res) => {
@@ -16,20 +17,37 @@ const getInvoices = async (req, res) => {
 };
 
 const createInvoice = async (req, res) => {
-  let { reference, companyId } = req.body;
+  let { reference, companyId, dueDate } = req.body;
   const maxLength = 50;
   try {
     const foundRef = await Invoice.findOne({ reference: reference });
     const foundCompany = await Companies.findById(companyId);
     if (foundRef) {
       return res.status(400).json({
-        message: "This invoice reference already exists. You monkey!!!",
+        message: "This invoice reference already exists. Dummy!!!",
+      });
+    }
+    if (!dueDate) {
+      return res.status(400).json({
+        message: "Due date is missing.",
       });
     }
     if (!foundCompany) {
       return res
         .status(404)
         .json({ message: "Company not found. Make sure to send a valid ID" });
+    }
+    if (!isValidDate(dueDate)) {
+      return res.status(400).json({
+        message: "Due Date does not meet required date format : YYYY-MM-DD",
+      });
+    }
+    const now = Date.now();
+    dueDate = new Date(dueDate);
+    if (dueDate.getTime() <= now) {
+      return res.status(400).json({
+        message: "Due Date should be a future date.",
+      });
     }
     reference = sanitize(reference);
     if (!reference || reference.length > maxLength) {
