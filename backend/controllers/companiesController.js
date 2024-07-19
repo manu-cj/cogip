@@ -3,6 +3,7 @@ import Companies from "./../models/companiesModel.js";
 import Invoice from "./../models/invoiceModel.js";
 import Contact from "./../models/contactModel.js";
 import { sanitize } from "../utils/sanitize.js";
+import Type from "./../models/typeModel.js";
 import { validateCountryName } from "../utils/countryValidator.js";
 
 //Delete *Patch  *get by id
@@ -11,7 +12,7 @@ import { validateCountryName } from "../utils/countryValidator.js";
 
 const getCompanies = async (req, res) => {
   try {
-    const companies = await Companies.find().sort({ name: 1}).collation({locale: 'fr', strength: 1});
+    const companies = await Companies.find().sort({ name: 1}).collation({locale: 'fr', strength: 1}).populate('typeId', 'name');
     return res.status(200).json({ companies });
   } catch (err) {
     res.status(500).json({ message: `SERVER ERROR : ${err.message}` });
@@ -21,7 +22,7 @@ const getCompanies = async (req, res) => {
 const getCompaniesById = async (req, res) => {
   const id = req.params.id;
   try {
-    const company = await Companies.findById(id);
+    const company = await Companies.findById(id).populate('typeId', 'name');;
     if (!company) {
       return res.status(404).json({ message: "Company not found" });
     }
@@ -40,7 +41,8 @@ const getLatestCompanies = async (req, res) => {
     const companies = await Companies.find()
       .sort({ createdAt: -1 })
       .limit(5)
-      .exec(); // Removed populate("id") as it's not needed based on the screenshot
+      .exec()
+      .populate('typeId', 'name');; // Removed populate("id") as it's not needed based on the screenshot
     return res.status(200).json({ companies });
   } catch (error) {
     return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
@@ -71,7 +73,8 @@ const getPaginatedCompanies = async (req, res) => {
     const pageResults = await Companies.find()
       .sort({ name: 1 })
       .limit(resultsPerPage)
-      .skip((page - 1) * resultsPerPage);
+      .skip((page - 1) * resultsPerPage)
+      .populate('typeId', 'name');
     return res.status(200).json({ totalResults, totalPages, pageResults });
   } catch (error) {
     return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
@@ -81,27 +84,42 @@ const getPaginatedCompanies = async (req, res) => {
 
 const postCompanies = async (req, res) => {
   try {
-    const { name, country, vat } = req.body;
-    const companies = new Companies({ name, vat, country });
+    const { name, country, vat, typeId } = req.body;
 
     if (!validateCountryName(country)) {
-
       return res.status(400).json({ error: "Invalid country" });
     }
 
     const existingCompanies = await Companies.findOne({ name });
     if (existingCompanies) {
-      return res
-        .status(400)
-        .json({ message: `Company name alreay use : ${existingCompanies} ` });
+      return res.status(400).json({ message: `Company name already in use: ${existingCompanies}` });
     }
 
-    await companies.save(); //save companies
-    return res.status(201).json({ message: "Country is valid and data saved" });
+    // Vérifiez que le typeId est valide et obtenez l'ObjectId correspondant
+    const type = await Type.findOne({ name: typeId });
+    if (!type) {
+      return res.status(400).json({ message: "Type of the society can only take Supplier or Client" });
+    }
+
+    // Créez l'entreprise en utilisant l'ObjectId trouvé pour typeId
+    const companies = new Companies({
+      name,
+      vat,
+      country,
+      typeId: type._id // Utilisation de l'ObjectId du type trouvé
+    });
+
+    await companies.save(); // Sauvegarder l'entreprise
+
+    // Récupérer l'entreprise sauvegardée avec le typeId populé
+    const savedCompany = await Companies.findById(companies._id).populate('typeId', 'name');
+    
+    return res.status(201).json({ message: "Country is valid and data saved", company: savedCompany });
   } catch (err) {
-    res.status(500).json({ message: `SERVER ERROR ${err.message}` });
+    res.status(500).json({ message: `SERVER ERROR: ${err.message}` });
   }
 };
+
 
 const deleteCompany = async (req, res) => {
   const identifier = req.params.identifier;
