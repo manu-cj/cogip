@@ -563,7 +563,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, main .pagination, header .bottom-content {
+.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, main .pagination, header nav .dashboardLinkDiv, header .bottom-content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -663,7 +663,7 @@ header {
   width: 100%;
   background-color: #f9de4e;
   color: black;
-  padding-top: 250px;
+  padding-top: 50px;
 }
 header nav {
   position: fixed;
@@ -687,11 +687,25 @@ header nav .loginNav .sign-up {
   background-color: white;
   color: black;
 }
+header nav .dashboardLinkDiv {
+  gap: 10px;
+  width: -moz-max-content;
+  width: max-content;
+}
+header nav .pictureNav {
+  width: 30px;
+  border-radius: 15px;
+  border: 1px rgba(30, 30, 30, 0.344) ridge;
+  cursor: pointer;
+}
 header nav a {
   text-decoration-line: none;
   list-style-type: none;
   color: black;
   font-weight: bold;
+}
+header nav a:hover {
+  color: rgb(56, 55, 55);
 }
 header .top-content {
   width: 100%;
@@ -757,11 +771,25 @@ header nav .loginNav .sign-up {
   background-color: white;
   color: black;
 }
+header nav .dashboardLinkDiv {
+  gap: 10px;
+  width: -moz-max-content;
+  width: max-content;
+}
+header nav .pictureNav {
+  width: 30px;
+  border-radius: 15px;
+  border: 1px rgba(30, 30, 30, 0.344) ridge;
+  cursor: pointer;
+}
 header nav a {
   text-decoration-line: none;
   list-style-type: none;
   color: black;
   font-weight: bold;
+}
+header nav a:hover {
+  color: rgb(56, 55, 55);
 }
 
 main {
@@ -1107,6 +1135,12 @@ form input {
 
 .navBarLat.visible {
   transform: translateX(0);
+}
+
+.fa-house {
+  color: #9698D6;
+  margin-right: 20px;
+  size: 15px;
 }
 
 .dashboard-header {
