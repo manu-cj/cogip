@@ -1,23 +1,28 @@
 .pagination {
     width: 25%;
     @extend .flexAroundCenter;
-    
+    margin-top: 25px;
 
     .fa-chevron-left, .fa-chevron-right {
         color: #f4d03f;
         transition: 0.4s ease-in;
     }
-
-    a {
-        display: block;
+    
+    .btnPagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 5px;
         width: 30px;
+        height: 30px;
         border: 1px black solid;
         border-radius: 5px;
         text-align: center;
         text-decoration-line: none;
         color: black;
         transition: 0.3s ease-in;
+        background-color: #fff;
+        
         &:hover {
             scale: 1.1;
             background-color: #f4d03f;
@@ -29,5 +34,12 @@
                 color: black;
             }
         }
+    }
+    .hide{
+        border: none;
+    }
+    .pageActive{
+        border:2px solid #f4d03f;
+        color: #f4d03f;
     }
 }
