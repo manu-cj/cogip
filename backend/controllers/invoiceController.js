@@ -56,7 +56,7 @@ const createInvoice = async (req, res) => {
       });
     }
     const invoice = new Invoice({ reference, companyId });
-    invoice.save();
+    await invoice.save();
     return res
       .status(200)
       .json({ message: "Successfully created invoice", invoice });

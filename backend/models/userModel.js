@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const UserSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -10,6 +12,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     maxlength: 50,
+  },
+  roleId: {
+    type: Schema.Types.ObjectId,
+    ref: "Role",
+    required: true,
+    default: "669a1e4ac5b7248960abcf9f",
   },
   email: {
     type: String,
