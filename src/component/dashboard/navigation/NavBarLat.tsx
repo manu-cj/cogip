@@ -6,6 +6,10 @@ import Icon_dashboard from '../../../../public/assets/icon/Icon_dashboard.svg';
 import croix from '../../../../public/assets/icon/croix.svg';
 import { NavBarLatProps } from '../../../types/types';
 import { useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+} from "@fortawesome/free-solid-svg-icons";
 
 
 function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps) {
@@ -24,6 +28,7 @@ function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps
                 </div>
                 <div className='navBarLat__menu'>
                     <ul>
+                        <Link to={"/"}><li><FontAwesomeIcon icon={faHome} />Home</li></Link>
                         <Link to={"/dashboard"}><li className={(ariane === "/dashboard")? "isActive" : ""}><img src={Icon_dashboard} alt="Dashboard" /> Dashboard</li></Link>
                         <Link to={"/dashboard/invoices"}><li className={(ariane === "/dashboard/invoices")? "isActive" : ""}><img src={Icon_Invoices} alt="Invoices" /> Invoices</li></Link>
                         <Link to={"/dashboard/companies"}><li className={(ariane === "/dashboard/companies")? "isActive" : ""}><img src={Icon_Companies} alt="Companies" /> Companies</li></Link>
