@@ -41,14 +41,12 @@ const getLatestCompanies = async (req, res) => {
     const companies = await Companies.find()
       .sort({ createdAt: -1 })
       .limit(5)
-      .exec()
-      .populate('typeId', 'name');; // Removed populate("id") as it's not needed based on the screenshot
+      .populate("typeId", "name");
     return res.status(200).json({ companies });
   } catch (error) {
-    return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+    return res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
   }
 };
-
 
 const getPaginatedCompanies = async (req, res) => {
   const resultsPerPage = parseInt(req.params.nbPerPage, 10);

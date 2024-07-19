@@ -12,8 +12,8 @@ import {
 
 // GET ROUTES
 router.get("/", getCompanies);
-router.get("/:id", getCompaniesById);
 router.get("/latest", getLatestCompanies);
+router.get("/:id", getCompaniesById);
 router.get("/pagination/:nbPerPage/:page?", getPaginatedCompanies);
 
 //POST ROUTES
