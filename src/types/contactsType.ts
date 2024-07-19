@@ -23,5 +23,7 @@ export type Contact = {
 };
 
 export type Contacts = {
-    contacts: Contact[];
+    totalResults: number;
+    totalPages: number;
+    pageResults: Contact[];
 };

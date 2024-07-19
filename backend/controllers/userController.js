@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
 import User from "./../models/userModel.js";
+import Role from "./../models/roleModel.js";
 import { hashPassword, comparePasswords } from "./../utils/managePasswords.js";
 import { sanitize, validateEmail } from "./../utils/sanitize.js";
 
 // returns list of all users
 const getUsers = async (req, res) => {
   try {
-    const users = await User.find().select("-password");
+    const users = await User.find()
+      .select("-password")
+      .populate("roleId", "name");
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: "SERVER ERROR" });
@@ -17,7 +20,9 @@ const getUsers = async (req, res) => {
 const getUserById = async (req, res) => {
   const id = req.params.id;
   try {
-    const user = await User.findById(id).select("-password");
+    const user = await User.findById(id)
+      .select("-password")
+      .populate("roleId", "name");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -41,7 +46,7 @@ const login = async (req, res) => {
     });
   }
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("roleId", "name");
     if (!user) {
       return res
         .status(404)
@@ -105,7 +110,8 @@ const createUser = async (req, res) => {
       email,
       password: hashedPassword,
     });
-    user.save();
+    await user.save();
+    await user.populate("roleId", "name");
     const userObject = user.toObject();
     delete userObject.password;
     return res

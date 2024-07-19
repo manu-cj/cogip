@@ -40,15 +40,15 @@ const router = createBrowserRouter([
     element: <DashBoard/>,
   },
   {
-    path: "/invoices",
+    path: "/invoices/:nbPerPage/:page?",
     element: <Invoices/>,
   },
   {
-    path: "/contacts",
+    path: "/contacts/:nbPerPage/:page?",
     element: <Contacts/>,
   },
   {
-    path: "/companies",
+    path: "/companies/:nbPerPage/:page?",
     element: <Compagnies/>,
   },
   {

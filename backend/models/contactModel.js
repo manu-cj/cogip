@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const ContactSchema = new Schema({
   name: {
     type: String,
-    required: true,
     maxlength: 50,
+    required: true,
   },
   companyId: {
     type: Schema.Types.ObjectId,
@@ -15,13 +15,14 @@ const ContactSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
     maxlength: 50,
+    unique: true,
+    required: true,
   },
   phoneNr: {
     type: String,
-    required: true,
     maxlength: 50,
+    required: true,
   },
   createdAt: {
     type: Date,
