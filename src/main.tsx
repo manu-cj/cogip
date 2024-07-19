@@ -52,11 +52,11 @@ const router = createBrowserRouter([
     element: <Compagnies/>,
   },
   {
-    path: "/show_contact/:id",  //On modifiera surement cette route
+    path: "/show_contact/:id",
     element: <Show_contact/>,
   },
   {
-    path: "/show_companies",  //On modifiera surement cette route
+    path: "/show_companies/:id", 
     element: <Show_compagnies/>,
   },
   {

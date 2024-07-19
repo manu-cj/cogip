@@ -1,11 +1,11 @@
 import Footer from "./../../main/Footer";
 import Header from "./Header";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import useAPI from "../../../hook/useAPI";
-import { Contact, Contacts } from "../../../types/contactsType";
 import { useState, useEffect } from "react";
+
 
 function TemplatePages() {
   const location = useLocation();
@@ -89,8 +89,8 @@ function TemplatePages() {
             <tbody>
               {companies.map((company) => (
                 <tr key={company._id}>
-                  <td>{company.name}</td>
-                  <td>{company.vat}</td>
+                  <td><Link to={`/show_companies/${company._id}`}>{company.name}</Link></td>
+                  <td><Link to={`/show_companies/${company._id}`}>{company.vat}</Link></td>
                   <td>{company.country}</td>
                   {/* <td>{company.type}</td> */}
                   <td>{company.createdAt}</td>
@@ -121,10 +121,10 @@ function TemplatePages() {
             <tbody>
               {contacts.map((contact) => (
                 <tr key={contact._id}>
-                  <td>{contact.name}</td>
+                  <td><Link to={`/show_contact/${contact._id}`} key={contact._id}>{contact.name}</Link></td>
                   <td>{contact.phoneNr}</td>
                   <td>{contact.email}</td>
-                  <td>{contact.companyId?.name}</td>
+                  <td><Link to={`/show_companies/${contact.companyId?._id}`} key={contact.companyId?._id}>{contact.companyId?.name}</Link></td>
                   <td>{contact.createdAt}</td>
                 </tr>
               ))}
@@ -149,7 +149,7 @@ function TemplatePages() {
               {invoices.map((invoice) => (
                 <tr key={invoice._id}>
                   <td>{invoice.reference}</td>
-                  {/* <td>{invoice.dueDate}</td> */}
+                  <td>{invoice.dueDate}</td>
                   <td>{invoice.companyId?.name}</td>
                   <td>{invoice.createdAt}</td>
                 </tr>
@@ -178,6 +178,18 @@ function TemplatePages() {
     }
   }
 
+  const defineNbrPage = () => {
+    const path = definePath();
+    switch (path) {
+      case "companies":
+        return nbrPageCompanies;
+      case "contacts":
+        return nbrPageContact;
+      case "invoices":
+        return nbrPageInvoice;
+    }
+  }
+
   return (
     <>
       <Header />
@@ -196,7 +208,7 @@ function TemplatePages() {
           <button onClick={handlePreviousPage} className="btnPagination"><FontAwesomeIcon icon={faChevronLeft} /></button>
           <span className={`btnPagination ${page === 1 ? "hide" : ""}`}>{page === 1 ? "" : page-1}</span>
           <span className="btnPagination pageActive">{page}</span>
-          <span className={`btnPagination ${page === nbrPageContact ? "hide" : ""}`}>{page>nbrPageContact-1 ? "" : page+1}</span>
+          <span className={`btnPagination ${page === defineNbrPage() ? "hide" : ""}`}>{page>(defineNbrPage())-1 ? "" : page+1}</span>
           <button onClick={handleNextPage} className="btnPagination"><FontAwesomeIcon icon={faChevronRight} /></button>
         </section>
       </main>

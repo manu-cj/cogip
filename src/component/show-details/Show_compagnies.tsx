@@ -1,10 +1,38 @@
 import Footer from "../main/Footer";
 import Header from "../pages/components/Header";
+import { Link, useParams } from "react-router-dom";
+import useAPI from "../../hook/useAPI";
+import { useEffect, useRef } from 'react';
 
 function Show_compagnies() {
 
-  // const { id } = useParams();
-  // const { companies } = useApi(); // rajouter l'url de l'api
+  const { id } = useParams();
+  const { company } = useAPI(`http://localhost:3000/api/companies/${id}`);
+  const { contactCompany} = useAPI(`http://localhost:3000/api/contacts/company/${id}`);
+  const { invoiceCompany } = useAPI(`http://localhost:3000/api/invoices/company/${id}`);
+
+  const scrollContainerRef = useRef<HTMLDivElement|null>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+
+    const handleWheel = (event: WheelEvent) => {
+      if (scrollContainer && event.deltaY !== 0) {
+        event.preventDefault();
+        scrollContainer.scrollLeft += event.deltaY;
+      }
+    };
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener('wheel', handleWheel);
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, []);
 
 
   return (
@@ -12,38 +40,25 @@ function Show_compagnies() {
       <Header/>
       <main className="show-companies">
         <div className="show-companies__infos">
-            {/* <h2>{companies.name</h2> */}
-            <h2>Becode</h2>
+            <h2>{company.name}</h2>
             <div className="show-companies__details">
-              {/* <p>companies: <span>{companies.name}</span></p> */}
-              {/* <p>Phone: <span>{companies.tva}</span></p> */}
-              {/* <p>Mail: <span>{companies.country}</span></p> */}
-              {/* <p>Company: <span>{companies.type}</span></  p> */}
-              <p>Contact: <span>Dylan Feys</span></p> 
-              <p>Phone: <span>0476/588358</span></p>
-              <p>Mail: <span>feys.dylan.dev@gmail.com</span></  p> 
-              <p>Company: <span>BeCode</span></p>
+              <p>Company: <span>{company.name}</span></p>
+              <p>Phone: <span>{company.vat}</span></p>
+              <p>Mail: <span>{company.country}</span></p>
+              <p>Type: <span>{company.type}</span></p>
             </div>
           </div>
           <hr />
           <div className="show-companies__contact">
             <h2>Contact people</h2>
-            <div className="show-companies__contacts">
+            <div className="show-companies__contacts" ref={scrollContainerRef}>
               <img src="./../../../public/assets/img/home/handwithnote.svg" alt="petite img" className="hand"/>
-              {/* {companies.contact.map((contact) => (
-                <div key={contact.name} className="show-companies__contact-card">
-                  <img src={contact.img} alt={contact.name} />
-                  <p>{contact.firstName + " " + contact.lastName}</p>
+              {contactCompany.map((contact) => (
+                <div key={contact._id} className="show-companies__contact-card">
+                  <Link to={`/show_contact/${contact._id}`} key={contact._id}><img src={contact.image.path} alt={contact.name} /></Link>
+                  <p><Link to={`/show_contact/${contact._id}`} key={contact._id}>{contact.name}</Link></p>
                 </div>
-              ))} */}
-              <div className="show-companies__contact-card">
-                <img src="./../../../public/assets/img/unbgcommeunautre.jpg" alt="Dylan Feys" />
-                <p>Dylan Feys</p>
-              </div>
-              <div className="show-companies__contact-card">
-                <img src="./../../../public/assets/img/unbgcommeunautre.jpg" alt="Dylan Feys" />
-                <p>Dylan Feys</p>
-              </div>
+              ))}
             </div>
           </div>
           <hr />
@@ -61,26 +76,14 @@ function Show_compagnies() {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* {companies.invoices.map((invoice) => (
-                      <tr key={invoice.number}>
-                        <td>{invoice.number}</td>
-                        <td>{invoice.date}</td>
-                        <td>{invoice.company}</td>
+                    {invoiceCompany.map((invoice) => (
+                      <tr key={invoice._id}>
+                        <td>{invoice.reference}</td>
+                        <td>{invoice.createdAt}</td>
+                        <td>{invoice.companyId?.name}</td>
                         <td>{invoice.createdAt}</td>
                       </tr>
-                    ))} */}
-                    <tr>
-                      <td>1</td>
-                      <td>01/01/2022</td>
-                      <td>Becode</td>
-                      <td>01/01/2022</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>01/01/2022</td>
-                      <td>Becode</td>
-                      <td>01/01/2022</td>
-                    </tr>
+                    ))}
                   </tbody>
               </table>
             </div>
