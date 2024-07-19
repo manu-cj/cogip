@@ -1,6 +1,6 @@
 import Header from "./../pages/components/Header";
 import Footer from "./../main/Footer";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAPI from "../../hook/useAPI";
 
 function Show_contact() {
@@ -24,7 +24,7 @@ function Show_contact() {
             <p>Contact: <span>{contact.name}</span></p>
             <p>Phone: <span>{contact.phoneNr}</span></p>
             <p>Mail: <span>{contact.email}</span></p>
-            <p>Company: <span>{contact.companyId.name}</span></p>
+            <p>Company: <span><Link to={`/show_companies/${contact.companyId._id}`}>{contact.companyId.name}</Link></span></p>
           </div>
         </div>
           <img src={contact.image.path} alt={contact.name}/>

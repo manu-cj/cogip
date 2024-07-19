@@ -802,6 +802,11 @@ main .main-content td {
   padding: 8px;
   text-align: left;
 }
+main .main-content th a,
+main .main-content td a {
+  text-decoration-line: none;
+  color: black;
+}
 main .main-content th {
   background-color: #f4d03f;
   font-weight: bold;
@@ -1435,6 +1440,10 @@ hr {
 .show-contact .show-contact__infos .show-contact__details p span {
   font-weight: 400;
 }
+.show-contact .show-contact__infos .show-contact__details p span a {
+  text-decoration: none;
+  color: #000;
+}
 .show-contact img {
   width: 255px;
   border-radius: 255px;
@@ -1484,14 +1493,23 @@ hr {
 .show-companies .show-companies__contact {
   margin: 50px 0;
   width: 100%;
+  position: relative;
 }
 .show-companies .show-companies__contact h2 {
   margin-bottom: 50px;
 }
 .show-companies .show-companies__contact .show-companies__contacts {
   display: flex;
-  position: relative;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
   width: 100%;
+  height: 300px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.show-companies .show-companies__contact .show-companies__contacts::-webkit-scrollbar {
+  display: none;
 }
 .show-companies .show-companies__contact .show-companies__contacts .hand {
   position: absolute;
@@ -1507,6 +1525,7 @@ hr {
   display: flex;
   align-items: center;
   margin: 20px;
+  height: 200px;
 }
 .show-companies .show-companies__contact .show-companies__contacts .show-companies__contact-card img {
   width: 130px;
@@ -1520,6 +1539,10 @@ hr {
   line-height: 41.02px;
   text-align: left;
   width: 45%;
+}
+.show-companies .show-companies__contact .show-companies__contacts .show-companies__contact-card p a {
+  text-decoration: none;
+  color: #000;
 }
 .show-companies .show-companies__invoice {
   margin: 50px 0;
