@@ -37,7 +37,7 @@ function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps
                 </div>
                 <div className='navBarLat__logout'>
                     <img src={img} alt={firstName + " " + lastName} />
-                    <p>Logout</p>
+                    <Link to={"/logout"}>Logout</Link>
                 </div>
             </aside>
         );

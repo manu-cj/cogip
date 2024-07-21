@@ -1122,6 +1122,10 @@ form input {
   align-items: center;
   padding: 8px;
 }
+.navBarLat .navBarLat__logout a {
+  text-decoration-line: none;
+  color: black;
+}
 .navBarLat .navBarLat__logout img {
   width: 48px;
   border-radius: 50px;

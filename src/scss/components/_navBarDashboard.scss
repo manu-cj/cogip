@@ -95,6 +95,11 @@
         justify-content: space-between;
         align-items: center;
         padding: 8px;
+        
+        a {
+            text-decoration-line: none;
+            color: black;
+        }
         img{
             width: 48px;
             border-radius: 50px;
