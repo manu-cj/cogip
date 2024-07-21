@@ -913,6 +913,7 @@ main .pagination .btnPagination {
   color: black;
   transition: 0.3s ease-in;
   background-color: #fff;
+  cursor: pointer;
 }
 main .pagination .btnPagination:hover {
   scale: 1.1;
@@ -1713,4 +1714,4 @@ body {
   overflow-y: scroll;
   font-family: "Inter", sans-serif;
   color: black;
-}
+}/*# sourceMappingURL=App.css.map */

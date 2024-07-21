@@ -19,6 +19,7 @@ import ErrorPage from './component/pages/Error-page';
 import InvoicesDashboard from './component/dashboard/InvoicesDashboard.tsx';
 import CompaniesDashboard from './component/dashboard/CompaniesDashboard.tsx';
 import ContactDashboard from './component/dashboard/ContactDashboard.tsx';
+import Logout from './component/pages/Logout.tsx';
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login/>,
+  },
+  {
+    path: "/logout",
+    element: <Logout/>,
   },
   {
     path: "/dashboard",
