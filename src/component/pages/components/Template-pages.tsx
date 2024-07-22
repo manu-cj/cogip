@@ -92,7 +92,7 @@ function TemplatePages() {
                   <td><Link to={`/show_companies/${company._id}`}>{company.name}</Link></td>
                   <td><Link to={`/show_companies/${company._id}`}>{company.vat}</Link></td>
                   <td>{company.country}</td>
-                  {/* <td>{company.type}</td> */}
+                  <td>{company.typeId?.name}</td>
                   <td>{company.createdAt}</td>
                 </tr>
               ))}
@@ -163,7 +163,7 @@ function TemplatePages() {
   };
 
   const handleNextPage = (event: any) => {
-    if (page < nbrPageContact) {
+    if (page < defineNbrPage()) {
       event.preventDefault();
       const nextPage = page + 1;
       setPage(nextPage);
@@ -175,6 +175,14 @@ function TemplatePages() {
     if (page > 1) {
       const prevPage = page - 1;
       setPage(prevPage);
+    }
+  }
+
+  const handleClick = (event: any) => {
+    event.preventDefault();
+    const pageNumber = parseInt(event.target.textContent, 10);
+    if (pageNumber >= 1 && pageNumber <= defineNbrPage()) {
+      setPage(pageNumber);
     }
   }
 
@@ -206,9 +214,9 @@ function TemplatePages() {
         <section className="main-content">{tableData(newPath)}</section>
         <section className="pagination">
           <button onClick={handlePreviousPage} className="btnPagination"><FontAwesomeIcon icon={faChevronLeft} /></button>
-          <span className={`btnPagination ${page === 1 ? "hide" : ""}`}>{page === 1 ? "" : page-1}</span>
-          <span className="btnPagination pageActive">{page}</span>
-          <span className={`btnPagination ${page === defineNbrPage() ? "hide" : ""}`}>{page>(defineNbrPage())-1 ? "" : page+1}</span>
+          <span onClick={handleClick} className={`btnPagination ${page === 1 ? "hide" : ""}`}>{page === 1 ? "" : page-1}</span>
+          <span onClick={handleClick} className="btnPagination pageActive">{page}</span>
+          <span onClick={handleClick} className={`btnPagination ${page === defineNbrPage() ? "hide" : ""}`}>{page>(defineNbrPage())-1 ? "" : page+1}</span>
           <button onClick={handleNextPage} className="btnPagination"><FontAwesomeIcon icon={faChevronRight} /></button>
         </section>
       </main>

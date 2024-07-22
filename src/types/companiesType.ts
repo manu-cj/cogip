@@ -3,7 +3,7 @@ export type Company = {
     name: string;
     vat: string;
     country: string;
-    type: 'supplier' | 'client';
+    typeId: TypeId;
     createdAt: string;
     updatedOn: string;
     __v: number;
@@ -14,3 +14,12 @@ export type Companies = {
     totalPages: number;
     pageResults: Company[];
 }
+
+type TypeId = {
+    _id: string;
+    name: string;
+}
+
+export type CompaniesLatest = {
+    companies: Company[];
+  }

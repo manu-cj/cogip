@@ -5,6 +5,7 @@ import Footer from "./component/main/Footer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from '@fortawesome/free-brands-svg-icons';
+import useAPI from "./hook/useAPI";
 
 
 library.add(fas);
@@ -12,6 +13,10 @@ library.add(fab);
 
 
 function App() {
+
+  const { contactLatest} = useAPI(`http://localhost:3000/api/contacts/latest`);
+  const { invoiceLatest} = useAPI(`http://localhost:3000/api/invoices/latest`);
+
   return (
     <>
       <header>
@@ -40,16 +45,17 @@ function App() {
                 <th>Dates due</th>
                 <th>Company</th>
                 <th>Created at</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>F20220915-001</td>
-                <td>15/09/2022</td>
-                <td>Jouet Jean-Michel</td>
-                <td>25/09/2020</td>
-              </tr>
+              {invoiceLatest.map((invoice) => (
+                <tr key={invoice._id}>
+                  <td>{invoice.reference}</td>
+                  <td>{invoice.dueDate}</td>
+                  <td>{invoice.companyId?.name}</td>
+                  <td>{invoice.createdAt}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (16) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="invoice-img" />
@@ -67,14 +73,15 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Peter Gregory</td>
-                <td>555-4567</td>
-                <td>peter.gregory@raviga.com</td>
-                <td>Raviga</td>
-                <td>25/09/2020</td>
-              </tr>
-              
+              {contactLatest.map((contact) => (
+                <tr key={contact._id}>
+                  <td>{contact.name}</td>
+                  <td>{contact.phoneNr}</td>
+                  <td>{contact.email}</td>
+                  <td>{contact.companyId.name}</td>
+                  <td>{contact.createdAt}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (15) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="contact-img" />

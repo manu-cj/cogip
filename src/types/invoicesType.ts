@@ -18,3 +18,7 @@ export type Invoices = {
     totalPages: number;
     pageResults: Invoice[];
 };
+
+export type InvoicesLatest = {
+    invoices: Invoice[];
+}

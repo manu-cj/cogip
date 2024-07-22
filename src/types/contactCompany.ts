@@ -25,3 +25,5 @@ type Image = {
  export type ContactsList = {
     contacts: ContactCompany[];
   };
+
+  
