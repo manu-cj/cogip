@@ -2,9 +2,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Header from './header/HeaderDashboard';
 import NavBarLat from './navigation/NavBarLat';
-import { InvoiceData } from '../../types/types';
+import { InvoiceForm } from '../../types/types';
 import Hamburger from './navigation/Hamburger';
 import ListCompanyApi from './ListCompanyApi';
+import Notification from '../pages/components/Notification';
 
 function InvoicesDashboard() {
     const [isOpen, setIsOpen] = useState(true);
@@ -13,15 +14,15 @@ function InvoicesDashboard() {
         setIsOpen(!isOpen);
     }
     const [companyValue, setCompanyValue] = useState('default')
-    const [formData, setFormData] = useState<InvoiceData>({
+    const [formData, setFormData] = useState<InvoiceForm>({
         reference:'',
-        price:'',
-        company: ''
+        dueDate: '',
+        companyId: ''
     })
     const [formStyles, setFormStyles] = useState({
-        reference: { borderColor: 'black' },
-        price: { borderColor: 'black' },
-        company: { borderColor: 'black' },
+        reference: { border: 'none' },
+        dueDate: { border: 'none' },
+        company: { border: 'none' },
       });
 
     const validateReference = (reference:string) => {
@@ -29,10 +30,10 @@ function InvoicesDashboard() {
         return regex.test(reference);
     }
 
-    const validatePrice = (price:string) => {
-        const regex = /^\d+$/;
-        return regex.test(price);
-    }
+    // const validatePrice = (price:string) => {
+    //     const regex = /^\d+$/;
+    //     return regex.test(price);
+    // }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -46,15 +47,15 @@ function InvoicesDashboard() {
           case 'reference':
             setFormStyles((prevStyles) => ({
               ...prevStyles,
-              reference: { borderColor: validateReference(value) ? 'lightGreen' : 'red' },
+              reference: { border: validateReference(value) ? "1px lightGreen solid" : "none" },
             }));
             break;
-          case 'price':
-            setFormStyles((prevStyles) => ({
-              ...prevStyles,
-              price: { borderColor: validatePrice(value) ? 'lightGreen' : 'red' },
-            }));
-            break;
+          // case 'price':
+          //   setFormStyles((prevStyles) => ({
+          //     ...prevStyles,
+          //     price: { borderColor: validatePrice(value) ? 'lightGreen' : 'red' },
+          //   }));
+          //   break;
           default:
             break;
         }
@@ -84,19 +85,60 @@ function InvoicesDashboard() {
         setCompanyValue(e.target.value);
         setFormData((prevData) => ({
           ...prevData,
-          company: e.target.value,
+          companyId: e.target.value,
         }));
+        console.log(formData.companyId);
+        
         setCompanyClassName(e.target.value === 'default' ? 'default' : '');
       };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if(validateReference(formData.reference) && validatePrice(formData.price)){
-                console.log('Form submitted:', formData);
-            } else {
-                console.log('Form validation failed');
-            }
-    }
+      const [notification, setNotification] = useState<string>("");
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (
+        validateReference(formData.reference)
+        
+      ) {
+        try {
+          const response = await fetch("http://localhost:3000/api/invoices", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+          const result = await response.json();
+  
+          setNotification(result.message);
+  
+          if (result.message == "Contact successfully created") {
+            // Réinitialisation du formulaire après succès
+            setFormData({
+              reference: "",
+              dueDate: "",
+              companyId : ""
+            });
+  
+            setFormStyles({
+              reference: { border: "none" },
+              dueDate: { border: 'none' },
+              company: { border: "none"}
+            });
+          }
+  
+          setTimeout(() => {
+            setNotification("");
+          }, 10000);
+  
+          console.log(result);
+          console.log("Form submitted:", formData);
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        console.log("Form validation failed");
+      }
+    };
     
 
     return (
@@ -109,10 +151,12 @@ function InvoicesDashboard() {
                 <div className='dashBoard__invoices'>
                     <h3>New invoice</h3>
                     <hr />
+                    <Notification notification={notification} />
                     <form action="LA ROUTE DES BACKENDS" method="post" onSubmit={handleSubmit}>
                         <input type="text" name='reference' id='reference' placeholder='Reference' required onChange={handleChange} style={formStyles.reference}/>
-                        <input type="text" name='price' id='price' placeholder='Price' required onChange={handleChange} style={formStyles.price}/>
-                        <select name="companyId" id="company" style={formStyles.company} className={companyClassName} value={companyValue} onChange={handleCompanyChange}>
+                        <input type="date" name='dueDate' id='dueDate' placeholder='due date' required onChange={handleChange} style={formStyles.dueDate}/>
+                        {/* <input type="text" name='price' id='price' placeholder='Price' required onChange={handleChange} style={formStyles.price}/> */}
+                        <select name="companyId" id="companyId" style={formStyles.company} className={companyClassName} value={companyValue} onChange={handleCompanyChange}>
                             <option value="default" className="defaultOption" disabled>Company name</option>
                             <ListCompanyApi/>
                         </select>

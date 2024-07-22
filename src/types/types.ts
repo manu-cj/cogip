@@ -42,6 +42,12 @@ export interface InvoiceData {
     company: string;
 }
 
+export interface InvoiceForm {
+    reference: string;
+    dueDate: string;
+    companyId: string;
+}
+
 export interface CompanyData {
     name: string;
     tva: string;
@@ -53,6 +59,7 @@ export interface CompanyForm {
     name: string;
     country: string;
     vat: string;
+    typeId: string;
 }
 
 export interface ContactData{

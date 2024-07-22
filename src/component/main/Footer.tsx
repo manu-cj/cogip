@@ -35,28 +35,28 @@ const Footer = () => {
             <div className="social-links">
               <p>Social Media</p>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "facebook-square"]} size="2x" />
+                <FontAwesomeIcon icon={["fab", "facebook-square"]}  />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "x-twitter"]} size="2x" />
+                <FontAwesomeIcon icon={["fab", "x-twitter"]} />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "linkedin-in"]} size="2x" />
+                <FontAwesomeIcon icon={["fab", "linkedin-in"]} />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "youtube"]} size="2x" />
+                <FontAwesomeIcon icon={["fab", "youtube"]} />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "instagram"]} size="2x" />
+                <FontAwesomeIcon icon={["fab", "instagram"]} />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "google-plus"]} size="2x" />
+                <FontAwesomeIcon icon={["fab", "google-plus"]} />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "pinterest"]} size="2x" />
+                <FontAwesomeIcon icon={["fab", "pinterest"]} />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={faRss} size="2x" />
+                <FontAwesomeIcon icon={faRss}  />
               </a>
             </div>
           </section>
