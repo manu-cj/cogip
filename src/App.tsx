@@ -54,9 +54,9 @@ function App() {
               {invoiceLatest.map((invoice) => (
                 <tr key={invoice._id}>
                   <td>{invoice.reference}</td>
-                  <td>{invoice.dueDate}</td>
-                  <td>{invoice.companyId?.name}</td>
-                  <td>{invoice.createdAt}</td>
+                  <td>{invoice.dueDate.slice(0,10)}</td>
+                  <td><Link to={`/show_companies/${invoice.companyId?._id}`}>{invoice.companyId?.name}</Link></td>
+                  <td>{invoice.createdAt.slice(0,10)}</td>
                 </tr>
               ))}
             </tbody>
@@ -81,8 +81,8 @@ function App() {
                   <td><Link to={`/show_contact/${contact._id}`}>{contact.name}</Link></td>
                   <td>{contact.phoneNr}</td>
                   <td>{contact.email}</td>
-                  <td>{contact.companyId?.name}</td>
-                  <td>{contact.createdAt}</td>
+                  <td><Link to={`/show_companies/${contact.companyId?._id}`}>{contact.companyId?.name}</Link></td>
+                  <td>{contact.createdAt.slice(0,10)}</td>
                 </tr>
               ))}
             </tbody>
@@ -108,7 +108,7 @@ function App() {
                   <td>{company.vat}</td>
                   <td>{company.country}</td>
                   <td>{company.typeId?.name}</td>
-                  <td>{company.createdAt}</td>
+                  <td>{company.createdAt.slice(0,10)}</td>
                 </tr>
               ))}
             </tbody>

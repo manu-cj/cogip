@@ -25,6 +25,11 @@ main {
     margin: 20px 0;
     z-index: 1;
     overflow-x: scroll;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     h2{
       margin-bottom: 10px;
     }

@@ -908,6 +908,11 @@ main .main-content {
   margin: 20px 0;
   z-index: 1;
   overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+main .main-content::-webkit-scrollbar {
+  display: none;
 }
 main .main-content h2 {
   margin-bottom: 10px;
