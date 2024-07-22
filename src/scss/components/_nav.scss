@@ -1,22 +1,29 @@
 nav {
     position: fixed;
     background-color: #f9de4e;
-    @extend .flexBetweenCenter;
+    @extend .flexColumnBetweenCenter;
     width:100%;
     z-index: 10;
     top: 0;
-
+    @include responsive(768px){
+        flex-direction: row;
+    }
     ul {
         width: 30%;
         @extend .flexBetweenCenter;
-        gap: 10px
+        gap: 10px;
+        
     }
-
+    h1{
+        margin: 0 10px;
+    }
     .loginNav { 
         @extend .flexEndCenter;
         gap: 10px;
-        width: 50%;
         padding: 10px;
+        @include responsive(768px){
+            width: 50%;
+        }
         .sign-up {
             padding: 5px;
             border-radius: 10px;
@@ -47,6 +54,32 @@ nav {
         &:hover {
             color: rgb(56, 55, 55);
         }
+    }
+    .hamburger {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+    ul.hidden, img.hidden{
+        display: none;
+    }
+    ul.hidden{
+        @include responsive(768px){
+            display: flex;
+        }
+    }
+    ul.visible{
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        @include responsive(768px){
+            flex-direction: row;
+        }
+    }
+    .close{
+        position: absolute;
+        top: 20px;
+        right: 20px;
     }
 }
 

@@ -570,7 +570,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexBetweenCenter, footer .footer-bottom nav ul, header nav, header nav ul, header .top-content {
+.flexBetweenCenter, footer .footer-bottom nav ul, header nav ul, header .top-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -591,14 +591,14 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexColumnStartCenter {
+.flexColumnStartCenter, main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.flexColumnCenterCenter, body #root, main {
+.flexColumnCenterCenter, body #root {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -612,7 +612,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexColumnBetweenCenter {
+.flexColumnBetweenCenter, header nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -672,14 +672,26 @@ header nav {
   z-index: 10;
   top: 0;
 }
+@media only screen and (min-width: 768px) {
+  header nav {
+    flex-direction: row;
+  }
+}
 header nav ul {
   width: 30%;
   gap: 10px;
 }
+header nav h1 {
+  margin: 0 10px;
+}
 header nav .loginNav {
   gap: 10px;
-  width: 50%;
   padding: 10px;
+}
+@media only screen and (min-width: 768px) {
+  header nav .loginNav {
+    width: 50%;
+  }
 }
 header nav .loginNav .sign-up {
   padding: 5px;
@@ -707,16 +719,55 @@ header nav a {
 header nav a:hover {
   color: rgb(56, 55, 55);
 }
+header nav .hamburger {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+header nav ul.hidden, header nav img.hidden {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  header nav ul.hidden {
+    display: flex;
+  }
+}
+header nav ul.visible {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+}
+@media only screen and (min-width: 768px) {
+  header nav ul.visible {
+    flex-direction: row;
+  }
+}
+header nav .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
 header .top-content {
   width: 100%;
   padding: 10px;
-  margin-bottom: 50px;
+  margin: 50px 0;
+}
+@media only screen and (min-width: 768px) {
+  header .top-content {
+    margin: 0;
+    margin-bottom: 50px;
+  }
 }
 header .top-content h2 {
   display: block;
   width: 30%;
   font-weight: bold;
-  font-size: 900;
+  font-size: 14px;
+}
+@media only screen and (min-width: 768px) {
+  header .top-content h2 {
+    font-size: 24px;
+  }
 }
 header .top-content img {
   width: 50%;
@@ -756,14 +807,26 @@ header nav {
   z-index: 10;
   top: 0;
 }
+@media only screen and (min-width: 768px) {
+  header nav {
+    flex-direction: row;
+  }
+}
 header nav ul {
   width: 30%;
   gap: 10px;
 }
+header nav h1 {
+  margin: 0 10px;
+}
 header nav .loginNav {
   gap: 10px;
-  width: 50%;
   padding: 10px;
+}
+@media only screen and (min-width: 768px) {
+  header nav .loginNav {
+    width: 50%;
+  }
 }
 header nav .loginNav .sign-up {
   padding: 5px;
@@ -791,6 +854,34 @@ header nav a {
 header nav a:hover {
   color: rgb(56, 55, 55);
 }
+header nav .hamburger {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+header nav ul.hidden, header nav img.hidden {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  header nav ul.hidden {
+    display: flex;
+  }
+}
+header nav ul.visible {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+}
+@media only screen and (min-width: 768px) {
+  header nav ul.visible {
+    flex-direction: row;
+  }
+}
+header nav .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
 
 main {
   width: 100%;
@@ -813,12 +904,23 @@ main .main__title::after {
 }
 main .main-content {
   font-weight: bold;
-  font-size: 900;
   width: 80%;
+  margin: 20px 0;
+  z-index: 1;
+  overflow-x: scroll;
+}
+main .main-content h2 {
+  margin-bottom: 10px;
 }
 main .main-content table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 12px;
+}
+@media only screen and (min-width: 768px) {
+  main .main-content table {
+    font-size: 14px;
+  }
 }
 main .main-content thead {
   width: 100%;
@@ -844,11 +946,11 @@ main .main-content tr:nth-child(even) {
 }
 main .main-content .invoice-img {
   position: absolute;
-  left: 90%;
+  right: 0;
 }
 main .main-content .contact-img {
   position: absolute;
-  right: 91%;
+  left: 0;
 }
 main .bottom-content {
   position: relative;
@@ -879,7 +981,7 @@ main .bottom-content .bottom-content-picture-div .picture1 {
 main .bottom-content .bottom-content-picture-div .picture2 {
   width: 480px;
   top: -50px;
-  left: 200px;
+  right: 0;
   z-index: 1;
 }
 main .searchBar-section {
@@ -955,6 +1057,12 @@ footer .footer-content .title-footer {
 }
 footer .footer-content .about-section {
   width: 50%;
+  font-size: 12px;
+}
+@media only screen and (min-width: 768px) {
+  footer .footer-content .about-section {
+    font-size: 16px;
+  }
 }
 footer .footer-content .about-section p {
   margin: 5px;
@@ -963,33 +1071,96 @@ footer .footer-content .about-section .fa-location-dot, footer .footer-content .
   color: #f4d03f;
   margin: 5px;
 }
-footer .footer-content .about-section .fa-fax {
-  margin-left: 150px;
-}
 footer .footer-content .about-section .social-links {
   width: 100%;
   padding: 20px;
+  gap: 10px;
 }
 footer .footer-content .about-section .social-links a {
   color: #f4d03f;
-  margin: 5px;
+}
+footer .footer-content .about-section .social-links .svg-inline--fa {
+  font-size: 28px;
 }
 footer .footer-bottom {
   width: 100%;
+  height: 70px;
+  position: relative;
+  flex-direction: column;
+}
+@media only screen and (min-width: 768px) {
+  footer .footer-bottom {
+    flex-direction: row;
+  }
 }
 footer .footer-bottom nav {
-  width: 60%;
+  font-size: 12px;
+  margin: 10px 0;
+}
+@media only screen and (min-width: 800px) {
+  footer .footer-bottom nav {
+    width: 60%;
+    font-size: 14px;
+    margin: 0;
+  }
+}
+@media only screen and (min-width: 900px) {
+  footer .footer-bottom nav {
+    font-size: 16px;
+  }
 }
 footer .footer-bottom nav ul {
   gap: 10px;
+  flex-direction: column;
   list-style-type: none;
 }
 footer .footer-bottom nav ul a {
   text-decoration-line: none;
   color: #7b7b7b;
 }
+@media only screen and (min-width: 768px) {
+  footer .footer-bottom nav ul {
+    flex-direction: row;
+  }
+}
+footer .footer-bottom nav ul.hidden {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  footer .footer-bottom nav ul.hidden {
+    display: flex;
+  }
+}
 footer .footer-bottom .copyright {
   width: 40%;
+  font-size: 12px;
+  margin-top: 5px;
+}
+@media only screen and (min-width: 768px) {
+  footer .footer-bottom .copyright {
+    font-size: 16px;
+  }
+}
+footer .footer-bottom .hamburgerBottom {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+footer .footer-bottom .hamburgerBottom.hidden {
+  display: none;
+}
+footer .footer-bottom .close.hidden {
+  display: none;
+}
+footer .footer-bottom .close {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+}
+@media only screen and (min-width: 768px) {
+  footer .footer-bottom .close {
+    display: none;
+  }
 }
 
 main::-webkit-scrollbar {

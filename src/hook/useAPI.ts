@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Contact, Contacts, ContactsLatest } from "../types/contactsType";
 import { StatsDashboard } from "../types/types";
 import { Invoice, Invoices, InvoicesLatest } from "../types/invoicesType";
-import { Company, Companies } from "../types/companiesType";
+import { Company, Companies, CompaniesLatest } from "../types/companiesType";
 import { ContactCompany, ContactsList } from "../types/contactCompany";
 import { InvoiceCompany, InvoicesListCompany } from "../types/invoicesCompany";
 
-function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany'|'contactLastest'| 'invoicesLatest' {
+function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany'|'contactLastest'| 'invoicesLatest'| 'companiesLatest' {
   if (/\/api\/contacts\/[a-f0-9]+$/.test(URL)) {
       return 'contact';
   } else if (/\/contacts\/pagination\/\d+\/\d+$/.test(URL)) {
@@ -27,6 +27,8 @@ function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoic
     return 'contactLastest'
   } else if(/\/api\/invoices\/latest$/.test(URL)){
     return 'invoicesLatest'
+  } else if(/\/api\/companies\/latest$/.test(URL)){
+    return 'companiesLatest'
   }
   else {
     throw new Error("Invalid URL format");
@@ -49,6 +51,7 @@ export default function useAPI(URL : string) {
   const [invoiceCompany, setInvoiceCompany] = useState<InvoiceCompany[]>([]);
   const [contactLatest, setContactLatest] = useState<Contact[]>([]);
   const [invoiceLatest, setInvoiceLatest] = useState<Invoice[]>([]);
+  const [companiesLatest, setCompaniesLatest] = useState<Company[]>([]);
     
 
     useEffect(() => {
@@ -102,6 +105,9 @@ export default function useAPI(URL : string) {
                 } else if(responseType==='invoicesLatest'){
                   const data: InvoicesLatest = await response.json();
                   setInvoiceLatest(data.invoices);
+                } else if(responseType==='companiesLatest'){
+                  const data: CompaniesLatest = await response.json();
+                  setCompaniesLatest(data.companies);
                 }
               setLoading(false);
             } catch (error : any) {
@@ -114,6 +120,6 @@ export default function useAPI(URL : string) {
           fetchData();
         }, [URL]);
 
-    return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies, company, contactCompany, invoiceCompany, contactLatest, invoiceLatest };
+    return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies, company, contactCompany, invoiceCompany, contactLatest, invoiceLatest, companiesLatest };
 
 }
