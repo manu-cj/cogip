@@ -27,20 +27,57 @@ const getPaginatedContacts = async (req, res) => {
         "Bad request: make sure the nbPerPage and page are of type int and superior to 0.",
     });
   }
+  let { sortColumn, order, filter } = req.query;
+  if (!sortColumn) {
+    sortColumn = "name";
+    order = 1;
+  } else {
+    sortColumn = sanitize(sortColumn);
+    if (sortColumn == "name" || sortColumn == "createdAt") {
+      if (order) {
+        order = sanitize(order);
+      }
+      switch (sortColumn) {
+        case "name":
+          order = order === "DESC" ? -1 : 1;
+          break;
+        case "createdAt":
+          order = order === "ASC" ? 1 : -1;
+          break;
+        default:
+          break;
+      }
+    } else {
+      sortColumn = "name";
+      order = 1;
+    }
+  }
+  if (!filter) {
+    filter = "";
+  } else {
+    filter = sanitize(filter);
+  }
+  const regex = new RegExp(`^${filter}`, "i");
   try {
-    const totalResults = await Contact.countDocuments();
+    const totalResults = await Contact.countDocuments({
+      name: { $regex: regex },
+    });
     const totalPages = Math.ceil(totalResults / resultsPerPage);
     if (page > totalPages) {
       return res.status(400).json({
         message: `No result found for page ${page}, last page is ${totalPages}`,
       });
     }
-    const pageResults = await Contact.find()
-      .sort({ name: 1 })
+    const pageResults = await Contact.find({
+      name: { $regex: regex },
+    })
+      .sort({ [sortColumn]: order })
       .limit(resultsPerPage)
       .populate("companyId", "name")
       .skip((page - 1) * resultsPerPage);
-    return res.status(200).json({ totalResults, totalPages, pageResults });
+    return res
+      .status(200)
+      .json({ sortColumn, totalResults, totalPages, pageResults });
   } catch (error) {
     return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
   }

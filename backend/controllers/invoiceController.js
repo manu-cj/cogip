@@ -189,8 +189,6 @@ const getInvoicesResults = async (req, res) => {
     const companyIds = foundCompanies.map((company) => company._id);
     const totalResults = await Invoice.countDocuments(
       Invoice.find({ companyId: { $in: companyIds } })
-        .sort({ sortColumn: order })
-        .populate("companyId", "name")
     );
     const totalPages = Math.ceil(totalResults / resultsPerPage);
     if (page > totalPages) {
