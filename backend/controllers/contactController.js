@@ -36,13 +36,15 @@ const getPaginatedContacts = async (req, res) => {
     if (sortColumn == "name" || sortColumn == "createdAt") {
       if (order) {
         order = sanitize(order);
+      } else {
+        order = "";
       }
       switch (sortColumn) {
         case "name":
-          order = order === "DESC" ? -1 : 1;
+          order = order.toUpperCase() === "DESC" ? -1 : 1;
           break;
         case "createdAt":
-          order = order === "ASC" ? 1 : -1;
+          order = order.toUpperCase() === "ASC" ? 1 : -1;
           break;
         default:
           break;
@@ -62,7 +64,10 @@ const getPaginatedContacts = async (req, res) => {
     const totalResults = await Contact.countDocuments({
       name: { $regex: regex },
     });
-    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    let totalPages = Math.ceil(totalResults / resultsPerPage);
+    if (totalPages == 0) {
+      totalPages = 1;
+    }
     if (page > totalPages) {
       return res.status(400).json({
         message: `No result found for page ${page}, last page is ${totalPages}`,
@@ -75,9 +80,7 @@ const getPaginatedContacts = async (req, res) => {
       .limit(resultsPerPage)
       .populate("companyId", "name")
       .skip((page - 1) * resultsPerPage);
-    return res
-      .status(200)
-      .json({ sortColumn, totalResults, totalPages, pageResults });
+    return res.status(200).json({ totalResults, totalPages, pageResults });
   } catch (error) {
     return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
   }

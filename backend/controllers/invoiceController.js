@@ -170,7 +170,7 @@ const getInvoicesResults = async (req, res) => {
     order = -1;
   } else {
     sortColumn = "dueDate";
-    if (order == "ASC") {
+    if (order.toUpperCase() == "ASC") {
       order = 1;
     } else {
       order = -1;
@@ -190,13 +190,15 @@ const getInvoicesResults = async (req, res) => {
     const totalResults = await Invoice.countDocuments(
       Invoice.find({ companyId: { $in: companyIds } })
     );
-    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    let totalPages = Math.ceil(totalResults / resultsPerPage);
+    if (totalPages == 0) {
+      totalPages = 1;
+    }
     if (page > totalPages) {
       return res.status(400).json({
         message: `No result found for page ${page}, last page is ${totalPages}`,
       });
     }
-
     const sortedResults = await Invoice.find({ companyId: { $in: companyIds } })
       .sort({ [sortColumn]: order })
       .limit(resultsPerPage)
