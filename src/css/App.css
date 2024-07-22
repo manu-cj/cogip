@@ -929,6 +929,10 @@ main .pagination .btnPagination:hover .fa-chevron-right {
 main .pagination .hide {
   border: none;
 }
+main .pagination .hide:hover {
+  background-color: #fff;
+  cursor: default;
+}
 main .pagination .pageActive {
   border: 2px solid #f4d03f;
   color: #f4d03f;
@@ -1718,4 +1722,4 @@ body {
   overflow-y: scroll;
   font-family: "Inter", sans-serif;
   color: black;
-}/*# sourceMappingURL=App.css.map */
+}

@@ -39,6 +39,10 @@
     .hide{
         border: none;
     }
+    .hide:hover{
+        background-color: #fff;
+        cursor: default;
+    }
     .pageActive{
         border:2px solid #f4d03f;
         color: #f4d03f;
