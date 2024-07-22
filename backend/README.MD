@@ -10,39 +10,90 @@ This documentation provides details about the API endpoints, including parameter
 
 Ensure to always use `http://localhost:3000/api` as the root endpoint for any kind of request!
 
+### Users
+
 | Endpoint                | Method | Body                                                                          | Description                                                   |
 |-------------------------|--------|-------------------------------------------------------------------------------|---------------------------------------------------------------|
 | `/users`                | GET    | None                                                                          | Returns the list of all users                                 |
 | `/users/:id`            | GET    | None                                                                          | Returns user details for the given ID                         |
 | `/users`                | POST   | `firstName` (str), `lastName` (str), `email` (str), `password` (str)          | Creates a new user in the DB, then returns the user in response |
 | `/users/login`          | POST   | `email` (str), `password` (str)                                               | Attempts to log in user, if attempt successful, returns user as object |
-|                         |        |                                                                               |                                                               |
-| `/contacts`             | GET    | None                                                                          | Returns the list of all contacts in alphabetical order        |
-| `/contacts/pagination/:nbPerPage/:page?`             | GET    | None                                                                          | nbPerPage represents the count of results you want to show per page, the page is the page number you want to show the results for. If no page sent, page default will be 1. Returns results for the page, the totalResults and the totalPages        |
-| `/contacts/latest`      | GET    | None                                                                          | Returns the 5 last added contacts                             |
-| `/contacts/:id`         | GET    | None                                                                          | Returns contact details for the given ID                      |
-| `/contacts/company/:companyId`| GET | None                                                                       | Returns list of contacts for the companyId given in URL                   |
-| `/contacts`             | POST   | `name` (str), `companyId` (str), `email` (str), `phoneNr` (str)               | Creates a new contact in the DB, then returns the contact in response |
-| `/contacts/:id`         | PATCH  | `name` (str), `email` (str), `phoneNr` (str)                                  | Edit contact details for the given contact ID                 |
-| `/contacts/:id`         | DELETE | None                                                                          | Delete contact entry with matching id                         |
-|                         |        |                                                                               |                                                               |
-| `/images/users/:userId` | PATCH  | `image` (file)                                                                | Updates the image for the user with matching id               |
-| `/images/contacts/:contactId` | PATCH  | `image` (file)                                                    | Updates the image for the contact with matching id            |
-|                         |        |                                                                               |                                                               |
-| `/invoices` | GET  | None                                                    | Returns a list of all the invoices sorted by newest to oldest            |
-| `/invoices/latest` | GET  | None                                                    | Returns the list of the 5 latest invoices            |
-| `/invoices/:id` | GET  | None                                                    | Returns the details of the invoice matching the ID given as param            |
-| `/invoices/company/:companyId` | GET  | None                                                    | Returns the list of invoices for the company matching company ID sent in URL        |
-| `/invoices/pagination/:nbPerPage/:page?/?order=ASC/DESC/?filter=filter`             | GET    | None                                                                          | nbPerPage represents the count of results shown per page, pagenumber is 1 if not set in URL. Returns results for the page. Takes optional query params to sort by dueDate and filter results on company Name the totalResults and the totalPages        |
-| `/invoices` | POST  | `companyId` (str), `reference` (str), `dueDate` (str YYYY-MM-DD)                 | Creates a new invoice in the DB, and returns the invoice details in response |
-| `/invoices/:id` | DELETE  | None                 | Deletes the invoice matching the id sent in URL |
-|                          |      
-|/companies|GET| NONE| Return all companies|   
-|/companies/:id|GET| NONE| Return Company by Id|  
-|/companies|POST| name (str), country (str), vat(str), | Return all companies|
-|/companies|PATCH| name (str)| Patch Company By Id| 
-|/api/companies/:identifier|DELETE| NONE| Delete Compnay by Id or By Name |                                                                 
-|  `/stats`          |   GET     |      NONE                                                                         |     Returns the total of existing invoices, contacts and companies
+
+### Contacts
+
+| Endpoint                                  | Method | Body                                                                | Description                                                                                                 |
+|-------------------------------------------|--------|---------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `/contacts`                               | GET    | None                                                                | Returns the list of all contacts in alphabetical order                                                      |
+| `/contacts/pagination/:nbPerPage/:page?`  | GET    | None                                                                | Returns paginated contacts. See below for query parameters.                                                 |
+| `/contacts/latest`                        | GET    | None                                                                | Returns the 5 last added contacts                                                                           |
+| `/contacts/:id`                           | GET    | None                                                                | Returns contact details for the given ID                                                                    |
+| `/contacts/company/:companyId`            | GET    | None                                                                | Returns list of contacts for the companyId given in URL                                                     |
+| `/contacts`                               | POST   | `name` (str), `companyId` (str), `email` (str), `phoneNr` (str)     | Creates a new contact in the DB, then returns the contact in response                                       |
+| `/contacts/:id`                           | PATCH  | `name` (str), `email` (str), `phoneNr` (str)                        | Edit contact details for the given contact ID                                                               |
+| `/contacts/:id`                           | DELETE | None                                                                | Delete contact entry with matching id                                                                       |
+
+#### `/contacts/pagination/:nbPerPage/:page?` Query Parameters
+
+- `nbPerPage` (int): Number of results to display per page.
+- `page` (int): Page number to display (default is 1 if not specified).
+- `sortColumn` (str) [optional]: The column to sort the results by (`name` OR `createdAt`).
+- `order` (str) [optional]: The order of sorting for sortColumn (`ASC` for ascending, `DESC` for descending).
+- `filter` (str) [optional]: A filter string to limit results to contacts that match the filter criteria (name).
+
+Example : 
+<img src="./apidocimg/paginationquery.png" alt="Example query">
+
+### Images
+
+| Endpoint                       | Method | Body           | Description                                           |
+|--------------------------------|--------|----------------|-------------------------------------------------------|
+| `/images/users/:userId`        | PATCH  | `image` (file) | Updates the image for the user with matching id       |
+| `/images/contacts/:contactId`  | PATCH  | `image` (file) | Updates the image for the contact with matching id    |
+
+### Invoices
+
+| Endpoint                                            | Method | Body                                                                    | Description                                                                                   |
+|-----------------------------------------------------|--------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `/invoices`                                         | GET    | None                                                                    | Returns a list of all the invoices sorted by newest to oldest                                 |
+| `/invoices/latest`                                  | GET    | None                                                                    | Returns the list of the 5 latest invoices                                                     |
+| `/invoices/:id`                                     | GET    | None                                                                    | Returns the details of the invoice matching the ID given as param                             |
+| `/invoices/company/:companyId`                      | GET    | None                                                                    | Returns the list of invoices for the company matching company ID sent in URL                  |
+| `/invoices/pagination/:nbPerPage/:page?` | GET    | None                                                                    | Returns paginated invoices. See below for query parameters.                                   |
+| `/invoices`                                         | POST   | `companyId` (str), `reference` (str), `dueDate` (str YYYY-MM-DD)        | Creates a new invoice in the DB, and returns the invoice details in response                  |
+| `/invoices/:id`                                     | DELETE | None                                                                    | Deletes the invoice matching the id sent in URL                                               |
+
+#### `/invoices/pagination/:nbPerPage/:page?` Query Parameters
+
+- `nbPerPage` (int): Number of results to display per page.
+- `page` (int): Page number to display (default is 1 if not specified).
+- `order` (str) [optional]: The order of sorting by dueDate (`ASC` for ascending, `DESC` for descending).
+- `filter` (str) [optional]: A filter string to limit results to invoices with matching company name.
+
+### Companies
+
+| Endpoint                | Method | Body                                             | Description                        |
+|-------------------------|--------|--------------------------------------------------|------------------------------------|
+| `/companies`            | GET    | None                                             | Returns all companies              |
+| `/companies/:id`        | GET    | None                                             | Returns company details by ID      |
+| `/companies`            | POST   | `name` (str), `country` (str), `vat` (str)       | Creates a new company              |
+| `/companies`            | PATCH  | `name` (str)                                     | Updates company details by ID      |
+| `/companies/:identifier`| DELETE | None                                             | Deletes company by ID or name      |
+| `/companies/pagination/:nbPerPage/:page?` | GET    | None                                                                    | Returns paginated invoices. See below for query parameters.                                   |
+
+
+#### `/companies/pagination/:nbPerPage/:page?` Query Parameters
+
+- `nbPerPage` (int): Number of results to display per page.
+- `page` (int): Page number to display (default is 1 if not specified).
+- `sortColumn` (str) [optional]: The column to sort the results by (`name` OR `createdAt`).
+- `order` (str) [optional]: The order of sorting by dueDate (`ASC` for ascending, `DESC` for descending).
+- `filter` (str) [optional]: A filter string to limit results to invoices with matching company name.
+
+### Statistics
+
+| Endpoint                | Method | Body  | Description                                                   |
+|-------------------------|--------|-------|---------------------------------------------------------------|
+| `/stats`                | GET    | None  | Returns the total number of existing invoices, contacts, and companies |
 
 ---
 
