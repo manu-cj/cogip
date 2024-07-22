@@ -1,7 +1,16 @@
 import { Link } from 'react-router-dom';
 import { ReactNode } from 'react';
+import Hamburger from '../../dashboard/navigation/Hamburger';
+import { useState } from 'react';
+import croix from '../../../../public/assets/icon/croix.svg';
 
 function NavBar() {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  }
+
     const getCookie = (name: string): string | null => {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -45,8 +54,10 @@ function NavBar() {
 
     return (
         <nav>
+            <Hamburger className={`hamburger ${isOpen ? '': 'hidden'}`} toggle={handleClick} />
             <Link to={"/"}><h1>COGIP</h1></Link>
-            <ul>
+            <img src={croix} alt="Close" className={`close ${isOpen ? 'hidden': ''}`} onClick={handleClick} />
+            <ul className={isOpen ? 'hidden' : 'visible'}>
                 <Link to={"/"}><li>Home</li></Link>
                 <Link to={"/invoices/10/1"}><li>Invoices</li></Link>
                 <Link to={"/companies/10/1"}><li>Companies</li></Link>

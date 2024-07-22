@@ -1,7 +1,7 @@
 main {
   width: 100%;
   min-height: 100vh;
-  @extend .flexColumnCenterCenter;
+  @extend .flexColumnStartCenter;
   .main__title{
     
       font-size: 60px;
@@ -21,13 +21,26 @@ main {
   }
   .main-content {
     font-weight: bold;
-    font-size: 900;
     width: 80%;
-    // height: 500px;
+    margin: 20px 0;
+    z-index: 1;
+    overflow-x: scroll;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    h2{
+      margin-bottom: 10px;
+    }
 
     table {
-      width: 100%;
+      width:100%;
       border-collapse: collapse;
+      font-size: 12px;
+      @include responsive(768px){
+        font-size: 14px;
+      }
     }
 
     thead {
@@ -57,11 +70,11 @@ main {
 
     .invoice-img {
       position: absolute;
-      left: 90%;
+      right: 0;
     }
     .contact-img {
       position: absolute;
-      right: 91%;
+      left: 0;
     }
   } 
    
@@ -98,7 +111,7 @@ main {
      .picture2 {
       width: 480px;   
       top: -50px;
-      left: 200px;
+      right: 0;
       z-index: 1;
      }
       

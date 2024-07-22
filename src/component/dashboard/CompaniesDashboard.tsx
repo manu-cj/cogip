@@ -4,6 +4,7 @@ import Header from "./header/HeaderDashboard";
 import NavBarLat from "./navigation/NavBarLat";
 import { CompanyForm } from "../../types/types";
 import Hamburger from "./navigation/Hamburger";
+import Notification from "../pages/components/Notification";
 
 function CompaniesDashboard() {
   const [isOpen, setIsOpen] = useState(true);
@@ -16,6 +17,7 @@ function CompaniesDashboard() {
     name: "",
     vat : "",
     country: "",
+    typeId:""
   });
   const [formStyles, setFormStyles] = useState({
     name: { border: "none" },
@@ -27,16 +29,16 @@ function CompaniesDashboard() {
     return name.length > 2;
   };
 
-  const validateTVA = (tva: string) => {
+  const validateTVA = (vat: string) => {
     const regex = /^[A-Za-z]{2}\d{9}$/;
-    return regex.test(tva);
+    return regex.test(vat);
   };
 
   const validateCountry = (country: string) => {
     return country.length > 2; //on pourrait éventuellement passer par une API qui récupère tous les pays qui existe et vérifier que le pays rentré existe dans la liste.
   };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [notification, setNotification] = useState<string>("");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       validateName(formData.name) &&
@@ -44,9 +46,46 @@ function CompaniesDashboard() {
       validateTVA(formData.vat)
       
     ) {
+      try {
+        const response = await fetch("http://localhost:3000/api/companies", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const result = await response.json();
+
+        setNotification(result.message);
+
+        if (result.message == "Contact successfully created") {
+          // Réinitialisation du formulaire après succès
+          setFormData({
+            name: "",
+            vat: "",
+            country: "",
+            typeId: companyType
+          });
+
+          setFormStyles({
+            name: { border: "none" },
+            vat: { border: "none" },
+            country: { border: "none" },
+            
+          });
+        }
+
+        setTimeout(() => {
+          setNotification("");
+        }, 10000);
+
+        console.log(result);
+      } catch (error) {
+        console.error(error);
+      }
       console.log("Form submitted:", formData);
     } else {
-      console.log("Form validation failed");
+      console.log("Form validation failed", formData);
     }
   };
 
@@ -62,20 +101,20 @@ function CompaniesDashboard() {
       case "name":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          name: { border: validateName(value) ? "lightGreen" : "red" },
+          name: { border: validateName(value) ? "1px lightGreen solid" : "none" },
         }));
         break;
-      case "tva":
+      case "vat":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
-          tva: { borderColor: validateTVA(value) ? "lightGreen" : "red" },
+          vat: { border: validateTVA(value) ? "1px lightGreen solid" : "none" },
         }));
         break;
       case "country":
         setFormStyles((prevStyles) => ({
           ...prevStyles,
           country: {
-            border: validateCountry(value) ? "lightGreen" : "red",
+            border: validateCountry(value) ? "1px lightGreen solid" : "none",
           },
         }));
         break;
@@ -89,6 +128,8 @@ function CompaniesDashboard() {
       "#company"
     ) as HTMLSelectElement;
 
+    // Ne pas enlever le commentaire en dessous il permet juste de ne plus afficher la ligne suivante comme une erreur
+// eslint-disable-next-line @typescript-eslint/no-unused-vars 
     const handleChange = () => {
       if (selectElement.value === "default") {
         selectElement.classList.add("default");
@@ -104,7 +145,14 @@ function CompaniesDashboard() {
     };
   }, []);
 
-
+  const getCookie = (name: string): string | null => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop()?.split(';').shift() || null;
+    }
+    return null;
+  };
 
   
 
@@ -114,18 +162,13 @@ function CompaniesDashboard() {
         className={`hamburger ${isOpen ? "" : "hidden"}`}
         toggle={handleClick}
       />
-      <NavBarLat
-        img="./../../../public/assets/img/unbgcommeunautre.jpg"
-        firstName="Dylan"
-        lastName="Feys"
-        className={`navBarLat ${isOpen ? "hidden" : "visible"}`}
-        toggle={handleClick}
-      />
+      <NavBarLat img={getCookie("imageName")} firstName={getCookie("firstName")}  lastName={getCookie("lastName")} className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick}/>
       <div className="dashBoard__content">
-        <Header firstName="Dylan" />
+      <Header firstName={getCookie("firstName")}/>
         <div className="dashBoard__companies">
           <h3>New company</h3>
           <hr />
+          <Notification notification={notification} />
           <form
             action="LA ROUTE DES BACKENDS"
             method="post"
@@ -142,11 +185,12 @@ function CompaniesDashboard() {
             />
             <input
               type="text"
-              name="tva"
+              name="vat"
               id="tva"
               placeholder="TVA"
               required
               onChange={handleChange}
+              style={formStyles.vat}
             />
             <input
               type="text"
@@ -155,13 +199,20 @@ function CompaniesDashboard() {
               placeholder="Country"
               required
               onChange={handleChange}
+              style={formStyles.country}
             />
             <select
-              name="company"
+              name="typeId"
               id="company"
               className={companyType === "default" ? "default" : ""}
               value={companyType}
-              onChange={(e) => setCompanyType(e.target.value)}
+              onChange={(e) => {
+                setCompanyType(e.target.value);
+                setFormData((prevData) => ({
+                  ...prevData,
+                  typeId: e.target.value,
+                }));
+              }}
             >
               <option
                 value="default"
@@ -171,8 +222,8 @@ function CompaniesDashboard() {
               >
                 Company type
               </option>
-              <option value="supplier">Supplier</option>
-              <option value="client">Client</option>
+              <option value="Supplier">Supplier</option>
+              <option value="Client">Client</option>
             </select>
             <button type="submit">Save</button>
           </form>

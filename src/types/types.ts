@@ -1,7 +1,7 @@
 export interface NavBarLatProps {
-    img : string;
-    firstName: string;
-    lastName: string;
+    img : string | null;
+    firstName: string | null;
+    lastName: string | null;
     className : string;
     toggle : () => void;
 }
@@ -21,7 +21,7 @@ export interface LastContactProps {
 }
 
 interface Contact {
-    name: string;
+    name: string ;
     email: string;
     phone: string;
 }
@@ -42,6 +42,12 @@ export interface InvoiceData {
     company: string;
 }
 
+export interface InvoiceForm {
+    reference: string;
+    dueDate: string;
+    companyId: string;
+}
+
 export interface CompanyData {
     name: string;
     tva: string;
@@ -53,6 +59,7 @@ export interface CompanyForm {
     name: string;
     country: string;
     vat: string;
+    typeId: string;
 }
 
 export interface ContactData{

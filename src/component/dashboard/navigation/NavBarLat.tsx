@@ -22,7 +22,7 @@ function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps
             <aside className={className}>
                 <img src={croix} alt="Close" className='close' onClick={toggle}/>
                 <div className='navBarLat__logo'>
-                    <img src={img} alt={firstName + " " + lastName} />
+                    <img src={`./../../../../public/assets/img/people/users/`+img} alt={firstName + " " + lastName} />
                     <p>{firstName}</p>
                     <p>{lastName}</p>
                 </div>
@@ -36,7 +36,7 @@ function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps
                     </ul>
                 </div>
                 <div className='navBarLat__logout'>
-                    <img src={img} alt={firstName + " " + lastName} />
+                    <img src={`./../../../../public/assets/img/people/users/`+img} alt={firstName + " " + lastName} />
                     <Link to={"/logout"}>Logout</Link>
                 </div>
             </aside>

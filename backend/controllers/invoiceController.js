@@ -55,7 +55,7 @@ const createInvoice = async (req, res) => {
         message: "Please make sure to add a ref of max 50 chars.",
       });
     }
-    const invoice = new Invoice({ reference, companyId });
+    const invoice = new Invoice({ reference, companyId, dueDate });
     await invoice.save();
     return res
       .status(200)
@@ -149,6 +149,71 @@ const getInvoicesByCompany = async (req, res) => {
   }
 };
 
+const getInvoicesResults = async (req, res) => {
+  // Get request params (results per page and page nr)
+  const resultsPerPage = parseInt(req.params.nbPerPage, 10);
+  let page = 1;
+  if (req.params.page) {
+    page = parseInt(req.params.page, 10);
+  }
+  if (isNaN(resultsPerPage) || resultsPerPage < 1 || isNaN(page) || page < 1) {
+    return res.status(400).json({
+      message:
+        "Bad request: make sure the nbPerPage and page are of type int and superior to 0.",
+    });
+  }
+  let { order, filter } = req.query;
+
+  let sortColumn;
+  if (!order) {
+    sortColumn = "createdAt";
+    order = -1;
+  } else {
+    sortColumn = "dueDate";
+    if (order.toUpperCase() == "ASC") {
+      order = 1;
+    } else {
+      order = -1;
+    }
+  }
+  if (!filter) {
+    filter = "";
+  } else {
+    filter = sanitize(filter);
+  }
+  try {
+    const regex = new RegExp(`^${filter}`, "i");
+    const foundCompanies = await Companies.find({
+      name: { $regex: regex },
+    }).select("_id");
+    const companyIds = foundCompanies.map((company) => company._id);
+    const totalResults = await Invoice.countDocuments(
+      Invoice.find({ companyId: { $in: companyIds } })
+    );
+    let totalPages = Math.ceil(totalResults / resultsPerPage);
+    if (totalPages == 0) {
+      totalPages = 1;
+    }
+    if (page > totalPages) {
+      return res.status(400).json({
+        message: `No result found for page ${page}, last page is ${totalPages}`,
+      });
+    }
+    const sortedResults = await Invoice.find({ companyId: { $in: companyIds } })
+      .sort({ [sortColumn]: order })
+      .limit(resultsPerPage)
+      .skip((page - 1) * resultsPerPage)
+      .populate("companyId", "name");
+    return res.json({
+      totalResults,
+      totalPages,
+      sortedResults,
+    });
+  } catch (error) {
+    res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+  }
+};
+
 export {
   getInvoices,
   createInvoice,
@@ -157,4 +222,5 @@ export {
   getLatestInvoices,
   getInvoicesByCompany,
   getPaginatedInvoices,
+  getInvoicesResults,
 };

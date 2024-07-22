@@ -27,3 +27,7 @@ export type Contacts = {
     totalPages: number;
     pageResults: Contact[];
 };
+
+export type ContactsLatest = {
+    contacts : Contact[]
+}

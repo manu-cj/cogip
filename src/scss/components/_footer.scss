@@ -19,6 +19,10 @@ footer {
 
         .about-section {
             width: 50%;
+            font-size: 12px;
+            @include responsive(768px){
+                font-size: 16px;
+            }
 
             p {
                 margin: 5px;
@@ -27,18 +31,21 @@ footer {
                 color: #f4d03f;
                 margin: 5px;
             }
-        
-            .fa-fax {
-                margin-left: 150px;
-            }
 
             .social-links {
                 width: 100%;
                 padding: 20px;
                 @extend .flexAroundCenter;
+                gap: 10px;
                 a {
                     color: #f4d03f;
-                    margin: 5px;
+                    // margin: 5px;
+                }
+                .svg-inline--fa{
+                    font-size: 28px;
+                }
+                .svg-inline--fa {
+                    font-size: 32px;
                 }
             }
         }    
@@ -46,22 +53,71 @@ footer {
  
     .footer-bottom {
         width: 100%;
+        height: 70px;
+        position: relative;
         @extend .flexAroundCenter;
+        flex-direction: column;
+        @include responsive(768px){
+            flex-direction: row;
+        }
         nav {
-            width: 60%;
+            font-size: 12px;
+            margin: 10px 0;
+            @include responsive(800px){
+                width: 60%;
+                font-size: 14px;
+                margin: 0;
+            }
+            @include responsive(900px){
+                font-size: 16px;
+            }
             ul {
                 @extend .flexBetweenCenter;
                 gap: 10px;
+                flex-direction: column;
+                list-style-type: none;    
                 a {
                     text-decoration-line: none;
                     color: #7b7b7b;
                 }
-                list-style-type: none;    
+                @include responsive(768px){
+                    flex-direction: row;
+                }
+            }
+            ul.hidden{
+                display: none;
+                @include responsive(768px){
+                    display: flex;
+                }
             }
         }
         .copyright {
             width: 40%;
             @extend .flexEndCenter;
+            font-size: 12px;
+            margin-top: 5px;
+            @include responsive(768px){
+                font-size: 16px;
+            }
+        }
+        .hamburgerBottom{
+            position: absolute;
+            top: 20px;
+            left:20px;
+        }
+        .hamburgerBottom.hidden{
+            display: none;
+        }
+        .close.hidden{
+            display: none;
+        }
+        .close{
+            position: absolute;
+            top: 20px;
+            left: 0px;
+            @include responsive(768px){
+                display: none;
+            }
         }
     }  
 }   

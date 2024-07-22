@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Contact, Contacts } from "../types/contactsType";
+import { Contact, Contacts, ContactsLatest } from "../types/contactsType";
 import { StatsDashboard } from "../types/types";
-import { Invoice, Invoices } from "../types/invoicesType";
-import { Company, Companies } from "../types/companiesType";
+import { Invoice, Invoices, InvoicesLatest } from "../types/invoicesType";
+import { Company, Companies, CompaniesLatest } from "../types/companiesType";
 import { ContactCompany, ContactsList } from "../types/contactCompany";
 import { InvoiceCompany, InvoicesListCompany } from "../types/invoicesCompany";
 
-function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany' {
+function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany'|'contactLastest'| 'invoicesLatest'| 'companiesLatest' {
   if (/\/api\/contacts\/[a-f0-9]+$/.test(URL)) {
       return 'contact';
   } else if (/\/contacts\/pagination\/\d+\/\d+$/.test(URL)) {
@@ -23,6 +23,12 @@ function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoic
     return 'contactCompany'
   } else if(/\/api\/invoices\/company\/[a-f0-9]+$/.test(URL)){
     return 'invoicesCompany'
+  } else if(/\/api\/contacts\/latest$/.test(URL)){
+    return 'contactLastest'
+  } else if(/\/api\/invoices\/latest$/.test(URL)){
+    return 'invoicesLatest'
+  } else if(/\/api\/companies\/latest$/.test(URL)){
+    return 'companiesLatest'
   }
   else {
     throw new Error("Invalid URL format");
@@ -43,6 +49,9 @@ export default function useAPI(URL : string) {
   const [nbrPageCompanies, setNbrPageCompanies] = useState<number>(0);
   const [contactCompany, setContactCompany] = useState<ContactCompany[]>([]);
   const [invoiceCompany, setInvoiceCompany] = useState<InvoiceCompany[]>([]);
+  const [contactLatest, setContactLatest] = useState<Contact[]>([]);
+  const [invoiceLatest, setInvoiceLatest] = useState<Invoice[]>([]);
+  const [companiesLatest, setCompaniesLatest] = useState<Company[]>([]);
     
 
     useEffect(() => {
@@ -90,6 +99,15 @@ export default function useAPI(URL : string) {
                 } else if(responseType === "invoicesCompany") {
                   const data: InvoicesListCompany = await response.json();
                   setInvoiceCompany(data.invoices);
+                } else if(responseType==='contactLastest'){
+                  const data: ContactsLatest = await response.json();
+                  setContactLatest(data.contacts);
+                } else if(responseType==='invoicesLatest'){
+                  const data: InvoicesLatest = await response.json();
+                  setInvoiceLatest(data.invoices);
+                } else if(responseType==='companiesLatest'){
+                  const data: CompaniesLatest = await response.json();
+                  setCompaniesLatest(data.companies);
                 }
               setLoading(false);
             } catch (error : any) {
@@ -102,6 +120,6 @@ export default function useAPI(URL : string) {
           fetchData();
         }, [URL]);
 
-    return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies, company, contactCompany, invoiceCompany };
+    return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies, company, contactCompany, invoiceCompany, contactLatest, invoiceLatest, companiesLatest };
 
 }
