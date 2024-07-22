@@ -1,7 +1,11 @@
-import { LastInvoiceProps } from '../../../types/types';
 
-function LastInvoice ({invoice}: LastInvoiceProps) {
+import useAPI from "./../../../hook/useAPI";
+
+
+function LastInvoice () {
  // Ajouter l'API
+ const { invoiceLatest } = useAPI(`http://localhost:3000/api/invoices/latest`);
+
     return (
         <div className='lastInvoice'>
             <h3>Last invoices</h3>
@@ -15,11 +19,11 @@ function LastInvoice ({invoice}: LastInvoiceProps) {
                     </tr>
                 </thead>
                 <tbody>
-                    {invoice.slice(0,4).map((invoice) => (
-                        <tr key={invoice.number}>
-                            <td>{invoice.number}</td>
-                            <td>{invoice.date}</td>
-                            <td>{invoice.company}</td>
+                    {invoiceLatest.slice(0,4).map((invoice) => (
+                        <tr key={invoice._id}>
+                            <td>{invoice._id}</td>
+                            <td>{invoice.dueDate.slice(0,10)}</td>
+                            <td>{invoice.companyId?.name}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,6 +1,9 @@
-import { LastContactProps } from '../../../types/types';
+import useAPI from "./../../../hook/useAPI";
 
-function LastContact({contact}: LastContactProps) {
+
+function LastContact() {
+    const { contactLatest } = useAPI(`http://localhost:3000/api/contacts/latest`);
+
     return (
         <div className='lastContact'>
             <h3>Last contact</h3>
@@ -14,10 +17,10 @@ function LastContact({contact}: LastContactProps) {
                     </tr>
                 </thead>
                 <tbody>
-                    {contact.slice(0,4).map((contact) => (
-                        <tr key={contact.name + contact.phone}>
+                    {contactLatest.slice(0,4).map((contact) => (
+                        <tr key={contact._id}>
                             <td>{contact.name}</td>
-                            <td>{contact.phone}</td>
+                            <td>{contact.phoneNr}</td>
                             <td>{contact.email}</td>
                         </tr>
                     ))}
