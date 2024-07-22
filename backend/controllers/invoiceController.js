@@ -176,7 +176,6 @@ const getInvoicesResults = async (req, res) => {
       order = -1;
     }
   }
-
   if (!filter) {
     filter = "";
   } else {
@@ -194,13 +193,18 @@ const getInvoicesResults = async (req, res) => {
         .populate("companyId", "name")
     );
     const totalPages = Math.ceil(totalResults / resultsPerPage);
+    if (page > totalPages) {
+      return res.status(400).json({
+        message: `No result found for page ${page}, last page is ${totalPages}`,
+      });
+    }
 
     const sortedResults = await Invoice.find({ companyId: { $in: companyIds } })
       .sort({ [sortColumn]: order })
+      .limit(resultsPerPage)
+      .skip((page - 1) * resultsPerPage)
       .populate("companyId", "name");
     return res.json({
-      sortColumn,
-      order,
       totalResults,
       totalPages,
       sortedResults,

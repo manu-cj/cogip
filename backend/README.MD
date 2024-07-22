@@ -33,8 +33,8 @@ Ensure to always use `http://localhost:3000/api` as the root endpoint for any ki
 | `/invoices/latest` | GET  | None                                                    | Returns the list of the 5 latest invoices            |
 | `/invoices/:id` | GET  | None                                                    | Returns the details of the invoice matching the ID given as param            |
 | `/invoices/company/:companyId` | GET  | None                                                    | Returns the list of invoices for the company matching company ID sent in URL        |
-| `/invoices/pagination/:nbPerPage/:page?`             | GET    | None                                                                          | nbPerPage represents the count of results you want to show per page, the page is the page number you want to show the results for. If no page sent, page default will be 1. Returns results for the page, the totalResults and the totalPages        |
-| `/invoices` | POST  | `companyId` (str), `reference` (str)                 | Creates a new invoice in the DB, and returns the invoice details in response |
+| `/invoices/pagination/:nbPerPage/:page?/?order=ASC/DESC/?filter=filter`             | GET    | None                                                                          | nbPerPage represents the count of results shown per page, pagenumber is 1 if not set in URL. Returns results for the page. Takes optional query params to sort by dueDate and filter results on company Name the totalResults and the totalPages        |
+| `/invoices` | POST  | `companyId` (str), `reference` (str), `dueDate` (str YYYY-MM-DD)                 | Creates a new invoice in the DB, and returns the invoice details in response |
 | `/invoices/:id` | DELETE  | None                 | Deletes the invoice matching the id sent in URL |
 |                          |      
 |/companies|GET| NONE| Return all companies|   
