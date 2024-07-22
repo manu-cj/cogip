@@ -49,6 +49,12 @@ export interface CompanyData {
     type: string;
 }
 
+export interface CompanyForm {
+    name: string;
+    country: string;
+    vat: string;
+}
+
 export interface ContactData{
     firstName: string;
     lastName: string;

@@ -25,11 +25,28 @@ nav {
         }
     }
 
+    .dashboardLinkDiv {
+        @extend .flexAroundCenter;
+        gap: 10px;
+        width: max-content;
+    }
+
+    .pictureNav {
+        width: 30px;
+        border-radius: 15px;
+        border: 1px rgba(30, 30, 30, 0.344) ridge;
+        cursor: pointer;
+    }
+
     a {
         text-decoration-line: none;
         list-style-type: none;
         color: black;
         font-weight: bold;
+
+        &:hover {
+            color: rgb(56, 55, 55);
+        }
     }
 }
 

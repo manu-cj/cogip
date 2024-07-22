@@ -46,17 +46,34 @@ function Login() {
         
         setNotification(result.message);
 
+        const now = new Date();
+        const time = now.getTime();
+        const expireTime = time + 48 * 60 * 60 * 1000; // 48 heures en millisecondes
+        now.setTime(expireTime);
+        
+        document.cookie = `id=${result.userObject._id}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `lastName=${result.userObject.lastName}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `firstName=${result.userObject.firstName}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `email=${result.userObject.email}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `createdAt=${result.userObject.createdAt}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `updateOn=${result.userObject.updatedOn}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `imageName=${result.userObject.image.filename}; expires=${now.toUTCString()}; path=/`;
+
+
+        console.log(`Cookies set: ${document.cookie}`);
+
         console.log(result);
       } catch (error) {
         console.error(error);
       }
     }
-  };
+  }; 
 
-
+  
   return (
     <>
       <Header/>
+      
       <main>
       <Notification notification={notification} />
         <form action="http://localhost:3000/api/users/login" method="post" onSubmit={handleSubmit}>

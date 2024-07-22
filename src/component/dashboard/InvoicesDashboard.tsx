@@ -4,6 +4,7 @@ import Header from './header/HeaderDashboard';
 import NavBarLat from './navigation/NavBarLat';
 import { InvoiceData } from '../../types/types';
 import Hamburger from './navigation/Hamburger';
+import ListCompanyApi from './ListCompanyApi';
 
 function InvoicesDashboard() {
     const [isOpen, setIsOpen] = useState(true);
@@ -59,9 +60,11 @@ function InvoicesDashboard() {
         }
       };
 
+
     useEffect(() => {
         const selectElement = document.querySelector("#company") as HTMLSelectElement
-
+// Ne pas enlever le commentaire en dessous il permet juste de ne plus afficher la ligne suivante comme une erreur
+// eslint-disable-next-line @typescript-eslint/no-unused-vars 
         const handleChange = () => {
             if(selectElement.value==="default"){
                 selectElement.classList.add("default")
@@ -76,6 +79,15 @@ function InvoicesDashboard() {
             }
         }
     }, [])
+    const [companyClassName, setCompanyClassName] = useState('default');
+    const handleCompanyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setCompanyValue(e.target.value);
+        setFormData((prevData) => ({
+          ...prevData,
+          company: e.target.value,
+        }));
+        setCompanyClassName(e.target.value === 'default' ? 'default' : '');
+      };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -85,8 +97,10 @@ function InvoicesDashboard() {
                 console.log('Form validation failed');
             }
     }
+    
 
     return (
+        
         <div className='dashBoard'>
             <Hamburger className={`hamburger ${isOpen ? '' : 'hidden'}`} toggle={handleClick}/>
             <NavBarLat img="./../../../public/assets/img/unbgcommeunautre.jpg" firstName="Dylan"  lastName="Feys" className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick}/>
@@ -96,16 +110,11 @@ function InvoicesDashboard() {
                     <h3>New invoice</h3>
                     <hr />
                     <form action="LA ROUTE DES BACKENDS" method="post" onSubmit={handleSubmit}>
-                        <input type="text" name='reference' id='reference' placeholder='Reference' required onChange={handleChange} />
-                        <input type="text" name='price' id='price' placeholder='Price' required onChange={handleChange}/>
-                        <select name="company" id="company" className={companyValue === 'default' ? 'default' : ''} value={companyValue} onChange={(e) => setCompanyValue(e.target.value)}>
-                            <option value="default" className='defaultOption' disabled selected>Company name</option>
-                            <option value="ss">sfrez</option>
-                            <option value="ss">sfrez</option>
-                            <option value="ss">sfrez</option>
-                            {/* {companies.map((company)=>{
-                                <option value={company.tva}>{company.name}</option>
-                            })} */}
+                        <input type="text" name='reference' id='reference' placeholder='Reference' required onChange={handleChange} style={formStyles.reference}/>
+                        <input type="text" name='price' id='price' placeholder='Price' required onChange={handleChange} style={formStyles.price}/>
+                        <select name="companyId" id="company" style={formStyles.company} className={companyClassName} value={companyValue} onChange={handleCompanyChange}>
+                            <option value="default" className="defaultOption" disabled>Company name</option>
+                            <ListCompanyApi/>
                         </select>
                         <button type="submit">Save</button>
                     </form>

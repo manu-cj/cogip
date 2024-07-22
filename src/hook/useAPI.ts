@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { Contact, Contacts } from "../types/contactsType"; // A adapter
+import { Contact, Contacts } from "../types/contactsType";
 import { StatsDashboard } from "../types/types";
 import { Invoice, Invoices } from "../types/invoicesType";
 import { Company, Companies } from "../types/companiesType";
+import { ContactCompany, ContactsList } from "../types/contactCompany";
+import { InvoiceCompany, InvoicesListCompany } from "../types/invoicesCompany";
 
-function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies' {
+function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany' {
   if (/\/api\/contacts\/[a-f0-9]+$/.test(URL)) {
       return 'contact';
   } else if (/\/contacts\/pagination\/\d+\/\d+$/.test(URL)) {
@@ -15,6 +17,12 @@ function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoic
     return 'invoices';
   } else if (/\/api\/companies\/pagination\/\d+\/\d+$/.test(URL)) {
     return 'companies';
+  } else if (/\/api\/companies\/[a-f0-9]+$/.test(URL)){
+    return 'company';
+  } else if(/\/api\/contacts\/company\/[a-f0-9]+$/.test(URL)){
+    return 'contactCompany'
+  } else if(/\/api\/invoices\/company\/[a-f0-9]+$/.test(URL)){
+    return 'invoicesCompany'
   }
   else {
     throw new Error("Invalid URL format");
@@ -31,7 +39,10 @@ export default function useAPI(URL : string) {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [nbrPageInvoice, setNbrPageInvoice] = useState<number>(0);
   const [companies, setCompanies] = useState<Company[]>([]);
+  const [company, setCompany] = useState<Company>({} as Company);
   const [nbrPageCompanies, setNbrPageCompanies] = useState<number>(0);
+  const [contactCompany, setContactCompany] = useState<ContactCompany[]>([]);
+  const [invoiceCompany, setInvoiceCompany] = useState<InvoiceCompany[]>([]);
     
 
     useEffect(() => {
@@ -70,6 +81,15 @@ export default function useAPI(URL : string) {
                   const data: Companies = await response.json();
                   setCompanies(data.pageResults);
                   setNbrPageCompanies(data.totalPages)
+                } else if(responseType === "company") {
+                  const data: Company = await response.json();
+                  setCompany(data);
+                } else if(responseType === "contactCompany") {
+                  const data: ContactsList = await response.json();
+                  setContactCompany(data.contacts);
+                } else if(responseType === "invoicesCompany") {
+                  const data: InvoicesListCompany = await response.json();
+                  setInvoiceCompany(data.invoices);
                 }
               setLoading(false);
             } catch (error : any) {
@@ -82,6 +102,6 @@ export default function useAPI(URL : string) {
           fetchData();
         }, [URL]);
 
-    return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies };
+    return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies, company, contactCompany, invoiceCompany };
 
 }

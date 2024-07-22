@@ -5,6 +5,7 @@ import NavBarLat from "./navigation/NavBarLat";
 import { ContactForm } from "../../types/types";
 import Hamburger from "./navigation/Hamburger";
 import Notification from "../pages/components/Notification";
+import ListCompanyApi from "./ListCompanyApi";
 
 function ContactDashboard() {
   const [isOpen, setIsOpen] = useState(true);
@@ -156,6 +157,16 @@ function ContactDashboard() {
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
+  const [companyValue, setCompanyValue] = useState('default')
+  const [companyClassName, setCompanyClassName] = useState('default');
+    const handleCompanyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setCompanyValue(e.target.value);
+        setFormData((prevData) => ({
+          ...prevData,
+          companyId: e.target.value,
+        }));
+        setCompanyClassName(e.target.value === 'default' ? 'default' : '');
+      };
 
   return (
     <div className="dashBoard">
@@ -190,16 +201,11 @@ function ContactDashboard() {
               style={formStyles.name}
               value={formData.name}
             />
-            <input
-              type="text"
-              name="companyId"
-              id="companyId"
-              placeholder="companyId"
-              required
-              onChange={handleChange}
-              style={formStyles.companyId}
-              value={formData.companyId}
-            />
+            
+            <select name="companyId" id="companyId" style={formStyles.companyId} className={companyClassName} value={companyValue} onChange={handleCompanyChange}>
+                <option value="default" className="defaultOption" disabled>Company name</option>
+                <ListCompanyApi/>
+            </select>
             <input
               type="phone"
               name="phoneNr"

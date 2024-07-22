@@ -1,4 +1,5 @@
 import NavBar from "../../main/navigation/NavBar";
+import rectangle from "./../../../../public/assets/img/home/Rectangle 10.svg"
 
 
 function Header() {
@@ -8,7 +9,7 @@ function Header() {
         <NavBar/>
         <div className="bottom-content-other-pages">
           <img
-            src="./../public/assets/img/home/Rectangle 10.svg"
+            src={rectangle}
             alt="Rectangle 10.svg"
           />
         </div>

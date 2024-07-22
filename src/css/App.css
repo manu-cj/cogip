@@ -563,7 +563,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, main .pagination, header .bottom-content {
+.flexAroundCenter, footer .footer-bottom, footer .footer-content .about-section .social-links, footer .footer-content, main .pagination, header nav .dashboardLinkDiv, header .bottom-content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -663,7 +663,7 @@ header {
   width: 100%;
   background-color: #f9de4e;
   color: black;
-  padding-top: 250px;
+  padding-top: 50px;
 }
 header nav {
   position: fixed;
@@ -687,11 +687,25 @@ header nav .loginNav .sign-up {
   background-color: white;
   color: black;
 }
+header nav .dashboardLinkDiv {
+  gap: 10px;
+  width: -moz-max-content;
+  width: max-content;
+}
+header nav .pictureNav {
+  width: 30px;
+  border-radius: 15px;
+  border: 1px rgba(30, 30, 30, 0.344) ridge;
+  cursor: pointer;
+}
 header nav a {
   text-decoration-line: none;
   list-style-type: none;
   color: black;
   font-weight: bold;
+}
+header nav a:hover {
+  color: rgb(56, 55, 55);
 }
 header .top-content {
   width: 100%;
@@ -757,11 +771,25 @@ header nav .loginNav .sign-up {
   background-color: white;
   color: black;
 }
+header nav .dashboardLinkDiv {
+  gap: 10px;
+  width: -moz-max-content;
+  width: max-content;
+}
+header nav .pictureNav {
+  width: 30px;
+  border-radius: 15px;
+  border: 1px rgba(30, 30, 30, 0.344) ridge;
+  cursor: pointer;
+}
 header nav a {
   text-decoration-line: none;
   list-style-type: none;
   color: black;
   font-weight: bold;
+}
+header nav a:hover {
+  color: rgb(56, 55, 55);
 }
 
 main {
@@ -801,6 +829,11 @@ main .main-content td {
   border: none;
   padding: 8px;
   text-align: left;
+}
+main .main-content th a,
+main .main-content td a {
+  text-decoration-line: none;
+  color: black;
 }
 main .main-content th {
   background-color: #f4d03f;
@@ -880,6 +913,7 @@ main .pagination .btnPagination {
   color: black;
   transition: 0.3s ease-in;
   background-color: #fff;
+  cursor: pointer;
 }
 main .pagination .btnPagination:hover {
   scale: 1.1;
@@ -1088,6 +1122,10 @@ form input {
   align-items: center;
   padding: 8px;
 }
+.navBarLat .navBarLat__logout a {
+  text-decoration-line: none;
+  color: black;
+}
 .navBarLat .navBarLat__logout img {
   width: 48px;
   border-radius: 50px;
@@ -1107,6 +1145,12 @@ form input {
 
 .navBarLat.visible {
   transform: translateX(0);
+}
+
+.fa-house {
+  color: #9698D6;
+  margin-right: 20px;
+  size: 15px;
 }
 
 .dashboard-header {
@@ -1435,6 +1479,10 @@ hr {
 .show-contact .show-contact__infos .show-contact__details p span {
   font-weight: 400;
 }
+.show-contact .show-contact__infos .show-contact__details p span a {
+  text-decoration: none;
+  color: #000;
+}
 .show-contact img {
   width: 255px;
   border-radius: 255px;
@@ -1484,14 +1532,23 @@ hr {
 .show-companies .show-companies__contact {
   margin: 50px 0;
   width: 100%;
+  position: relative;
 }
 .show-companies .show-companies__contact h2 {
   margin-bottom: 50px;
 }
 .show-companies .show-companies__contact .show-companies__contacts {
   display: flex;
-  position: relative;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
   width: 100%;
+  height: 300px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.show-companies .show-companies__contact .show-companies__contacts::-webkit-scrollbar {
+  display: none;
 }
 .show-companies .show-companies__contact .show-companies__contacts .hand {
   position: absolute;
@@ -1507,6 +1564,7 @@ hr {
   display: flex;
   align-items: center;
   margin: 20px;
+  height: 200px;
 }
 .show-companies .show-companies__contact .show-companies__contacts .show-companies__contact-card img {
   width: 130px;
@@ -1520,6 +1578,10 @@ hr {
   line-height: 41.02px;
   text-align: left;
   width: 45%;
+}
+.show-companies .show-companies__contact .show-companies__contacts .show-companies__contact-card p a {
+  text-decoration: none;
+  color: #000;
 }
 .show-companies .show-companies__invoice {
   margin: 50px 0;
@@ -1656,4 +1718,4 @@ body {
   overflow-y: scroll;
   font-family: "Inter", sans-serif;
   color: black;
-}
+}/*# sourceMappingURL=App.css.map */

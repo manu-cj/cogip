@@ -95,6 +95,11 @@
         justify-content: space-between;
         align-items: center;
         padding: 8px;
+        
+        a {
+            text-decoration-line: none;
+            color: black;
+        }
         img{
             width: 48px;
             border-radius: 50px;
@@ -112,4 +117,10 @@
 }
 .navBarLat.visible{
     transform: translateX(0);
+}
+
+.fa-house {
+    color: #9698D6;
+    margin-right: 20px;
+    size: 15px;
 }

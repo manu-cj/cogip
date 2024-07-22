@@ -16,7 +16,8 @@ const Notification: React.FC<{ notification: string }> = ({ notification }) => {
 
   const successMessages = useMemo(() => [
     "Registration successful",
-    "Contact successfully created"
+    "Contact successfully created",
+    "Authentication successful"
     // Add more success messages here
   ], []);
 
