@@ -134,6 +134,8 @@ const createContact = async (req, res) => {
   }
 };
 
+const getContactsByName = async (req, res) => {};
+
 const getContactById = async (req, res) => {
   const id = req.params.id;
   try {
@@ -222,4 +224,5 @@ export {
   deleteContact,
   getContactsByCompany,
   getPaginatedContacts,
+  getContactsByName,
 };

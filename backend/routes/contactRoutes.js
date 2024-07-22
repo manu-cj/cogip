@@ -9,12 +9,14 @@ import {
   deleteContact,
   getContactsByCompany,
   getPaginatedContacts,
+  getContactsByName,
 } from "./../controllers/contactController.js";
 
 // GET ROUTES
 router.get("/", getContacts);
 router.get("/latest", getLatestContacts);
 router.get("/pagination/:nbPerPage/:page?", getPaginatedContacts);
+router.get("/name/:name", getContactsByName);
 router.get("/:id", getContactById);
 router.get("/company/:companyId", getContactsByCompany);
 
