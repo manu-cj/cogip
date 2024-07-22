@@ -970,6 +970,9 @@ footer .footer-content .about-section .social-links a {
   color: #f4d03f;
   margin: 5px;
 }
+footer .footer-content .about-section .social-links .svg-inline--fa {
+  font-size: 32px;
+}
 footer .footer-bottom {
   width: 100%;
 }

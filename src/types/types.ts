@@ -59,6 +59,7 @@ export interface CompanyForm {
     name: string;
     country: string;
     vat: string;
+    typeId: string;
 }
 
 export interface ContactData{
