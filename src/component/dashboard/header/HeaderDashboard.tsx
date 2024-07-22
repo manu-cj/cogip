@@ -1,7 +1,7 @@
 import img_dashboard from '../../../../public/assets/img/img_dashboard.svg';
 import { useLocation } from 'react-router-dom';
 
-function Header({firstName}: {firstName: string}) {
+function Header({firstName}: {firstName: string | null}) {
     const location = useLocation()
     const ariane = location.pathname
     const newPath = ariane.replace("/", "");
