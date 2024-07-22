@@ -7,6 +7,8 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import useAPI from "./hook/useAPI";
 
+import {Link} from "react-router-dom";
+
 
 library.add(fas);
 library.add(fab);
@@ -14,8 +16,9 @@ library.add(fab);
 
 function App() {
 
-  const { contactLatest} = useAPI(`http://localhost:3000/api/contacts/latest`);
-  const { invoiceLatest} = useAPI(`http://localhost:3000/api/invoices/latest`);
+  const { contactLatest } = useAPI(`http://localhost:3000/api/contacts/latest`);
+  const { invoiceLatest } = useAPI(`http://localhost:3000/api/invoices/latest`);
+  const { companiesLatest } = useAPI(`http://localhost:3000/api/companies/latest`);
 
   return (
     <>
@@ -51,9 +54,9 @@ function App() {
               {invoiceLatest.map((invoice) => (
                 <tr key={invoice._id}>
                   <td>{invoice.reference}</td>
-                  <td>{invoice.dueDate}</td>
-                  <td>{invoice.companyId?.name}</td>
-                  <td>{invoice.createdAt}</td>
+                  <td>{invoice.dueDate.slice(0,10)}</td>
+                  <td><Link to={`/show_companies/${invoice.companyId?._id}`}>{invoice.companyId?.name}</Link></td>
+                  <td>{invoice.createdAt.slice(0,10)}</td>
                 </tr>
               ))}
             </tbody>
@@ -75,11 +78,11 @@ function App() {
             <tbody>
               {contactLatest.map((contact) => (
                 <tr key={contact._id}>
-                  <td>{contact.name}</td>
+                  <td><Link to={`/show_contact/${contact._id}`}>{contact.name}</Link></td>
                   <td>{contact.phoneNr}</td>
                   <td>{contact.email}</td>
-                  <td>{contact.companyId.name}</td>
-                  <td>{contact.createdAt}</td>
+                  <td><Link to={`/show_companies/${contact.companyId?._id}`}>{contact.companyId?.name}</Link></td>
+                  <td>{contact.createdAt.slice(0,10)}</td>
                 </tr>
               ))}
             </tbody>
@@ -99,13 +102,15 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Raviga</td>
-                <td>US456 654 321</td>
-                <td>United States</td>
-                <td>Supplier</td>
-                <td>25/09/2020</td>
-              </tr>
+              {companiesLatest.map((company) => (
+                <tr key={company._id}>
+                  <td><Link to={`/show_companies/${company._id}`}>{company.name}</Link></td>
+                  <td>{company.vat}</td>
+                  <td>{company.country}</td>
+                  <td>{company.typeId?.name}</td>
+                  <td>{company.createdAt.slice(0,10)}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </section>

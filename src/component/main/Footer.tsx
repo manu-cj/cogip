@@ -6,8 +6,19 @@ import {
   faFax,
   faRss,
 } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import Hamburger from "../dashboard/navigation/Hamburger";
+import croix from '../../../public/assets/icon/croix.svg';
+
 
 const Footer = () => {
+  const [isOpenBot, setIsOpenBot] = useState(true);
+
+
+  const handleClickBottom = () =>{
+    setIsOpenBot(!isOpenBot);
+  }
+
   return (
     <>
       <footer>
@@ -22,48 +33,44 @@ const Footer = () => {
                 Square des Martyrs, 6000 Charleroi
               </p>
               <p>
-                <span>
-                  <FontAwesomeIcon icon={faPhoneAlt} /> (123) 456-7890
-                </span>
-                <span>
-                  {" "}
-                  <FontAwesomeIcon icon={faFax} />
-                  (123) 456-7890
-                </span>
+                <FontAwesomeIcon icon={faPhoneAlt} /> (123) 456-7890
+              </p>
+              <p>
+                <FontAwesomeIcon icon={faFax} />
+                (123) 456-7890
               </p>
             </div>
             <div className="social-links">
-              <p>Social Media</p>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "facebook-square"]}  />
+                <FontAwesomeIcon icon={["fab", "facebook-square"]}  className="social-icons" />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "x-twitter"]} />
+                <FontAwesomeIcon icon={["fab", "x-twitter"]}  className="social-icons" />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "linkedin-in"]} />
+                <FontAwesomeIcon icon={["fab", "linkedin-in"]}  className="social-icons" />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "youtube"]} />
+                <FontAwesomeIcon icon={["fab", "youtube"]}  className="social-icons" />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "instagram"]} />
+                <FontAwesomeIcon icon={["fab", "instagram"]}  className="social-icons" />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "google-plus"]} />
+                <FontAwesomeIcon icon={["fab", "google-plus"]}  className="social-icons" />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={["fab", "pinterest"]} />
+                <FontAwesomeIcon icon={["fab", "pinterest"]} className="social-icons" />
               </a>
               <a href="">
-                <FontAwesomeIcon icon={faRss}  />
+                <FontAwesomeIcon icon={faRss} className="social-icons" />
               </a>
             </div>
           </section>
         </section>
         <section className="footer-bottom">
           <nav>
-            <ul>
+            <ul className={isOpenBot ? 'hidden':'visible'}>
               <Link to={"/"}>
                 <li>HOME</li>
               </Link>
@@ -80,11 +87,13 @@ const Footer = () => {
                 <li>PRIVACY POLICY</li>
               </Link>
             </ul>
+            <img src={croix} alt="Close" className={`close ${isOpenBot ? 'hidden': ''}`} onClick={handleClickBottom} />
           </nav>
           <div className="copyright">
             <p>Copyright © 2024 • COGIP Inc.</p>
           </div>
-        </section>
+          <Hamburger className={`hamburger hamburgerBottom ${isOpenBot? '':'hidden'}`} toggle={handleClickBottom} /> 
+          </section>
       </footer>
     </>
   );
