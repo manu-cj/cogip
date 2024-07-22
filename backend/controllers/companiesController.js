@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import Companies from "./../models/companiesModel.js";
 import Invoice from "./../models/invoiceModel.js";
 import Contact from "./../models/contactModel.js";
+import User from "./../models/userModel.js";
+import Role from "./../models/roleModel.js"
 import { sanitize } from "../utils/sanitize.js";
 import Type from "./../models/typeModel.js";
 import { validateCountryName } from "../utils/countryValidator.js";
