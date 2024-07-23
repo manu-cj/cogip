@@ -1,6 +1,8 @@
-import { LastCompaniesProps } from '../../../types/types';
+import useAPI from "./../../../hook/useAPI";
 
-function LastCompanies({companies}: LastCompaniesProps) {
+function LastCompanies() {
+    const { companiesLatest } = useAPI(`http://localhost:3000/api/companies/latest`);
+
     return (
         <div className='lastCompanies'>
             <h3>Last companies</h3>
@@ -14,10 +16,10 @@ function LastCompanies({companies}: LastCompaniesProps) {
                     </tr>
                 </thead>
                 <tbody>
-                    {companies.slice(0,4).map((companies) => (
-                        <tr key={companies.tva}>
+                    {companiesLatest.slice(0,4).map((companies) => (
+                        <tr key={companies._id}>
                             <td>{companies.name}</td>
-                            <td>{companies.tva}</td>
+                            <td>{companies.vat}</td>
                             <td>{companies.country}</td>
                         </tr>
                     ))}
