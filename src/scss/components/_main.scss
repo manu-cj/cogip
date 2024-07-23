@@ -22,7 +22,6 @@ main {
         background-color: #f4d03f;
         margin-top: -40px;
         margin-left: 25px;
-        
     }
   }
   .main-content {
@@ -69,6 +68,22 @@ main {
       background-color: #f4d03f;
       font-weight: bold;
     }
+    .withArrow{
+      position: relative;
+      cursor: pointer;
+      img{
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease-in-out;
+      }
+      .sorted{
+        transform: rotate(180deg) translateY(50%);
+        
+      }
+    }
+    
 
     tr:nth-child(even) {
       background-color: #f2f2f2;

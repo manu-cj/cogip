@@ -39,6 +39,12 @@ const Notification: React.FC<{ notification: string }> = ({ notification }) => {
             ...prevStyle,
             animationName: prevStyle.animationName === 'notifOut' ? 'NotifEntrance' : 'notifOut',
           }));
+
+          
+            if (notification === "Registration successful") {
+              window.location.href = "/login";
+            }
+          
         }, 2000);
         return () => {
           clearTimeout(timeout2);

@@ -55,7 +55,7 @@ function Show_compagnies() {
               <img src="./../../../public/assets/img/home/handwithnote.svg" alt="petite img" className="hand"/>
               {contactCompany.map((contact) => (
                 <div key={contact._id} className="show-companies__contact-card">
-                  <Link to={`/show_contact/${contact._id}`} key={contact._id}><img src={contact.image.path} alt={contact.name} /></Link>
+                  <Link to={`/show_contact/${contact._id}`} key={contact._id}><img src={`./../../../public/assets/img/people/${contact.image.filename}`} alt={contact.name} /></Link>
                   <p><Link to={`/show_contact/${contact._id}`} key={contact._id}>{contact.name}</Link></p>
                 </div>
               ))}

@@ -9,3 +9,40 @@ form {
         border-radius: 5px;
     }
 }
+
+.logForm {
+    border: #f6e68a 5px solid;
+    background-color: #f1f1ed;
+    padding: 30px 50px;
+    border-radius: 10px; 
+    width: 90%;  
+    @include responsive(500px) {
+        width: 60%;
+    }
+    @include responsive(768px) {
+        width: 50%;
+    }
+    @extend .flexColumnBetweenStart;
+    gap: 5px;
+    label {
+        font-weight: 600;
+    }
+     input {
+        width: 100%;
+        margin-bottom: 10px;
+     }
+
+     input[type=submit] {
+        margin-top: 30px;
+        margin-left: 25%;
+        width: 50%;
+        background-color: #f9de4e;
+        cursor: pointer;
+        transition: 0.3s ease-in;
+        &:hover {
+            background-color: #e8c813;
+        }
+     }
+    
+   
+}

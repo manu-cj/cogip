@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import useAPI from "../../../hook/useAPI";
 import { useState, useEffect } from "react";
+import tri from "../../../../public/assets/icon/tri.svg"
 
 
 function TemplatePages() {
@@ -18,11 +19,25 @@ function TemplatePages() {
   const nbrContactFromURL = parseInt(pathSegments[2], 10) || 10;
   const pageFromURL = parseInt(pathSegments[3], 10) || 1;
 
+  // Ne pas enlever le commentaire en dessous il permet juste de ne plus afficher la ligne suivante comme une erreur
+// eslint-disable-next-line @typescript-eslint/no-unused-vars 
   const [nbrContact, setNbrContact] = useState(nbrContactFromURL);
   const [page, setPage] = useState(pageFromURL);
-  const { contacts, loading, nbrPageContact } = useAPI(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}`);
-  const { invoices, nbrPageInvoice } = useAPI(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}`);
-  const { companies, nbrPageCompanies } = useAPI(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}`);
+
+  const [URLContacts, setURLContacts]= useState(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}`)
+  const [isSortedContactsName, setIsSortedContactsName] = useState(false)
+  const [isSortedContactsDate, setIsSortedContactsDate] = useState(false)
+  const { contacts, loading, nbrPageContact } = useAPI(URLContacts);
+
+  const [URLInvoices, setURLInvoices] = useState(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}`)
+  const [isSortedInvoices, setIsSortedInvoices] = useState(false)
+  const { invoices, nbrPageInvoice } = useAPI(URLInvoices);
+
+  const [URLCompanies, setURLCompanies] = useState(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}`)
+  const [isSortedCompaniesName, setIsSortedCompaniesName] = useState(false)
+  const [isSortedCompaniesDate, setIsSortedCompaniesDate] = useState(false)
+  const { companies, nbrPageCompanies } = useAPI(URLCompanies);
+
 
   const definePath = () => {
     if (newPath.includes("contacts")) {
@@ -71,6 +86,38 @@ function TemplatePages() {
     }
   };
 
+  const handleSortInvoices = () => {
+    setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}/?order=DESC`)
+    setIsSortedInvoices(!isSortedInvoices)
+    if(isSortedInvoices) setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}/?order=ASC`)
+  }
+
+  const handleSortContactsName = () => {
+    setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=name`)
+    setIsSortedContactsName(!isSortedContactsName)
+    if(isSortedContactsName) setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=name`)
+  }
+
+  const handleSortContactsDate = () => {
+    setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=createdAt`)
+    setIsSortedContactsDate(!isSortedContactsDate)
+    if(isSortedContactsDate) setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=createdAt`)
+  }
+
+  const handleSortCompaniesName = () => {
+    setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=name`)
+    setIsSortedCompaniesName(!isSortedCompaniesName)
+    if(isSortedCompaniesName) setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=name`)
+  }
+
+  const handleSortCompaniesDate = () => {
+    setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=createdAt`)
+    setIsSortedCompaniesDate(!isSortedCompaniesDate)
+    if(isSortedCompaniesDate) setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=createdAt`)
+  }
+
+
+
   const tableData = (path: string): JSX.Element => {
     path = definePath();
     switch (path) {
@@ -79,11 +126,11 @@ function TemplatePages() {
           <table>
             <thead>
               <tr>
-                <th>Name</th>
+              <th onClick={handleSortCompaniesName} className="withArrow">Name<img src={tri} alt="sorted" className={isSortedCompaniesName? 'sorted' : ''}/></th>
                 <th>TVA</th>
                 <th>Country</th>
                 <th>Type</th>
-                <th>Created at</th>
+                <th onClick={handleSortCompaniesDate} className="withArrow">Created At <img src={tri} alt="sorted" className={isSortedCompaniesDate? 'sorted' : ''}/></th>
               </tr>
             </thead>
             <tbody>
@@ -104,11 +151,11 @@ function TemplatePages() {
           <table>
             <thead>
               <tr>
-                <th>Name</th>
+              <th onClick={handleSortContactsName} className="withArrow">Name<img src={tri} alt="sorted" className={isSortedContactsName? 'sorted' : ''}/></th>
                 <th>Phone</th>
                 <th>Mail</th>
                 <th>Company</th>
-                <th>Created at</th>
+                <th onClick={handleSortContactsDate} className="withArrow">Created At <img src={tri} alt="sorted" className={isSortedContactsDate? 'sorted' : ''}/></th>
               </tr>
             </thead>
             <tbody>
@@ -132,10 +179,9 @@ function TemplatePages() {
             <thead>
               <tr>
                 <th>Invoice number</th>
-                <th>Dates due</th>
+                <th onClick={handleSortInvoices} className="withArrow">Dates due <img src={tri} alt="sorted" className={isSortedInvoices? 'sorted' : ''}/></th>
                 <th>Company</th>
                 <th>Created at</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -154,7 +200,7 @@ function TemplatePages() {
         return <h2>Oops, an error has occurred</h2>;
     }
   };
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
   const handleNextPage = (event: any) => {
     if (page < defineNbrPage()) {
       event.preventDefault();
@@ -162,7 +208,7 @@ function TemplatePages() {
       setPage(nextPage);
     }
   }
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
   const handlePreviousPage = (event :any ) => {
     event.preventDefault();
     if (page > 1) {
@@ -179,6 +225,7 @@ function TemplatePages() {
     }
   }
 
+
   const defineNbrPage = () => {
     const path = definePath();
     switch (path) {
@@ -188,6 +235,21 @@ function TemplatePages() {
         return nbrPageContact;
       case "invoices":
         return nbrPageInvoice;
+    }
+  }
+
+  const handleChange = (e:any) => {
+    const path = definePath()
+    switch (path) {
+      case "companies":
+        setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        break;
+      case "contacts":
+        setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        break;
+      case "invoices":
+        setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        break;
     }
   }
 
@@ -202,6 +264,7 @@ function TemplatePages() {
             name={newPath}
             id={newPath}
             placeholder={placeHolder}
+            onChange={handleChange}
           />
         </section>
         <section className="main-content">{tableData(newPath)}</section>

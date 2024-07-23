@@ -619,7 +619,7 @@ html[data-theme="dark"] {
   align-items: center;
 }
 
-.flexColumnBetweenStart {
+.flexColumnBetweenStart, .logForm {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -956,6 +956,20 @@ main .main-content th {
   background-color: #f4d03f;
   font-weight: bold;
 }
+main .main-content .withArrow {
+  position: relative;
+  cursor: pointer;
+}
+main .main-content .withArrow img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease-in-out;
+}
+main .main-content .withArrow .sorted {
+  transform: rotate(180deg) translateY(50%);
+}
 main .main-content tr:nth-child(even) {
   background-color: #f2f2f2;
 }
@@ -1203,6 +1217,43 @@ form {
 form input {
   height: 50px;
   border-radius: 5px;
+}
+
+.logForm {
+  border: #f6e68a 5px solid;
+  background-color: #f1f1ed;
+  padding: 30px 50px;
+  border-radius: 10px;
+  width: 90%;
+  gap: 5px;
+}
+@media only screen and (min-width: 500px) {
+  .logForm {
+    width: 60%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .logForm {
+    width: 50%;
+  }
+}
+.logForm label {
+  font-weight: 600;
+}
+.logForm input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.logForm input[type=submit] {
+  margin-top: 30px;
+  margin-left: 25%;
+  width: 50%;
+  background-color: #f9de4e;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+.logForm input[type=submit]:hover {
+  background-color: #e8c813;
 }
 
 #error-page {

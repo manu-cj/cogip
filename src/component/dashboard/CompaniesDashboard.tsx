@@ -178,7 +178,7 @@ function CompaniesDashboard() {
               type="text"
               name="name"
               id="name"
-              placeholder="Name"
+              placeholder="William society"
               required
               onChange={handleChange}
               style={formStyles.name}
@@ -187,7 +187,7 @@ function CompaniesDashboard() {
               type="text"
               name="vat"
               id="tva"
-              placeholder="TVA"
+              placeholder="	FR123456789"
               required
               onChange={handleChange}
               style={formStyles.vat}
@@ -196,7 +196,7 @@ function CompaniesDashboard() {
               type="text"
               name="country"
               id="country"
-              placeholder="Country"
+              placeholder="France"
               required
               onChange={handleChange}
               style={formStyles.country}

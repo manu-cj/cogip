@@ -198,7 +198,7 @@ function ContactDashboard() {
               type="text"
               name="name"
               id="name"
-              placeholder="name"
+              placeholder="William"
               required
               onChange={handleChange}
               style={formStyles.name}
@@ -213,7 +213,7 @@ function ContactDashboard() {
               type="phone"
               name="phoneNr"
               id="phoneNr"
-              placeholder="phoneNr"
+              placeholder="+1 (837) 207-6163"
               required
               onChange={handleChange}
               style={formStyles.phoneNr}
@@ -223,7 +223,7 @@ function ContactDashboard() {
               type="email"
               name="email"
               id="email"
-              placeholder="email"
+              placeholder="William@example.com"
               required
               onChange={handleChange}
               style={formStyles.email}
