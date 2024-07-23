@@ -201,6 +201,7 @@ function TemplatePages() {
     }
   };
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleNextPage = (event: any) => {
     if (page < defineNbrPage()) {
       event.preventDefault();
