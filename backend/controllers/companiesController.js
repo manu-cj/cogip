@@ -2,8 +2,6 @@ import mongoose from "mongoose";
 import Companies from "./../models/companiesModel.js";
 import Invoice from "./../models/invoiceModel.js";
 import Contact from "./../models/contactModel.js";
-import User from "./../models/userModel.js";
-import Role from "./../models/roleModel.js"
 import { sanitize } from "../utils/sanitize.js";
 import Type from "./../models/typeModel.js";
 import { validateCountryName } from "../utils/countryValidator.js";
@@ -14,10 +12,7 @@ import { validateCountryName } from "../utils/countryValidator.js";
 
 const getCompanies = async (req, res) => {
   try {
-    const companies = await Companies.find()
-      .sort({ name: 1 })
-      .collation({ locale: "fr", strength: 1 })
-      .populate("typeId", "name");
+    const companies = await Companies.find().sort({ name: 1}).collation({locale: 'fr', strength: 1}).populate('typeId', 'name');
     return res.status(200).json({ companies });
   } catch (err) {
     res.status(500).json({ message: `SERVER ERROR : ${err.message}` });
@@ -27,7 +22,7 @@ const getCompanies = async (req, res) => {
 const getCompaniesById = async (req, res) => {
   const id = req.params.id;
   try {
-    const company = await Companies.findById(id).populate("typeId", "name");
+    const company = await Companies.findById(id).populate('typeId', 'name');;
     if (!company) {
       return res.status(404).json({ message: "Company not found" });
     }
@@ -38,7 +33,7 @@ const getCompaniesById = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "SERVER ERROR" });
   }
-  return res.status(201).json({ message: "Company found" });
+  return res.status(201).json({ message : "Company found"});
 };
 
 const getLatestCompanies = async (req, res) => {
@@ -65,64 +60,25 @@ const getPaginatedCompanies = async (req, res) => {
         "Bad request: make sure the nbPerPage and page are of type int and superior to 0.",
     });
   }
-  let { sortColumn, order, filter } = req.query;
-  if (!sortColumn) {
-    sortColumn = "name";
-    order = 1;
-  } else {
-    sortColumn = sanitize(sortColumn);
-    if (sortColumn == "name" || sortColumn == "createdAt") {
-      if (!order) {
-        order = "";
-      } else {
-        order = sanitize(order);
-      }
-      switch (sortColumn) {
-        case "name":
-          order = order.toUpperCase() === "DESC" ? -1 : 1;
-          break;
-        case "createdAt":
-          order = order.toUpperCase() === "ASC" ? 1 : -1;
-          break;
-        default:
-          break;
-      }
-    } else {
-      sortColumn = "name";
-      order = 1;
-    }
-  }
-  if (!filter) {
-    filter = "";
-  } else {
-    filter = sanitize(filter);
-  }
-  const regex = new RegExp(`^${filter}`, "i");
   try {
-    const totalResults = await Companies.countDocuments({
-      name: { $regex: regex },
-    });
-    let totalPages = Math.ceil(totalResults / resultsPerPage);
-    if (totalPages == 0) {
-      totalPages = 1;
-    }
+    const totalResults = await Companies.countDocuments();
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
     if (page > totalPages) {
       return res.status(400).json({
         message: `No result found for page ${page}, last page is ${totalPages}`,
       });
     }
-    const pageResults = await Companies.find({
-      name: { $regex: regex },
-    })
-      .sort({ [sortColumn]: order })
+    const pageResults = await Companies.find()
+      .sort({ name: 1 })
       .limit(resultsPerPage)
-      .populate("typeId", "name")
-      .skip((page - 1) * resultsPerPage);
+      .skip((page - 1) * resultsPerPage)
+      .populate('typeId', 'name');
     return res.status(200).json({ totalResults, totalPages, pageResults });
   } catch (error) {
     return res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
   }
 };
+
 
 const postCompanies = async (req, res) => {
   try {
@@ -134,17 +90,13 @@ const postCompanies = async (req, res) => {
 
     const existingCompanies = await Companies.findOne({ name });
     if (existingCompanies) {
-      return res
-        .status(400)
-        .json({ message: `Company name already in use: ${existingCompanies}` });
+      return res.status(400).json({ message: `Company name already in use: ${existingCompanies}` });
     }
 
     // Vérifiez que le typeId est valide et obtenez l'ObjectId correspondant
     const type = await Type.findOne({ name: typeId });
     if (!type) {
-      return res.status(400).json({
-        message: "Type of the society can only take Supplier or Client",
-      });
+      return res.status(400).json({ message: "Type of the society can only take Supplier or Client" });
     }
 
     // Créez l'entreprise en utilisant l'ObjectId trouvé pour typeId
@@ -152,33 +104,30 @@ const postCompanies = async (req, res) => {
       name,
       vat,
       country,
-      typeId: type._id, // Utilisation de l'ObjectId du type trouvé
+      typeId: type._id // Utilisation de l'ObjectId du type trouvé
     });
 
     await companies.save(); // Sauvegarder l'entreprise
 
     // Récupérer l'entreprise sauvegardée avec le typeId populé
-    const savedCompany = await Companies.findById(companies._id).populate(
-      "typeId",
-      "name"
-    );
-
-    return res.status(201).json({
-      message: "Country is valid and data saved",
-      company: savedCompany,
-    });
+    const savedCompany = await Companies.findById(companies._id).populate('typeId', 'name');
+    
+    return res.status(201).json({ message: "Country is valid and data saved", company: savedCompany });
   } catch (err) {
     res.status(500).json({ message: `SERVER ERROR: ${err.message}` });
   }
 };
 
+
 const deleteCompany = async (req, res) => {
   const identifier = req.params.identifier;
 
   if (!identifier) {
-    return res.status(400).json({
-      message: "The identifier of the company to delete is not provided.",
-    });
+    return res
+      .status(400)
+      .json({
+        message: "The identifier of the company to delete is not provided.",
+      });
   }
 
   try {
@@ -253,11 +202,7 @@ const updateCompany = async (req, res) => {
     }
 
     // Mettre à jour la compagnie
-    const updatedCompany = await Companies.findByIdAndUpdate(
-      id,
-      { name: name, updatedOn: new Date() },
-      { new: true }
-    );
+    const updatedCompany = await Companies.findByIdAndUpdate(id,{ name: name, updatedOn: new Date() }, { new: true });
     if (!updatedCompany) {
       return res.status(404).json({ message: "Company ID not found" });
     }
@@ -269,12 +214,4 @@ const updateCompany = async (req, res) => {
   }
 };
 
-export {
-  getCompanies,
-  getCompaniesById,
-  getPaginatedCompanies,
-  getLatestCompanies,
-  postCompanies,
-  deleteCompany,
-  updateCompany,
-};
+export { getCompanies, getCompaniesById, getPaginatedCompanies ,getLatestCompanies, postCompanies, deleteCompany, updateCompany };
