@@ -157,7 +157,8 @@ function TemplatePages() {
     }
   };
 
-  const handleNextPage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const handleNextPage = (event: any) => {
     if (page < defineNbrPage()) {
       event.preventDefault();
       const nextPage = page + 1;
