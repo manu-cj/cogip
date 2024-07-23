@@ -956,6 +956,20 @@ main .main-content th {
   background-color: #f4d03f;
   font-weight: bold;
 }
+main .main-content .withArrow {
+  position: relative;
+  cursor: pointer;
+}
+main .main-content .withArrow img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease-in-out;
+}
+main .main-content .withArrow .sorted {
+  transform: rotate(180deg) translateY(50%);
+}
 main .main-content tr:nth-child(even) {
   background-color: #f2f2f2;
 }
