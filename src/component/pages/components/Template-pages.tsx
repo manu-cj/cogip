@@ -18,6 +18,8 @@ function TemplatePages() {
   const nbrContactFromURL = parseInt(pathSegments[2], 10) || 10;
   const pageFromURL = parseInt(pathSegments[3], 10) || 1;
 
+  // Ne pas enlever le commentaire en dessous il permet juste de ne plus afficher la ligne suivante comme une erreur
+// eslint-disable-next-line @typescript-eslint/no-unused-vars 
   const [nbrContact, setNbrContact] = useState(nbrContactFromURL);
   const [page, setPage] = useState(pageFromURL);
   const { contacts, loading, nbrPageContact } = useAPI(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}`);

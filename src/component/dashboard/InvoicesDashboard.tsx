@@ -161,7 +161,7 @@ function InvoicesDashboard() {
                     <hr />
                     <Notification notification={notification} />
                     <form action="LA ROUTE DES BACKENDS" method="post" onSubmit={handleSubmit}>
-                        <input type="text" name='reference' id='reference' placeholder='Reference' required onChange={handleChange} style={formStyles.reference}/>
+                        <input type="text" name='reference' id='reference' placeholder='F20220815-003' required onChange={handleChange} style={formStyles.reference}/>
                         <input type="date" name='dueDate' id='dueDate' placeholder='due date' required onChange={handleChange} style={formStyles.dueDate}/>
                         {/* <input type="text" name='price' id='price' placeholder='Price' required onChange={handleChange} style={formStyles.price}/> */}
                         <select name="companyId" id="companyId" style={formStyles.company} className={companyClassName} value={companyValue} onChange={handleCompanyChange}>
