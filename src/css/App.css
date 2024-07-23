@@ -888,10 +888,20 @@ main {
   min-height: 100vh;
 }
 main .main__title {
-  font-size: 60px;
+  font-size: 30px;
   font-weight: 900;
   align-self: flex-start;
   margin-left: 100px;
+}
+@media only screen and (min-width: 500px) {
+  main .main__title {
+    font-size: 40px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  main .main__title {
+    font-size: 60px;
+  }
 }
 main .main__title::after {
   content: "";
