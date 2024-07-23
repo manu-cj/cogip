@@ -1,10 +1,32 @@
 import img_dashboard from '../../../../public/assets/img/img_dashboard.svg';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate  } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 function Header({firstName}: {firstName: string | null}) {
+    const navigate = useNavigate ();
+
+    const getCookie = (name: string): string | null => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) {
+        return parts.pop()?.split(';').shift() || null;
+      }
+      return null;
+    };
+  
+    useEffect(() => {
+        if (!getCookie('lastName')) {
+          navigate('/');
+        }
+      },);
+
     const location = useLocation()
     const ariane = location.pathname
     const newPath = ariane.replace("/", "");
+
+    
+      
 
     return (
         <div className='dashboard-header'>
