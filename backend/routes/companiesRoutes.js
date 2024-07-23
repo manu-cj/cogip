@@ -10,8 +10,6 @@ import {
   updateCompany,
 } from "./../controllers/companiesController.js";
 
-import authorize from './../controllers/middleware/rolepermission.js'
-
 // GET ROUTES
 router.get("/", getCompanies);
 router.get("/latest", getLatestCompanies);
