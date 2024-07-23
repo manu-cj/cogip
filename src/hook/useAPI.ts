@@ -84,7 +84,7 @@ export default function useAPI(URL : string) {
                   setStats(data);
                 } else if (responseType === 'invoices') {
                   const data: Invoices = await response.json();
-                  setInvoices(data.pageResults);
+                  setInvoices(data.sortedResults);
                   setNbrPageInvoice(data.totalPages)
                 } else if (responseType ==="companies") {
                   const data: Companies = await response.json();

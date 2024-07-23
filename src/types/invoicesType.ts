@@ -16,7 +16,7 @@ export type Invoice = {
 export type Invoices = {
     totalResults: number;
     totalPages: number;
-    pageResults: Invoice[];
+    sortedResults: Invoice[];
 };
 
 export type InvoicesLatest = {

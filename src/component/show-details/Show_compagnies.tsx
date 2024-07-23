@@ -43,9 +43,9 @@ function Show_compagnies() {
             <h2>{company.name}</h2>
             <div className="show-companies__details">
               <p>Company: <span>{company.name}</span></p>
-              <p>Phone: <span>{company.vat}</span></p>
+              <p>TVA: <span>{company.vat}</span></p>
               <p>Mail: <span>{company.country}</span></p>
-              <p>Type: <span>{company.type}</span></p>
+              <p>Type: <span>{company.typeId?.name}</span></p>
             </div>
           </div>
           <hr />
@@ -79,9 +79,9 @@ function Show_compagnies() {
                     {invoiceCompany.map((invoice) => (
                       <tr key={invoice._id}>
                         <td>{invoice.reference}</td>
-                        <td>{invoice.createdAt}</td>
+                        <td>{invoice.createdAt.slice(0,10)}</td>
                         <td>{invoice.companyId?.name}</td>
-                        <td>{invoice.createdAt}</td>
+                        <td>{invoice.createdAt.slice(0,10)}</td>
                       </tr>
                     ))}
                   </tbody>
