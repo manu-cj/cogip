@@ -9,13 +9,13 @@ import { InvoiceCompany, InvoicesListCompany } from "../types/invoicesCompany";
 function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany'|'contactLastest'| 'invoicesLatest'| 'companiesLatest' {
   if (/\/api\/contacts\/[a-f0-9]+$/.test(URL)) {
       return 'contact';
-  } else if (/\/contacts\/pagination\/\d+\/\d+$/.test(URL)) {
+  } else if (/\/contacts\/pagination\/\d+\/\d+\/?(\?.*)?$/.test(URL)) {
       return 'contacts';
   } else if (/\/api\/stats$/.test(URL)){
     return 'stats';
-  } else if (/\/api\/invoices\/pagination\/\d+\/\d+$/.test(URL)) {
+  } else if (/\/api\/invoices\/pagination\/\d+\/\d+\/?(\?.*)?$/.test(URL)) {
     return 'invoices';
-  } else if (/\/api\/companies\/pagination\/\d+\/\d+$/.test(URL)) {
+  } else if (/\/api\/companies\/pagination\/\d+\/\d+\/?(\?.*)?$/.test(URL)) {
     return 'companies';
   } else if (/\/api\/companies\/[a-f0-9]+$/.test(URL)){
     return 'company';
