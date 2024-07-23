@@ -110,8 +110,8 @@ export default function useAPI(URL : string) {
                   setCompaniesLatest(data.companies);
                 }
               setLoading(false);
-              /* eslint-disable @typescript-eslint/no-explicit-any */
-            } catch (error : any) {
+              
+            } catch (error : Error) {
               console.log(error.message);
               setError(error.message);
               setLoading(false);
