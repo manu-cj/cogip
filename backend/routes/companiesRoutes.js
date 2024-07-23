@@ -13,17 +13,17 @@ import {
 import authorize from './../controllers/middleware/rolepermission.js'
 
 // GET ROUTES
-router.get("/", authorize('get'),getCompanies);
-router.get("/latest", authorize('get'),getLatestCompanies);
-router.get("/:id", authorize('get'),getCompaniesById);
-router.get("/pagination/:nbPerPage/:page?", authorize('get'),getPaginatedCompanies);
+router.get("/", getCompanies);
+router.get("/latest", getLatestCompanies);
+router.get("/:id", getCompaniesById);
+router.get("/pagination/:nbPerPage/:page?", getPaginatedCompanies);
 
 //POST ROUTES
-router.post("/", authorize('post'),postCompanies);
+router.post("/", postCompanies);
 
 //DELETE ROUTES
-router.delete("/:identifier", authorize('delete'),deleteCompany);
+router.delete("/:identifier", deleteCompany);
 
 //Update ROUTES
-router.patch("/:id", authorize('patch'),updateCompany);
+router.patch("/:id", updateCompany);
 export default router;
