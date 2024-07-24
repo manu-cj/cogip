@@ -14,6 +14,25 @@ function Header({firstName}: {firstName: string | null}) {
       }
       return null;
     };
+
+    const getPermissions = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/cookie', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(getCookie('roleId'))
+        });
+        const result = await response.json();
+
+        console.log(result);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    getPermissions();
   
     useEffect(() => {
         if (!getCookie('lastName')) {

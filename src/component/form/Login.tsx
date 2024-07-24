@@ -59,6 +59,8 @@ function Login() {
         document.cookie = `createdAt=${result.userObject.createdAt}; expires=${now.toUTCString()}; path=/`;
         document.cookie = `updateOn=${result.userObject.updatedOn}; expires=${now.toUTCString()}; path=/`;
         document.cookie = `imageName=${result.userObject.image.filename}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `roleId=${result.userObject.role._id}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `roleName=${result.userObject.role.name}; expires=${now.toUTCString()}; path=/`;
 
 
         console.log(`Cookies set: ${document.cookie}`);
