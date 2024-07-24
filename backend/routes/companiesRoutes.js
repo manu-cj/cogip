@@ -10,6 +10,7 @@ import {
   updateCompany,
 } from "./../controllers/companiesController.js";
 
+
 // GET ROUTES
 router.get("/", getCompanies);
 router.get("/latest", getLatestCompanies);
