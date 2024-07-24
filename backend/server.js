@@ -34,7 +34,7 @@ app.use(cookieParser());
 
 // Middleware CORS pour autoriser les requêtes cross-origin
 app.use(cors({
-  origin: 'http://localhost:3000', // Remplacez par l'URL de votre frontend
+  origin: 'http://localhost:5173', // Remplacez par l'URL de votre frontend
   credentials: true
 }));
 
