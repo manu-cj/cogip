@@ -78,7 +78,7 @@ Example :
 | `/companies`            | POST   | `name` (str), `country` (str), `vat` (str), `typeId`(str)      | Creates a new company              |
 | `/companies`            | PATCH  | `name` (str)                                     | Updates company details by ID      |
 | `/companies/:identifier`| DELETE | None                                             | Deletes company by ID or name      |
-| `/companies/pagination/:nbPerPage/:page?` | GET    | None                                                                    | Returns paginated invoices. See below for query parameters.                                   |
+| `/companies/pagination/:nbPerPage/:page?` | GET    | None                                                                    | Returns paginated companies. See below for query parameters.                                   |
 
 
 #### `/companies/pagination/:nbPerPage/:page?` Query Parameters
