@@ -141,11 +141,21 @@ const getLatestInvoices = async (req, res) => {
 };
 
 const getInvoicesByCompany = async (req, res) => {
+  const id = req.params.companyId;
   try {
-    const invoices = await Invoice.find().populate("companyId", "name");
+    const companyValid = await Companies.findById(id);
+    if (!companyValid) {
+      return res
+        .status(404)
+        .json({ message: "Company not found. Make sure to send a valid ID." });
+    }
+    const invoices = await Invoice.find({ companyId: id }).populate(
+      "companyId",
+      "name"
+    );
     return res.status(200).json({ invoices });
   } catch (error) {
-    res.status(500).json({ message: `SERVER ERROR: ${error.message}` });
+    res.status(500).json({ message: `SERVER ERROR : ${error.message}` });
   }
 };
 
