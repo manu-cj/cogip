@@ -9,23 +9,23 @@ import {
   deleteCompany,
   updateCompany,
 } from "./../controllers/companiesController.js";
-import { checkPermission } from './../middleware/checkPermission.js';
+
 
 
 // GET ROUTES
 
 // Routes protégées par rôle
-router.get("/", checkPermission('user', 'admin', 'superAdmin'), getCompanies);
-router.get("/latest", checkPermission('user', 'admin', 'superAdmin'), getLatestCompanies);
-router.get("/:id", checkPermission('user', 'admin', 'superAdmin'), getCompaniesById);
-router.get("/pagination/:nbPerPage/:page?", checkPermission('user', 'admin', 'superAdmin'), getPaginatedCompanies);
+router.get("/", getCompanies);
+router.get("/latest", getLatestCompanies);
+router.get("/:id", getCompaniesById);
+router.get("/pagination/:nbPerPage/:page?", getPaginatedCompanies);
 
 //POST ROUTES
-router.post("/", checkPermission('admin','superadmin','post'),postCompanies);
+router.post("/", postCompanies);
 
 //DELETE ROUTES
-router.delete("/:identifier", checkPermission('superadmin','delete'),deleteCompany);
+router.delete("/:identifier", deleteCompany);
 
 //Update ROUTES
-router.patch("/:id", checkPermission('admin','superadmin','post'),updateCompany);
+router.patch("/:id",updateCompany);
 export default router;
