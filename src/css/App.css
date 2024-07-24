@@ -1301,6 +1301,26 @@ form input {
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+  position: relative;
+}
+.navBarLat .navBarLat__logo button {
+  display: none;
+  position: absolute;
+  font-size: 8px;
+  right: 0;
+  background-color: var(--text);
+  border: none;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.navBarLat .navBarLat__logo button:hover {
+  background-color: #96C1D6;
+  transform: scale(1.1);
+}
+.navBarLat .navBarLat__logo .isHovered {
+  display: block;
 }
 .navBarLat .navBarLat__logo img {
   width: 105px;
@@ -1466,6 +1486,25 @@ form input {
   }
 }
 
+.modalImg {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid var(--borderDashBoardLight);
+  padding: 50px;
+}
+
+.modalhidden {
+  display: none;
+}
+
+.modalvisible {
+  display: block;
+}
+
 .dashBoard__content__body {
   display: flex;
   justify-content: space-around;
@@ -1610,6 +1649,7 @@ form input {
 .dashBoard {
   display: flex;
   width: 100%;
+  position: relative;
 }
 .dashBoard .dashBoard__content {
   width: 100%;
@@ -1962,4 +2002,4 @@ body {
   overflow-y: scroll;
   font-family: "Inter", sans-serif;
   color: black;
-}/*# sourceMappingURL=App.css.map */
+}
