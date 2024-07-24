@@ -20,6 +20,7 @@ import InvoicesDashboard from './component/dashboard/InvoicesDashboard.tsx';
 import CompaniesDashboard from './component/dashboard/CompaniesDashboard.tsx';
 import ContactDashboard from './component/dashboard/ContactDashboard.tsx';
 import Logout from './component/pages/Logout.tsx';
+import ProfileSettings from './component/dashboard/ProfileSettings.tsx';
 
 
 
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard/contact",
     element: <ContactDashboard/>
+  },
+  {
+    path: "/dashboard/settings",
+    element: <ProfileSettings />
   }
 
 ]);
