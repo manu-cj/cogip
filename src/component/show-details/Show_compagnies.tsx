@@ -44,7 +44,7 @@ function Show_compagnies() {
             <div className="show-companies__details">
               <p>Company: <span>{company.name}</span></p>
               <p>TVA: <span>{company.vat}</span></p>
-              <p>Mail: <span>{company.country}</span></p>
+              <p>Country: <span>{company.country}</span></p>
               <p>Type: <span>{company.typeId?.name}</span></p>
             </div>
           </div>

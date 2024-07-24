@@ -10,9 +10,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
+import { useState } from 'react';
 
 
-function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps) {
+function NavBarLat({img, firstName, lastName, className, toggle, changeImg}: NavBarLatProps) {
+
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    }
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    }
 
     const location = useLocation();
     const ariane = location.pathname
@@ -21,7 +32,8 @@ function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps
             
             <aside className={className}>
                 <img src={croix} alt="Close" className='close' onClick={toggle}/>
-                <div className='navBarLat__logo'>
+                <div className='navBarLat__logo' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                    <button className={isHovered ? 'isHovered' : ''} onClick={changeImg}>Change image</button>
                     <img src={`./../../../../public/assets/img/people/users/`+img} alt={firstName + " " + lastName} />
                     <p>{firstName}</p>
                     <p>{lastName}</p>
@@ -36,8 +48,7 @@ function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps
                     </ul>
                 </div>
                 <div className='navBarLat__logout'>
-                    <Link to={"/dashboard/settings"}><img src={`./../../../../public/assets/img/people/users/`+img} alt={firstName + " " + lastName} /></Link>
-                    <Link to={"/dashboard/settings"}>Profile settings</Link>
+                    <img src={`./../../../../public/assets/img/people/users/`+img} alt={firstName + " " + lastName} />
                     <Link to={"/logout"}>Logout</Link>
                 </div>
             </aside>

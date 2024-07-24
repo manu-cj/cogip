@@ -5,9 +5,25 @@ import NavBarLat from "./navigation/NavBarLat";
 import { CompanyForm } from "../../types/types";
 import Hamburger from "./navigation/Hamburger";
 import Notification from "../pages/components/Notification";
+import { getCookie } from '../../service/getCookies';
+import useAPI from "../../hook/useAPI";
 
 function CompaniesDashboard() {
   const [isOpen, setIsOpen] = useState(true);
+  const [isModal, setIsModal] = useState(false);
+  const { users } = useAPI(`http://localhost:3000/api/users/${getCookie('id')}`);
+  const [imgUsers, setImgUsers] = useState("default.jpg");
+
+    useEffect(() => {
+        if (users && users.image) {
+            setImgUsers(users.image.filename);
+        }
+    }, [users]);
+
+
+  const handleChangeImg = () => {
+        setIsModal(!isModal);
+    }
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -145,14 +161,6 @@ function CompaniesDashboard() {
     };
   }, []);
 
-  const getCookie = (name: string): string | null => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      return parts.pop()?.split(';').shift() || null;
-    }
-    return null;
-  };
 
   
 
@@ -162,7 +170,7 @@ function CompaniesDashboard() {
         className={`hamburger ${isOpen ? "" : "hidden"}`}
         toggle={handleClick}
       />
-      <NavBarLat img={getCookie("imageName")} firstName={getCookie("firstName")}  lastName={getCookie("lastName")} className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick}/>
+      <NavBarLat img={imgUsers ||"default.jpg"} firstName={getCookie("firstName")}  lastName={getCookie("lastName")} className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick} changeImg={handleChangeImg}/>
       <div className="dashBoard__content">
       <Header firstName={getCookie("firstName")}/>
         <div className="dashBoard__companies">
