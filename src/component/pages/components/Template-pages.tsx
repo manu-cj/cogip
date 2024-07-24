@@ -52,6 +52,9 @@ function TemplatePages() {
   }
 
   useEffect(() => {
+    setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}`)
+    setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}`)
+    setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}`)
     navigate(`/${definePath()}/${nbrContact}/${page}`);
   }, [page, nbrContact, navigate]);
 

@@ -111,7 +111,7 @@ export default function useAPI(URL : string) {
                 }
               setLoading(false);
               
-            } catch (error : Error) {
+            } catch (error : any) {
               console.log(error.message);
               setError(error.message);
               setLoading(false);
