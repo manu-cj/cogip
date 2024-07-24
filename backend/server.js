@@ -16,8 +16,15 @@ dbConnect();
 const app = express();
 const port = 3000;
 
+const corsOptions = {
+  origin: 'http://localhost:5173', // Remplacez par l'origine de votre frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Méthodes autorisées
+  allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
+  credentials: true // Pour autoriser les cookies
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser())
 
 app.use("/api/users", userRoutes);
