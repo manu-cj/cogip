@@ -1,6 +1,6 @@
 import Footer from "../main/Footer";
 import Header from "../pages/components/Header";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Notification from "../pages/components/Notification";
 import { useNavigate  } from 'react-router-dom';
 
@@ -83,11 +83,29 @@ function Login() {
 
   const navigate = useNavigate ();
 
-  useEffect(() => {
-    if (getCookie('lastName')) {
-      navigate('/');
+
+  const isLoggin = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/users/${getCookie('id')}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+
+      const result = await response.json();
+      console.log(result);
+      
+      if (result.lastName === "") {
+        navigate('/');
+        
+        return true
+      }
+    } catch (error) {
+      console.error(error);
     }
-  },);
+  }
+  isLoggin
   
   return (
     <>

@@ -1,6 +1,6 @@
 import img_dashboard from '../../../../public/assets/img/img_dashboard.svg';
 import { useLocation, useNavigate  } from 'react-router-dom';
-import { useEffect } from 'react';
+
 
 
 function Header({firstName}: {firstName: string | null}) {
@@ -40,18 +40,34 @@ console.log(JSON.stringify(cookies));
     }
 
     getPermissions();
-  
-    useEffect(() => {
-        if (!getCookie('lastName')) {
-          navigate('/');
-        }
-      },);
 
     const location = useLocation()
     const ariane = location.pathname
     const newPath = ariane.replace("/", "");
 
-    
+    const isLoggin = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/users/${getCookie('id')}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
+  
+        const result = await response.json();
+        console.log(result);
+        
+        if (result.lastName === "") {
+          navigate('/');
+          
+          return true
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    isLoggin()
       
 
     return (
