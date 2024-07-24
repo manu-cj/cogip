@@ -14,7 +14,7 @@ function DashBoard() {
     const [isOpen, setIsOpen] = useState(true);
     const [isModal, setIsModal] = useState(false);
     const { users } = useAPI(`http://localhost:3000/api/users/${getCookie('id')}`);
-    const [imgUsers, setImgUsers] = useState("default");
+    const [imgUsers, setImgUsers] = useState("default.jpg");
 
     useEffect(() => {
         if (users && users.image) {

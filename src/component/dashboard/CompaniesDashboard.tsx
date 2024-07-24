@@ -12,6 +12,13 @@ function CompaniesDashboard() {
   const [isOpen, setIsOpen] = useState(true);
   const [isModal, setIsModal] = useState(false);
   const { users } = useAPI(`http://localhost:3000/api/users/${getCookie('id')}`);
+  const [imgUsers, setImgUsers] = useState("default.jpg");
+
+    useEffect(() => {
+        if (users && users.image) {
+            setImgUsers(users.image.filename);
+        }
+    }, [users]);
 
 
   const handleChangeImg = () => {
@@ -163,7 +170,7 @@ function CompaniesDashboard() {
         className={`hamburger ${isOpen ? "" : "hidden"}`}
         toggle={handleClick}
       />
-      <NavBarLat img={getCookie("image")} firstName={getCookie("firstName")}  lastName={getCookie("lastName")} className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick} changeImg={handleChangeImg}/>
+      <NavBarLat img={imgUsers ||"default.jpg"} firstName={getCookie("firstName")}  lastName={getCookie("lastName")} className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick} changeImg={handleChangeImg}/>
       <div className="dashBoard__content">
       <Header firstName={getCookie("firstName")}/>
         <div className="dashBoard__companies">
