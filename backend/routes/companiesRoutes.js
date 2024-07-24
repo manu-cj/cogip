@@ -11,7 +11,6 @@ import {
 } from "./../controllers/companiesController.js";
 
 
-
 // GET ROUTES
 
 // Routes protégées par rôle

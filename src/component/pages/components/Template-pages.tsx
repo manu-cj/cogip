@@ -14,13 +14,10 @@ function TemplatePages() {
   const ariane = location.pathname;
   const newPath: string = ariane.replace("/", "");
   let placeHolder: string = "";
-
   const pathSegments = ariane.split("/");
   const nbrContactFromURL = parseInt(pathSegments[2], 10) || 10;
   const pageFromURL = parseInt(pathSegments[3], 10) || 1;
 
-  // Ne pas enlever le commentaire en dessous il permet juste de ne plus afficher la ligne suivante comme une erreur
-// eslint-disable-next-line @typescript-eslint/no-unused-vars 
   const [nbrContact, setNbrContact] = useState(nbrContactFromURL);
   const [page, setPage] = useState(pageFromURL);
 
@@ -50,13 +47,14 @@ function TemplatePages() {
       throw new Error("Invalid URL format");
     }
   }
-
   useEffect(() => {
+    setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}`)
+    setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}`)
+    setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}`)
     navigate(`/${definePath()}/${nbrContact}/${page}`);
   }, [page, nbrContact, navigate]);
-
+  
   if (loading) return <p>Loading...</p>;
-
   const definePlaceHolder = () => {
     const path = definePath();
     switch (path) {
@@ -71,9 +69,7 @@ function TemplatePages() {
         break;
     }
   };
-
   definePlaceHolder();
-
   const defineTitre = () => {
     const path = definePath();
     switch (path) {
@@ -200,7 +196,6 @@ function TemplatePages() {
         return <h2>Oops, an error has occurred</h2>;
     }
   };
-/* eslint-disable @typescript-eslint/no-explicit-any */
   const handleNextPage = (event: any) => {
     if (page < defineNbrPage()) {
       event.preventDefault();
@@ -208,7 +203,6 @@ function TemplatePages() {
       setPage(nextPage);
     }
   }
-/* eslint-disable @typescript-eslint/no-explicit-any */
   const handlePreviousPage = (event :any ) => {
     event.preventDefault();
     if (page > 1) {
@@ -216,7 +210,6 @@ function TemplatePages() {
       setPage(prevPage);
     }
   }
-
   const handleClick = (event: any) => {
     event.preventDefault();
     const pageNumber = parseInt(event.target.textContent, 10);
@@ -280,5 +273,4 @@ function TemplatePages() {
     </>
   );
 }
-
 export default TemplatePages;

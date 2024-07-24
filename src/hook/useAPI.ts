@@ -5,7 +5,6 @@ import { Invoice, Invoices, InvoicesLatest } from "../types/invoicesType";
 import { Company, Companies, CompaniesLatest } from "../types/companiesType";
 import { ContactCompany, ContactsList } from "../types/contactCompany";
 import { InvoiceCompany, InvoicesListCompany } from "../types/invoicesCompany";
-
 function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany'|'contactLastest'| 'invoicesLatest'| 'companiesLatest' {
   if (/\/api\/contacts\/[a-f0-9]+$/.test(URL)) {
       return 'contact';
@@ -34,7 +33,6 @@ function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoic
     throw new Error("Invalid URL format");
   }
 }
-
 export default function useAPI(URL : string) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -53,7 +51,6 @@ export default function useAPI(URL : string) {
   const [invoiceLatest, setInvoiceLatest] = useState<Invoice[]>([]);
   const [companiesLatest, setCompaniesLatest] = useState<Company[]>([]);
     
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -69,9 +66,7 @@ export default function useAPI(URL : string) {
               if (!response.ok) {
                 throw new Error('Failed to fetch data');
               }
-
               const responseType = getResponseType(URL);
-
                 if (responseType === 'contact') {
                     const data: Contact = await response.json();
                     setContact(data);
@@ -110,8 +105,7 @@ export default function useAPI(URL : string) {
                   setCompaniesLatest(data.companies);
                 }
               setLoading(false);
-              
-            } catch (error : Error) {
+            } catch (error : any) {
               console.log(error.message);
               setError(error.message);
               setLoading(false);
@@ -120,7 +114,5 @@ export default function useAPI(URL : string) {
       
           fetchData();
         }, [URL]);
-
     return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies, company, contactCompany, invoiceCompany, contactLatest, invoiceLatest, companiesLatest };
-
 }
