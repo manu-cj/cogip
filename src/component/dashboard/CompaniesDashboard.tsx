@@ -58,7 +58,7 @@ function CompaniesDashboard() {
 
         setNotification(result.message);
 
-        if (result.message == "Contact successfully created") {
+        if (result.message == "Country is valid and data saved") {
           // Réinitialisation du formulaire après succès
           setFormData({
             name: "",
@@ -182,6 +182,7 @@ function CompaniesDashboard() {
               required
               onChange={handleChange}
               style={formStyles.name}
+              value={formData.name}
             />
             <input
               type="text"
@@ -191,6 +192,7 @@ function CompaniesDashboard() {
               required
               onChange={handleChange}
               style={formStyles.vat}
+              value={formData.vat}
             />
             <input
               type="text"
@@ -200,6 +202,7 @@ function CompaniesDashboard() {
               required
               onChange={handleChange}
               style={formStyles.country}
+              value={formData.country}
             />
             <select
               name="typeId"
