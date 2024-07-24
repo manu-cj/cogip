@@ -8,7 +8,8 @@ const getCookie = (req ,res) => {
     console.log(cookies);
 
     // Par exemple, récupérer l'ID de l'utilisateur à partir du cookie
-    const userId = cookies.id;
+    const name = cookies.name;
+    const roleId = cookies.roleId;
     console.log(`User ID: ${userId}`);
 
     res.send('Cookies are logged in the console');
@@ -22,4 +23,7 @@ const getCookie = (req ,res) => {
     // }
   };
 
-  export {getCookie};
+  const postCookie = (req, res) =>{
+
+  }
+  export {getCookie, postCookie};

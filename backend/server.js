@@ -16,16 +16,27 @@ dbConnect();
 const app = express();
 const port = 3000;
 
-const corsOptions = {
-  origin: 'http://localhost:5173', // Remplacez par l'origine de votre frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Méthodes autorisées
-  allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
-  credentials: true // Pour autoriser les cookies
-};
+// const corsOptions = {
+//   origin: 'http://localhost:5173', // Remplacez par l'origine de votre frontend
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Méthodes autorisées
+//   allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
+//   credentials: true // Pour autoriser les cookies
+// };
 
+// Middleware pour analyser le corps de la requête JSON
 app.use(express.json());
-app.use(cors(corsOptions));
-app.use(cookieParser())
+
+// Middleware pour analyser les données de formulaire URL-encodées
+app.use(express.urlencoded({ extended: true }));
+
+// Middleware pour gérer les cookies
+app.use(cookieParser());
+
+// Middleware CORS pour autoriser les requêtes cross-origin
+app.use(cors({
+  origin: 'http://localhost:3000', // Remplacez par l'URL de votre frontend
+  credentials: true
+}));
 
 app.use("/api/users", userRoutes);
 app.use("/api/contacts", contactRoutes);
