@@ -105,6 +105,7 @@ export default function useAPI(URL : string) {
                   setCompaniesLatest(data.companies);
                 }
               setLoading(false);
+              
             } catch (error : any) {
               console.log(error.message);
               setError(error.message);
