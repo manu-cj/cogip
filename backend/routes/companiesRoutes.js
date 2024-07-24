@@ -12,6 +12,8 @@ import {
 
 
 // GET ROUTES
+
+// Routes protégées par rôle
 router.get("/", getCompanies);
 router.get("/latest", getLatestCompanies);
 router.get("/:id", getCompaniesById);
@@ -24,5 +26,5 @@ router.post("/", postCompanies);
 router.delete("/:identifier", deleteCompany);
 
 //Update ROUTES
-router.patch("/:id", updateCompany);
+router.patch("/:id",updateCompany);
 export default router;

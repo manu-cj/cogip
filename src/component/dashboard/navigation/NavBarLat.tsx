@@ -36,7 +36,8 @@ function NavBarLat({img, firstName, lastName, className, toggle}: NavBarLatProps
                     </ul>
                 </div>
                 <div className='navBarLat__logout'>
-                    <img src={`./../../../../public/assets/img/people/users/`+img} alt={firstName + " " + lastName} />
+                    <Link to={"/dashboard/settings"}><img src={`./../../../../public/assets/img/people/users/`+img} alt={firstName + " " + lastName} /></Link>
+                    <Link to={"/dashboard/settings"}>Profile settings</Link>
                     <Link to={"/logout"}>Logout</Link>
                 </div>
             </aside>
