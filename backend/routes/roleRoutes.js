@@ -1,7 +1,9 @@
 import express from "express";
-import { createRole } from "./../controllers/roleController.js";
+import { createRole, getRoles } from "./../controllers/roleController.js";
 
 const router = express.Router();
+
+router.get("/", getRoles)
 
 router.post("/", createRole);
 

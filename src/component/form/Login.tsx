@@ -1,7 +1,8 @@
 import Footer from "../main/Footer";
 import Header from "../pages/components/Header";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Notification from "../pages/components/Notification";
+import { useNavigate  } from 'react-router-dom';
 
 
 interface ILogin {
@@ -69,6 +70,22 @@ function Login() {
     }
   }; 
 
+  const getCookie = (name: string): string | null => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop()?.split(';').shift() || null;
+    }
+    return null;
+  };
+
+  const navigate = useNavigate ();
+
+  useEffect(() => {
+    if (getCookie('lastName')) {
+      navigate('/');
+    }
+  },);
   
   return (
     <>
@@ -76,8 +93,8 @@ function Login() {
       
       <main>
       <Notification notification={notification} />
-        <form action="http://localhost:3000/api/users/login" method="post" onSubmit={handleSubmit}>
-            <h2>Login</h2>
+      <h2>Login</h2>
+        <form action="http://localhost:3000/api/users/login" method="post" onSubmit={handleSubmit} className="logForm">
           <label htmlFor="mail">Email</label>
           <input type="email" name="email" id="mail" onChange={handleChange} />
           <label htmlFor="password">password</label>

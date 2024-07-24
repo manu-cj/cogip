@@ -9,13 +9,13 @@ import { InvoiceCompany, InvoicesListCompany } from "../types/invoicesCompany";
 function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany'|'contactLastest'| 'invoicesLatest'| 'companiesLatest' {
   if (/\/api\/contacts\/[a-f0-9]+$/.test(URL)) {
       return 'contact';
-  } else if (/\/contacts\/pagination\/\d+\/\d+$/.test(URL)) {
+  } else if (/\/contacts\/pagination\/\d+\/\d+\/?(\?.*)?$/.test(URL)) {
       return 'contacts';
   } else if (/\/api\/stats$/.test(URL)){
     return 'stats';
-  } else if (/\/api\/invoices\/pagination\/\d+\/\d+$/.test(URL)) {
+  } else if (/\/api\/invoices\/pagination\/\d+\/\d+\/?(\?.*)?$/.test(URL)) {
     return 'invoices';
-  } else if (/\/api\/companies\/pagination\/\d+\/\d+$/.test(URL)) {
+  } else if (/\/api\/companies\/pagination\/\d+\/\d+\/?(\?.*)?$/.test(URL)) {
     return 'companies';
   } else if (/\/api\/companies\/[a-f0-9]+$/.test(URL)){
     return 'company';
@@ -84,7 +84,7 @@ export default function useAPI(URL : string) {
                   setStats(data);
                 } else if (responseType === 'invoices') {
                   const data: Invoices = await response.json();
-                  setInvoices(data.pageResults);
+                  setInvoices(data.sortedResults);
                   setNbrPageInvoice(data.totalPages)
                 } else if (responseType ==="companies") {
                   const data: Companies = await response.json();
@@ -110,7 +110,8 @@ export default function useAPI(URL : string) {
                   setCompaniesLatest(data.companies);
                 }
               setLoading(false);
-            } catch (error : any) {
+              
+            } catch (error : Error) {
               console.log(error.message);
               setError(error.message);
               setLoading(false);
