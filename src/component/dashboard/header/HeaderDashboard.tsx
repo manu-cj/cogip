@@ -30,7 +30,7 @@ console.log(JSON.stringify(cookies));
           },
           body: JSON.stringify(cookies)
         });
-        console.log(response.headers.get('Content-Type'))
+        
         const result = await response.json();
     
         console.log(result);
