@@ -8,6 +8,10 @@ import Notification from "../pages/components/Notification";
 
 function CompaniesDashboard() {
   const [isOpen, setIsOpen] = useState(true);
+  const [isModal, setIsModal] = useState(false);
+  const handleChangeImg = () => {
+        setIsModal(!isModal);
+    }
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -162,7 +166,7 @@ function CompaniesDashboard() {
         className={`hamburger ${isOpen ? "" : "hidden"}`}
         toggle={handleClick}
       />
-      <NavBarLat img={getCookie("imageName")} firstName={getCookie("firstName")}  lastName={getCookie("lastName")} className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick}/>
+      <NavBarLat img={getCookie("imageName")} firstName={getCookie("firstName")}  lastName={getCookie("lastName")} className={`navBarLat ${isOpen ? 'hidden' : 'visible'}`} toggle={handleClick} changeImg={handleChangeImg}/>
       <div className="dashBoard__content">
       <Header firstName={getCookie("firstName")}/>
         <div className="dashBoard__companies">

@@ -5,7 +5,9 @@ import { Invoice, Invoices, InvoicesLatest } from "../types/invoicesType";
 import { Company, Companies, CompaniesLatest } from "../types/companiesType";
 import { ContactCompany, ContactsList } from "../types/contactCompany";
 import { InvoiceCompany, InvoicesListCompany } from "../types/invoicesCompany";
-function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany'|'contactLastest'| 'invoicesLatest'| 'companiesLatest' {
+import { User } from "../types/usersType";
+
+function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoices'| 'companies'| 'company'| 'contactCompany'| 'invoicesCompany'|'contactLastest'| 'invoicesLatest'| 'companiesLatest' | 'users' {
   if (/\/api\/contacts\/[a-f0-9]+$/.test(URL)) {
       return 'contact';
   } else if (/\/contacts\/pagination\/\d+\/\d+\/?(\?.*)?$/.test(URL)) {
@@ -28,6 +30,8 @@ function getResponseType(URL: string): 'contact' | 'contacts'| 'stats' | 'invoic
     return 'invoicesLatest'
   } else if(/\/api\/companies\/latest$/.test(URL)){
     return 'companiesLatest'
+  } else if(/\/api\/users\/[a-f0-9]+$/.test(URL)){
+  return 'users';
   }
   else {
     throw new Error("Invalid URL format");
@@ -50,7 +54,8 @@ export default function useAPI(URL : string) {
   const [contactLatest, setContactLatest] = useState<Contact[]>([]);
   const [invoiceLatest, setInvoiceLatest] = useState<Invoice[]>([]);
   const [companiesLatest, setCompaniesLatest] = useState<Company[]>([]);
-    
+  const [users, setUsers] = useState<User>({} as User);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -103,6 +108,11 @@ export default function useAPI(URL : string) {
                 } else if(responseType==='companiesLatest'){
                   const data: CompaniesLatest = await response.json();
                   setCompaniesLatest(data.companies);
+                } else if(responseType==='users'){
+                  const data: User = await response.json();
+                  console.log(data);
+                  setUsers(data);
+                  console.log(users.image.path);
                 }
               setLoading(false);
               
@@ -115,5 +125,5 @@ export default function useAPI(URL : string) {
       
           fetchData();
         }, [URL]);
-    return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies, company, contactCompany, invoiceCompany, contactLatest, invoiceLatest, companiesLatest };
+    return { loading, error, contacts, contact, nbrPageContact, stats, invoices, nbrPageInvoice, companies, nbrPageCompanies, company, contactCompany, invoiceCompany, contactLatest, invoiceLatest, companiesLatest, users };
 }

@@ -1,9 +1,10 @@
 export interface NavBarLatProps {
-    img : string | null;
+    img : string;
     firstName: string | null;
     lastName: string | null;
     className : string;
     toggle : () => void;
+    changeImg : () => void;
 }
 
 interface Invoice {
