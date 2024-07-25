@@ -16,7 +16,7 @@ function NavBar() {
     }
     return null;
   };
-  const { users } = useAPI(`http://localhost:3000/api/users/${getCookie('id')}`);
+  const { users } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`);
     const [imgUsers, setImgUsers] = useState("default.jpg");
 
     useEffect(() => {
@@ -40,7 +40,7 @@ function NavBar() {
                 <div className="dashboardLinkDiv">
                   <Link to={"/dashboard"} className='dashboardLink'> Dashboard </Link>
                   <a href="/dashboard"><img
-                    src={`./../../../public/assets/img/people/users/${imgUsers}`}
+                    src={`./assets/img/people/users/${imgUsers}`}
                     alt="profil-picture"
                     className="pictureNav"
                   /></a>

@@ -6,7 +6,7 @@ import useAPI from "../../hook/useAPI";
 function Show_contact() {
 
   const { id } = useParams()
-  const { contact, error, loading } = useAPI(`http://localhost:3000/api/contacts/${id}`)
+  const { contact, error, loading } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/${id}`)
 
 
   if(loading) return <p>Loading...</p>
@@ -27,7 +27,7 @@ function Show_contact() {
             <p>Company: <span><Link to={`/show_companies/${contact.companyId._id}`}>{contact.companyId.name}</Link></span></p>
           </div>
         </div>
-          <img src={`./../../../public/assets/img/people/${contact.image.filename}`} alt={contact.name}/>
+          <img src={`./assets/img/people/${contact.image.filename}`} alt={contact.name}/>
       </main>
       <Footer/>
     </>

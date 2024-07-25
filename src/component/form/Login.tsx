@@ -86,7 +86,7 @@ function Login() {
 
   const isLoggin = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${getCookie('id')}`, {
+      const response = await fetch(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -114,7 +114,7 @@ function Login() {
       <main>
       <Notification notification={notification} />
       <h2>Login</h2>
-        <form action="http://localhost:3000/api/users/login" method="post" onSubmit={handleSubmit} className="logForm">
+        <form action="https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/users/login" method="post" onSubmit={handleSubmit} className="logForm">
           <label htmlFor="mail">Email</label>
           <input type="email" name="email" id="mail" onChange={handleChange} />
           <label htmlFor="password">password</label>

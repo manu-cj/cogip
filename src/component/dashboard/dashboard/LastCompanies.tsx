@@ -1,7 +1,7 @@
 import useAPI from "./../../../hook/useAPI";
 
 function LastCompanies() {
-    const { companiesLatest } = useAPI(`http://localhost:3000/api/companies/latest`);
+    const { companiesLatest } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/latest`);
 
     return (
         <div className='lastCompanies'>

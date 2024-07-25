@@ -21,16 +21,16 @@ function TemplatePages() {
   const [nbrContact, setNbrContact] = useState(nbrContactFromURL);
   const [page, setPage] = useState(pageFromURL);
 
-  const [URLContacts, setURLContacts]= useState(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}`)
+  const [URLContacts, setURLContacts]= useState(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/pagination/${nbrContact}/${page}`)
   const [isSortedContactsName, setIsSortedContactsName] = useState(false)
   const [isSortedContactsDate, setIsSortedContactsDate] = useState(false)
   const { contacts, loading, nbrPageContact } = useAPI(URLContacts);
 
-  const [URLInvoices, setURLInvoices] = useState(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}`)
+  const [URLInvoices, setURLInvoices] = useState(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/invoices/pagination/${nbrContact}/${page}`)
   const [isSortedInvoices, setIsSortedInvoices] = useState(false)
   const { invoices, nbrPageInvoice } = useAPI(URLInvoices);
 
-  const [URLCompanies, setURLCompanies] = useState(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}`)
+  const [URLCompanies, setURLCompanies] = useState(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/pagination/${nbrContact}/${page}`)
   const [isSortedCompaniesName, setIsSortedCompaniesName] = useState(false)
   const [isSortedCompaniesDate, setIsSortedCompaniesDate] = useState(false)
   const { companies, nbrPageCompanies } = useAPI(URLCompanies);
@@ -49,9 +49,9 @@ function TemplatePages() {
   }
   useEffect(() => {
     setNbrContact(parseInt(pathSegments[2], 10) || 10)
-    setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}`)
-    setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}`)
-    setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}`)
+    setURLContacts(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/pagination/${nbrContact}/${page}`)
+    setURLCompanies(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/pagination/${nbrContact}/${page}`)
+    setURLInvoices(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/invoices/pagination/${nbrContact}/${page}`)
     navigate(`/${definePath()}/${nbrContact}/${page}`);
   }, [page, nbrContact, navigate]);
   
@@ -84,33 +84,33 @@ function TemplatePages() {
   };
 
   const handleSortInvoices = () => {
-    setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}/?order=DESC`)
+    setURLInvoices(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/invoices/pagination/${nbrContact}/${page}/?order=DESC`)
     setIsSortedInvoices(!isSortedInvoices)
-    if(isSortedInvoices) setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}/?order=ASC`)
+    if(isSortedInvoices) setURLInvoices(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/invoices/pagination/${nbrContact}/${page}/?order=ASC`)
   }
 
   const handleSortContactsName = () => {
-    setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=name`)
+    setURLContacts(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=name`)
     setIsSortedContactsName(!isSortedContactsName)
-    if(isSortedContactsName) setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=name`)
+    if(isSortedContactsName) setURLContacts(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=name`)
   }
 
   const handleSortContactsDate = () => {
-    setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=createdAt`)
+    setURLContacts(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=createdAt`)
     setIsSortedContactsDate(!isSortedContactsDate)
-    if(isSortedContactsDate) setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=createdAt`)
+    if(isSortedContactsDate) setURLContacts(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=createdAt`)
   }
 
   const handleSortCompaniesName = () => {
-    setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=name`)
+    setURLCompanies(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=name`)
     setIsSortedCompaniesName(!isSortedCompaniesName)
-    if(isSortedCompaniesName) setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=name`)
+    if(isSortedCompaniesName) setURLCompanies(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=name`)
   }
 
   const handleSortCompaniesDate = () => {
-    setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=createdAt`)
+    setURLCompanies(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/pagination/${nbrContact}/${page}/?order=DESC&sortColumn=createdAt`)
     setIsSortedCompaniesDate(!isSortedCompaniesDate)
-    if(isSortedCompaniesDate) setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=createdAt`)
+    if(isSortedCompaniesDate) setURLCompanies(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/pagination/${nbrContact}/${page}/?order=ASC&sortColumn=createdAt`)
   }
 
 
@@ -239,13 +239,13 @@ function TemplatePages() {
     const path = definePath()
     switch (path) {
       case "companies":
-        setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        setURLCompanies(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
         break;
       case "contacts":
-        setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        setURLContacts(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
         break;
       case "invoices":
-        setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        setURLInvoices(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/invoices/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
         break;
     }
   }
