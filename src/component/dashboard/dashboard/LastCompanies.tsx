@@ -1,7 +1,7 @@
 import useAPI from "./../../../hook/useAPI";
 
 function LastCompanies() {
-    const { companiesLatest } = useAPI(`/api/companies/latest`);
+    const { companiesLatest } = useAPI(`https://cogip-plum.vercel.app/api/companies/latest`);
 
     return (
         <div className='lastCompanies'>

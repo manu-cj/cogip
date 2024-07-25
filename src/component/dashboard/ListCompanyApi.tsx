@@ -2,7 +2,7 @@ import { Company } from '../../types/companiesType';
 import { useState, useEffect } from 'react';
 
 function ListCompanyApi() {
-    const BASE_URL = '/api';
+    const BASE_URL = 'https://cogip-plum.vercel.app/api';
     const [companyData, setCompanyData] = useState<Company[]>([]);
 
       const getCompanies = async () => {

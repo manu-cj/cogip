@@ -115,7 +115,7 @@ const Register: React.FC = () => {
       validatePasswordRepeat(formData.password, formData.passwordRepeat)
     ) {
       try {
-        const response = await fetch("/api/users", {
+        const response = await fetch("https://cogip-plum.vercel.app/api/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

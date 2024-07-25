@@ -33,7 +33,7 @@ function ModalImg({ className, toggleImg, userId, onSuccess }: ModalImgProps) {
     formData.append('image', file);
 
     try {
-      const response = await fetch(`/api/images/users/${userId}`, {
+      const response = await fetch(`https://cogip-plum.vercel.app/api/images/users/${userId}`, {
         method: 'PATCH',
         body: formData
       });
