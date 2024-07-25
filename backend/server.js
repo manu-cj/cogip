@@ -36,7 +36,7 @@ const corsOptions = {
     const allowedOrigins = [
       'http://127.0.0.1:5173',
       'http://localhost:5173',
-      'https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app',
+      'https://cogip-ei4hyeq8d-manu-cjs-projects.vercel.app',
       'https://cogip-plum.vercel.app',
     ];
 
