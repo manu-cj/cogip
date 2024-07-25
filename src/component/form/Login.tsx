@@ -1,6 +1,6 @@
 import Footer from "../main/Footer";
 import Header from "../pages/components/Header";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Notification from "../pages/components/Notification";
 import { useNavigate  } from 'react-router-dom';
 
@@ -59,6 +59,8 @@ function Login() {
         document.cookie = `createdAt=${result.userObject.createdAt}; expires=${now.toUTCString()}; path=/`;
         document.cookie = `updateOn=${result.userObject.updatedOn}; expires=${now.toUTCString()}; path=/`;
         document.cookie = `imageName=${result.userObject.image.filename}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `roleId=${result.userObject.role._id}; expires=${now.toUTCString()}; path=/`;
+        document.cookie = `roleName=${result.userObject.role.name}; expires=${now.toUTCString()}; path=/`;
 
 
         console.log(`Cookies set: ${document.cookie}`);
@@ -81,11 +83,29 @@ function Login() {
 
   const navigate = useNavigate ();
 
-  useEffect(() => {
-    if (getCookie('lastName')) {
-      navigate('/');
+
+  const isLoggin = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/users/${getCookie('id')}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+
+      const result = await response.json();
+      console.log(result);
+      
+      if (result.lastName === "") {
+        navigate('/');
+        
+        return true
+      }
+    } catch (error) {
+      console.error(error);
     }
-  },);
+  }
+  isLoggin
   
   return (
     <>

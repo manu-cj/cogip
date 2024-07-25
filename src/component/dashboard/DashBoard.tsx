@@ -28,10 +28,27 @@ function DashBoard() {
 
     const handleChangeImg = () => {
         setIsModal(!isModal);
+        console.log(imgUsers);
+        
     }
 
-    const handleImageUploadSuccess = () => {
-        setImgUsers(users.image.filename);
+    const handleImageUploadSuccess = async () => {
+            try {
+              const response = await fetch(`http://localhost:3000/api/users/${getCookie('id')}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              });
+        
+              const result = await response.json();
+              console.log(result);
+              setImgUsers(result.image.filename);
+              console.log(imgUsers);
+             
+            } catch (error) {
+              console.error(error);
+            }
         setIsModal(false);
     }
 

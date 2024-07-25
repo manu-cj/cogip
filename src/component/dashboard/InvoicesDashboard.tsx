@@ -126,7 +126,7 @@ function InvoicesDashboard() {
   
           setNotification(result.message);
   
-          if (result.message == "Contact successfully created") {
+          if (result.message == "Successfully created invoice") {
             // Réinitialisation du formulaire après succès
             setFormData({
               reference: "",
@@ -168,8 +168,8 @@ function InvoicesDashboard() {
                     <hr />
                     <Notification notification={notification} />
                     <form action="LA ROUTE DES BACKENDS" method="post" onSubmit={handleSubmit}>
-                        <input type="text" name='reference' id='reference' placeholder='F20220815-003' required onChange={handleChange} style={formStyles.reference}/>
-                        <input type="date" name='dueDate' id='dueDate' placeholder='due date' required onChange={handleChange} style={formStyles.dueDate}/>
+                        <input type="text" name='reference' id='reference' placeholder='F20220815-003' required onChange={handleChange} style={formStyles.reference} value={formData.reference}/>
+                        <input type="date" name='dueDate' id='dueDate' placeholder='due date' required onChange={handleChange} style={formStyles.dueDate} value={formData.dueDate}/>
                         {/* <input type="text" name='price' id='price' placeholder='Price' required onChange={handleChange} style={formStyles.price}/> */}
                         <select name="companyId" id="companyId" style={formStyles.company} className={companyClassName} value={companyValue} onChange={handleCompanyChange}>
                             <option value="default" className="defaultOption" disabled>Company name</option>
