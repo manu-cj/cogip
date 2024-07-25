@@ -35,7 +35,7 @@ function Login() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();{
       try {
-        const response = await fetch('https://cogip-61jf46xrk-manu-cjs-projects.vercel.app/api/users/login', {
+        const response = await fetch('https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ function Login() {
 
   const isLoggin = async () => {
     try {
-      const response = await fetch(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`, {
+      const response = await fetch(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

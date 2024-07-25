@@ -4,7 +4,7 @@ import useAPI from "./../../../hook/useAPI";
 
 function LastInvoice () {
  // Ajouter l'API
- const { invoiceLatest } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/invoices/latest`);
+ const { invoiceLatest } = useAPI(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/invoices/latest`);
 
     return (
         <div className='lastInvoice'>

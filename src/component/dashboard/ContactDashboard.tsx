@@ -13,7 +13,7 @@ import { useEffect } from "react";
 function ContactDashboard() {
   const [isOpen, setIsOpen] = useState(true);
   const [isModal, setIsModal] = useState(false);
-  const { users } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`);
+  const { users } = useAPI(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`);
     const [imgUsers, setImgUsers] = useState("default.jpg");
 
     useEffect(() => {
@@ -127,7 +127,7 @@ function ContactDashboard() {
       validatePhone(formData.phoneNr) === true
     ) {
       try {
-        const response = await fetch("https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts", {
+        const response = await fetch("https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/contacts", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

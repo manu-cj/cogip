@@ -115,7 +115,7 @@ const Register: React.FC = () => {
       validatePasswordRepeat(formData.password, formData.passwordRepeat)
     ) {
       try {
-        const response = await fetch("https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/users", {
+        const response = await fetch("https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -161,7 +161,7 @@ const Register: React.FC = () => {
         <h2>Sign up</h2>
           <form
             method="post"
-            action="https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/users"
+            action="https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users"
             className="register logForm"
             onSubmit={handleSubmit}
           >

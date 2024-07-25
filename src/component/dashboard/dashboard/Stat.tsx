@@ -1,7 +1,7 @@
 import useAPI from "../../../hook/useAPI";
 
 function Stat() {
-    const { stats } = useAPI("https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/stats");
+    const { stats } = useAPI("https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/stats");
 
     return (
         <div className='statistics'>
