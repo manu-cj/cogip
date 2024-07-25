@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import useAPI from "../../../hook/useAPI";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import tri from "../../../../public/assets/icon/tri.svg"
 
 
@@ -48,6 +48,7 @@ function TemplatePages() {
     }
   }
   useEffect(() => {
+    setNbrContact(parseInt(pathSegments[2], 10) || 10)
     setURLContacts(`http://localhost:3000/api/contacts/pagination/${nbrContact}/${page}`)
     setURLCompanies(`http://localhost:3000/api/companies/pagination/${nbrContact}/${page}`)
     setURLInvoices(`http://localhost:3000/api/invoices/pagination/${nbrContact}/${page}`)
@@ -196,27 +197,30 @@ function TemplatePages() {
         return <h2>Oops, an error has occurred</h2>;
     }
   };
-  const handleNextPage = (event: any) => {
+  const handleNextPage = (event: React.MouseEvent) => {
     if (page < defineNbrPage()) {
       event.preventDefault();
       const nextPage = page + 1;
       setPage(nextPage);
     }
   }
-  const handlePreviousPage = (event :any ) => {
+  const handlePreviousPage = (event :React.MouseEvent ) => {
     event.preventDefault();
     if (page > 1) {
       const prevPage = page - 1;
       setPage(prevPage);
     }
   }
-  const handleClick = (event: any) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const pageNumber = parseInt(event.target.textContent, 10);
-    if (pageNumber >= 1 && pageNumber <= defineNbrPage()) {
-      setPage(pageNumber);
+    const textContent = event.currentTarget.textContent;
+    if (textContent !== null) {
+        const pageNumber = parseInt(textContent, 10);
+        if (pageNumber >= 1 && pageNumber <= defineNbrPage()) {
+            setPage(pageNumber);
+        }
     }
-  }
+};
 
 
   const defineNbrPage = () => {
@@ -231,7 +235,7 @@ function TemplatePages() {
     }
   }
 
-  const handleChange = (e:any) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const path = definePath()
     switch (path) {
       case "companies":

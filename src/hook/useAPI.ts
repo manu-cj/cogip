@@ -116,11 +116,17 @@ export default function useAPI(URL : string) {
                 }
               setLoading(false);
               
-            } catch (error : any) {
-              console.log(error.message);
-              setError(error.message);
+
+            } catch (error: unknown) {
+              if (error instanceof Error) {
+                  console.log(error.message);
+                  setError(error.message);
+              } else {
+                  console.log('Une erreur inconnue s\'est produite');
+                  setError('Une erreur inconnue s\'est produite');
+              }
               setLoading(false);
-            }
+          }
           };
       
           fetchData();
