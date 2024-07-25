@@ -16,9 +16,9 @@ library.add(fab);
 
 function App() {
 
-  const { contactLatest } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/contacts/latest`);
-  const { invoiceLatest } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/invoices/latest`);
-  const { companiesLatest } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/companies/latest`);
+  const { contactLatest } = useAPI(`https://cogip-plum.vercel.app/api/contacts/latest`);
+  const { invoiceLatest } = useAPI(`https://cogip-plum.vercel.app/api/invoices/latest`);
+  const { companiesLatest } = useAPI(`https://cogip-plum.vercel.app/api/companies/latest`);
 
   return (
     <>
