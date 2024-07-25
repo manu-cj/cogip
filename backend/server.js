@@ -31,12 +31,24 @@ app.use(express.urlencoded({ extended: true }));
 
 // Middleware pour gérer les cookies
 app.use(cookieParser());
+const corsOptions = {
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'http://127.0.0.1:5173',
+      'http://localhost:5173',
+    ];
+
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+};
 
 // Middleware CORS pour autoriser les requêtes cross-origin
-app.use(cors({
-  origin: 'http://127.0.0.1:5173', // Remplacez par l'URL de votre frontend
-  credentials: true
-}));
+app.use(cors(corsOptions));
 
 app.use("/api/users", userRoutes);
 app.use("/api/contacts", contactRoutes);
