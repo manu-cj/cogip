@@ -35,7 +35,7 @@ function Login() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();{
       try {
-        const response = await fetch('https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users/login', {
+        const response = await fetch('/api/users/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ function Login() {
 
   const isLoggin = async () => {
     try {
-      const response = await fetch(`https://cogip-plum.vercel.app/api/users/${getCookie('id')}`, {
+      const response = await fetch(`/api/users/${getCookie('id')}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -114,7 +114,7 @@ function Login() {
       <main>
       <Notification notification={notification} />
       <h2>Login</h2>
-        <form action="https://cogip-plum.vercel.app/api/users/login" method="post" onSubmit={handleSubmit} className="logForm">
+        <form action="/api/users/login" method="post" onSubmit={handleSubmit} className="logForm">
           <label htmlFor="mail">Email</label>
           <input type="email" name="email" id="mail" onChange={handleChange} />
           <label htmlFor="password">password</label>

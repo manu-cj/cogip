@@ -2,7 +2,7 @@ import useAPI from "./../../../hook/useAPI";
 
 
 function LastContact() {
-    const { contactLatest } = useAPI(`https://cogip-plum.vercel.app/api/contacts/latest`);
+    const { contactLatest } = useAPI(`/api/contacts/latest`);
 
     return (
         <div className='lastContact'>

@@ -11,7 +11,7 @@ import useAPI from "../../hook/useAPI";
 function CompaniesDashboard() {
   const [isOpen, setIsOpen] = useState(true);
   const [isModal, setIsModal] = useState(false);
-  const { users } = useAPI(`https://cogip-plum.vercel.app/api/users/${getCookie('id')}`);
+  const { users } = useAPI(`/api/users/${getCookie('id')}`);
   const [imgUsers, setImgUsers] = useState("default.jpg");
 
     useEffect(() => {
@@ -63,7 +63,7 @@ function CompaniesDashboard() {
       
     ) {
       try {
-        const response = await fetch("https://cogip-plum.vercel.app/api/companies", {
+        const response = await fetch("/api/companies", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
