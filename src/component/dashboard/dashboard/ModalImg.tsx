@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import croix from '../../../../public/assets/icon/croix.svg'
 
 interface ModalImgProps {
   className: string;
@@ -53,6 +54,7 @@ function ModalImg({ className, toggleImg, userId, onSuccess }: ModalImgProps) {
 
   return (
     <div className={className}>
+      <img src={croix} alt="Close" className='close' onClick={toggleImg} />
       <form onSubmit={handleSubmit}>
         <label htmlFor="avatar">Upload image:</label>
         <input
