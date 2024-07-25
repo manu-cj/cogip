@@ -21,7 +21,7 @@ function LastInvoice () {
                 <tbody>
                     {invoiceLatest.slice(0,4).map((invoice) => (
                         <tr key={invoice._id}>
-                            <td>{invoice._id}</td>
+                            <td>{invoice.reference}</td>
                             <td>{invoice.dueDate.slice(0,10)}</td>
                             <td>{invoice.companyId?.name}</td>
                         </tr>

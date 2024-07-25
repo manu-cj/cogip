@@ -90,7 +90,7 @@ function App() {
           <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (15) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="contact-img" />
         </section>
         <section className="main-content">
-          <h2>Last compagnies</h2>
+          <h2>Last companies</h2>
           <table>
             <thead>
               <tr>
