@@ -37,6 +37,7 @@ const corsOptions = {
       'http://127.0.0.1:5173',
       'http://localhost:5173',
       'https://cogip-e9omy844n-manu-cjs-projects.vercel.app/',
+      'https://cogip-plum.vercel.app',
     ];
 
     if (allowedOrigins.includes(origin) || !origin) {
