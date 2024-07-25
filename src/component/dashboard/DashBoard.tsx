@@ -28,7 +28,6 @@ function DashBoard() {
 
     const handleChangeImg = () => {
         setIsModal(!isModal);
-        console.log(imgUsers);
         
     }
 
