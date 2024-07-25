@@ -23,7 +23,7 @@ console.log(JSON.stringify(cookies));
 
     const getPermissions = async () => {
       try {
-        const response = await fetch('https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/cookie', {
+        const response = await fetch('https://cogip-plum.vercel.app/api/cookie', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ console.log(JSON.stringify(cookies));
 
     const isLoggin = async () => {
       try {
-        const response = await fetch(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`, {
+        const response = await fetch(`https://cogip-plum.vercel.app/api/users/${getCookie('id')}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'

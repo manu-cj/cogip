@@ -6,7 +6,7 @@ import useAPI from "../../hook/useAPI";
 function Show_contact() {
 
   const { id } = useParams()
-  const { contact, error, loading } = useAPI(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/contacts/${id}`)
+  const { contact, error, loading } = useAPI(`https://cogip-plum.vercel.app/api/contacts/${id}`)
 
 
   if(loading) return <p>Loading...</p>

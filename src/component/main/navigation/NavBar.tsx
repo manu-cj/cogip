@@ -16,7 +16,7 @@ function NavBar() {
     }
     return null;
   };
-  const { users } = useAPI(`https://cogip-h7w7n35kc-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`);
+  const { users } = useAPI(`https://cogip-plum.vercel.app/api/users/${getCookie('id')}`);
     const [imgUsers, setImgUsers] = useState("default.jpg");
 
     useEffect(() => {

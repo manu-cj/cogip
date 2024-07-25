@@ -13,7 +13,7 @@ import useAPI from '../../hook/useAPI';
 function DashBoard() {
     const [isOpen, setIsOpen] = useState(true);
     const [isModal, setIsModal] = useState(false);
-    const { users } = useAPI(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`);
+    const { users } = useAPI(`https://cogip-plum.vercel.app/api/users/${getCookie('id')}`);
     const [imgUsers, setImgUsers] = useState("default.jpg");
 
     useEffect(() => {
@@ -33,7 +33,7 @@ function DashBoard() {
 
     const handleImageUploadSuccess = async () => {
             try {
-              const response = await fetch(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users/${getCookie('id')}`, {
+              const response = await fetch(`https://cogip-plum.vercel.app/api/users/${getCookie('id')}`, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json'

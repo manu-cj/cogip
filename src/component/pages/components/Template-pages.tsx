@@ -239,13 +239,13 @@ function TemplatePages() {
     const path = definePath()
     switch (path) {
       case "companies":
-        setURLCompanies(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/companies/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        setURLCompanies(`https://cogip-plum.vercel.app/api/companies/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
         break;
       case "contacts":
-        setURLContacts(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/contacts/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        setURLContacts(`https://cogip-plum.vercel.app/api/contacts/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
         break;
       case "invoices":
-        setURLInvoices(`https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/invoices/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
+        setURLInvoices(`https://cogip-plum.vercel.app/api/invoices/pagination/${nbrContact}/${page}/?filter=${e.target.value}`)
         break;
     }
   }

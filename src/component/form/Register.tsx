@@ -161,7 +161,7 @@ const Register: React.FC = () => {
         <h2>Sign up</h2>
           <form
             method="post"
-            action="https://cogip-e9omy844n-manu-cjs-projects.vercel.app/api/users"
+            action="https://cogip-plum.vercel.app/api/users"
             className="register logForm"
             onSubmit={handleSubmit}
           >
