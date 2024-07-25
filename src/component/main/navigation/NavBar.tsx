@@ -1,24 +1,33 @@
 import { Link } from 'react-router-dom';
 import { ReactNode } from 'react';
 import Hamburger from '../../dashboard/navigation/Hamburger';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import croix from '../../../../public/assets/icon/croix.svg';
+import useAPI from './../../../hook/useAPI';
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(true);
 
+  const getCookie = (name: string): string | null => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop()?.split(';').shift() || null;
+    }
+    return null;
+  };
+  const { users } = useAPI(`http://localhost:3000/api/users/${getCookie('id')}`);
+    const [imgUsers, setImgUsers] = useState("default.jpg");
+
+    useEffect(() => {
+        if (users && users.image) {
+            setImgUsers(users.image.filename);
+        }
+    }, [users]);
+
   const handleClick = () => {
     setIsOpen(!isOpen);
   }
-
-    const getCookie = (name: string): string | null => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) {
-          return parts.pop()?.split(';').shift() || null;
-        }
-        return null;
-      };
 
       const loginNav = (): ReactNode => {
         const isLoggedIn = getCookie('id') !== null && getCookie('id') !== "";
@@ -31,9 +40,7 @@ function NavBar() {
                 <div className="dashboardLinkDiv">
                   <Link to={"/dashboard"} className='dashboardLink'> Dashboard </Link>
                   <a href="/dashboard"><img
-                    src={`./../../../public/assets/img/people/users/${getCookie(
-                      "imageName"
-                    )}`}
+                    src={`./../../../public/assets/img/people/users/${imgUsers}`}
                     alt="profil-picture"
                     className="pictureNav"
                   /></a>
