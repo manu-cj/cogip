@@ -1,15 +1,15 @@
 import express from "express";
 import cors from "cors";
-import dbConnect from "../dbConnect/connect.js";
-import userRoutes from "../routes/userRoutes.js";
-import contactRoutes from "../routes/contactRoutes.js";
-import companiesRoutes from "../routes/companiesRoutes.js";
-import invoiceRoutes from "../routes/invoiceRoutes.js";
-import imageRoutes from "../routes/imageRoutes.js";
-import miscRoutes from "../routes/miscRoutes.js";
-import typeRoutes from "../routes/typeRoutes.js";
-import roleRoutes from "../routes/roleRoutes.js";
-import cookieRoutes from "../routes/cookieRoutes.js";
+import dbConnect from "./dbConnect/connect.js";
+import userRoutes from "./routes/userRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+import companiesRoutes from "./routes/companiesRoutes.js";
+import invoiceRoutes from "./routes/invoiceRoutes.js";
+import imageRoutes from "./routes/imageRoutes.js";
+import miscRoutes from "./routes/miscRoutes.js";
+import typeRoutes from "./routes/typeRoutes.js";
+import roleRoutes from "./routes/roleRoutes.js";
+import cookieRoutes from "./routes/cookieRoutes.js";
 import cookieParser from 'cookie-parser';
 dbConnect();
 
