@@ -63,9 +63,7 @@ app.use("/api/types", typeRoutes);
 app.use("/api/roles", roleRoutes);
 app.use("/api/cookie", cookieRoutes);
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+
 
 export default (req, res) => {
   app(req, res);
