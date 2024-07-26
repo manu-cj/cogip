@@ -96,7 +96,7 @@ function Login() {
       const result = await response.json();
       console.log(result);
       
-      if (result.lastName === "") {
+      if (result.lastName !== "") {
         navigate('/');
         
         return true

@@ -34,7 +34,7 @@ function NavBarLat({img, firstName, lastName, className, toggle, changeImg}: Nav
                 <img src={croix} alt="Close" className='close' onClick={toggle}/>
                 <div className='navBarLat__logo' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     <button className={isHovered ? 'isHovered' : ''} onClick={changeImg}>Change image</button>
-                    <img src={`./assets/img/people/users/`+img} alt={firstName + " " + lastName} />
+                    <img src={`./../../../../public/assets/img/people/users/`+img} alt={firstName + " " + lastName} />
                     <p>{firstName}</p>
                     <p>{lastName}</p>
                 </div>
