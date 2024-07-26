@@ -40,7 +40,7 @@ function NavBar() {
                 <div className="dashboardLinkDiv">
                   <Link to={"/dashboard"} className='dashboardLink'> Dashboard </Link>
                   <a href="/dashboard"><img
-                    src={`./assets/img/people/users/${imgUsers}`}
+                    src={`./../../../../public/assets/img/people/users/${imgUsers}`}
                     alt="profil-picture"
                     className="pictureNav"
                   /></a>
