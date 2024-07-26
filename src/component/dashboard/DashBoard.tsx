@@ -33,7 +33,7 @@ function DashBoard() {
 
     const handleImageUploadSuccess = async () => {
             try {
-              const response = await fetch(`https://cogip-plum.vercel.app/api/users/${getCookie('id')}`, {
+              const response = await fetch(`http://localhost:3000/api/users/${getCookie('id')}`, {
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json'

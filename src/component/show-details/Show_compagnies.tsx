@@ -7,9 +7,9 @@ import { useEffect, useRef } from 'react';
 function Show_compagnies() {
 
   const { id } = useParams();
-  const { company } = useAPI(`https://cogip-plum.vercel.app/api/companies/${id}`);
-  const { contactCompany} = useAPI(`https://cogip-plum.vercel.app/api/contacts/company/${id}`);
-  const { invoiceCompany } = useAPI(`https://cogip-plum.vercel.app/api/invoices/company/${id}`);
+  const { company } = useAPI(`http://localhost:3000/api/companies/${id}`);
+  const { contactCompany} = useAPI(`http://localhost:3000/api/contacts/company/${id}`);
+  const { invoiceCompany } = useAPI(`http://localhost:3000/api/invoices/company/${id}`);
 
   const scrollContainerRef = useRef<HTMLDivElement|null>(null);
 

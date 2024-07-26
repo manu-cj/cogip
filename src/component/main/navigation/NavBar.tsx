@@ -16,7 +16,7 @@ function NavBar() {
     }
     return null;
   };
-  const { users } = useAPI(`https://cogip-plum.vercel.app//api/users/${getCookie('id')}`);
+  const { users } = useAPI(`http://localhost:3000/api/users/${getCookie('id')}`);
     const [imgUsers, setImgUsers] = useState("default.jpg");
 
     useEffect(() => {

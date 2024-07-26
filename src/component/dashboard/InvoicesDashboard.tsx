@@ -13,7 +13,7 @@ import useAPI from '../../hook/useAPI';
 function InvoicesDashboard() {
     const [isOpen, setIsOpen] = useState(true);
     const [isModal, setIsModal] = useState(false);
-    const { users } = useAPI(`https://cogip-plum.vercel.app/api/users/${getCookie('id')}`);
+    const { users } = useAPI(`http://localhost:3000/api/users/${getCookie('id')}`);
     const [imgUsers, setImgUsers] = useState("default.jpg");
 
     useEffect(() => {
@@ -115,7 +115,7 @@ function InvoicesDashboard() {
         
       ) {
         try {
-          const response = await fetch("https://cogip-plum.vercel.app/api/invoices", {
+          const response = await fetch("http://localhost:3000/api/invoices", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
