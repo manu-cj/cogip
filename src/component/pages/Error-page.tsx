@@ -24,7 +24,7 @@ export default function ErrorPage() {
         <p>
           <i>{error.statusText || error.message}</i>
         </p>
-        <img src="./../../public/assets/img/home/DrawKit Vector Illustration Project Manager (4) 1.svg" alt="DrawKit Vector Illustration Project Manager" />
+        <img src="./assets/img/home/DrawKit Vector Illustration Project Manager (4) 1.svg" alt="DrawKit Vector Illustration Project Manager" />
   
       </div>
     </main>

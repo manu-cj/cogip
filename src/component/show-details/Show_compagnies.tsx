@@ -52,10 +52,10 @@ function Show_compagnies() {
           <div className="show-companies__contact">
             <h2>Contact people</h2>
             <div className="show-companies__contacts" ref={scrollContainerRef}>
-              <img src="./../../../public/assets/img/home/handwithnote.svg" alt="petite img" className="hand"/>
+              <img src="./assets/img/home/handwithnote.svg" alt="petite img" className="hand"/>
               {contactCompany.map((contact) => (
                 <div key={contact._id} className="show-companies__contact-card">
-                  <Link to={`/show_contact/${contact._id}`} key={contact._id}><img src={`./../../../public/assets/img/people/${contact.image.filename}`} alt={contact.name} /></Link>
+                  <Link to={`/show_contact/${contact._id}`} key={contact._id}><img src={`./assets/img/people/${contact.image.filename}`} alt={contact.name} /></Link>
                   <p><Link to={`/show_contact/${contact._id}`} key={contact._id}>{contact.name}</Link></p>
                 </div>
               ))}

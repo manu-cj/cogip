@@ -27,13 +27,13 @@ function App() {
         <div className="top-content">
           <h2>MANAGE YOUR CUSTOMERS AND INVOICES EASLY</h2>
           <img
-            src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (4) 1.svg"
+            src="./assets/img/home/DrawKit Vector Illustration Project Manager (4) 1.svg"
             alt="DrawKit Vector Illustration Project Manager"
           />
         </div>
         <div className="bottom-content">
           <img
-            src="./../public/assets/img/home/Rectangle 10.svg"
+            src="./assets/img/home/Rectangle 10.svg"
             alt="Rectangle 10.svg"
           />
         </div>
@@ -61,7 +61,7 @@ function App() {
               ))}
             </tbody>
           </table>
-          <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (16) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="invoice-img" />
+          <img src="./assets/img/home/DrawKit Vector Illustration Project Manager (16) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="invoice-img" />
         </section>
         <section className="main-content">
           <h2>Last contacts</h2>
@@ -87,7 +87,7 @@ function App() {
               ))}
             </tbody>
           </table>
-          <img src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (15) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="contact-img" />
+          <img src="./assets/img/home/DrawKit Vector Illustration Project Manager (15) 1.svg" alt="DrawKit Vector Illustration Project Manager" className="contact-img" />
         </section>
         <section className="main-content">
           <h2>Last companies</h2>
@@ -121,12 +121,12 @@ function App() {
           </div>
           <div className="bottom-content-picture-div">
             <img
-              src="./../public/assets/img/home/Rectangle 17.svg"
+              src="./assets/img/home/Rectangle 17.svg"
               alt="Rectangle 17"
               className="picture1"
             />
             <img
-              src="./../public/assets/img/home/DrawKit Vector Illustration Project Manager (19) 1.svg"
+              src="./assets/img/home/DrawKit Vector Illustration Project Manager (19) 1.svg"
               alt="DrawKit Vector Illustration Project Manager"
               className="picture2"
             />

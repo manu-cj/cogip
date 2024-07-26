@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { HamburgerProps } from "../../../types/types";
 
 function Hamburger({className, toggle}: HamburgerProps ) {

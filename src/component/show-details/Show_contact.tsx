@@ -27,7 +27,7 @@ function Show_contact() {
             <p>Company: <span><Link to={`/show_companies/${contact.companyId._id}`}>{contact.companyId.name}</Link></span></p>
           </div>
         </div>
-          <img src={`./../../../public/assets/img/people/${contact.image.filename}`} alt={contact.name}/>
+          <img src={`./assets/img/people/${contact.image.filename}`} alt={contact.name}/>
       </main>
       <Footer/>
     </>

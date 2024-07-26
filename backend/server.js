@@ -21,13 +21,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
+const corsOptions = {
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://127.0.0.1:5173",
+      "http://localhost:5173",
+      "https://cogip-ei4hyeq8d-manu-cjs-projects.vercel.app",
+      "https://cogip-plum.vercel.app",
+      "https://cogip-l7u30awks-manu-cjs-projects.vercel.app",
+    ];
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
+// Middleware CORS pour autoriser les requêtes cross-origin
+app.use(cors(corsOptions));
 
 app.use("/api/users", userRoutes);
 app.use("/api/contacts", contactRoutes);

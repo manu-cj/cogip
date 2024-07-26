@@ -161,7 +161,7 @@ const Register: React.FC = () => {
         <h2>Sign up</h2>
           <form
             method="post"
-            action="http://localhost:3000/api/users"
+            action="/api/users"
             className="register logForm"
             onSubmit={handleSubmit}
           >
