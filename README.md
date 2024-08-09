@@ -47,13 +47,13 @@ Missions :
 
 ### Screenshot 
 
-![alt text](./screenshot/cogip.png)
-![alt text](./screenshot/cogip2.png)
-![alt text](./screenshot/cogip3.png)
-![alt text](./screenshot/cogip4.png)
-![alt text](./screenshot/cogip5.png)
-![alt text](./screenshot/cogip6.png)
-![alt text](./screenshot/cogip7.png)
+![alt text](./screenshots/cogip.png)
+![alt text](./screenshots/cogip2.png)
+![alt text](./screenshots/cogip3.png)
+![alt text](./screenshots/cogip4.png)
+![alt text](./screenshots/cogip5.png)
+![alt text](./screenshots/cogip6.png)
+![alt text](./screenshots/cogip7.png)
 
 ## My Process
 
@@ -70,9 +70,23 @@ En équipe de 2 fronts, nous avons réalisé ce projet avec :
 
 ## Author
 
-Front
-- [Dylan](https://github.com/HappyFeys)
-- [Manu](https://github.com/manu-cj)
-Back
-- [Caroline](https://github.com/Caroline1123)
-- [Jordan](https://github.com/MJordanBecode)
+#### Front
+
+<a href="https://github.com/manu-cj">
+  <img src="https://img.shields.io/badge/Manu-4E7CCC">
+</a>
+<a href="https://github.com/HappyFeys">
+  <img src="https://img.shields.io/badge/Dylan-4E7CCC">
+</a>
+
+#### Back
+
+<a href="https://github.com/Caroline1123">
+  <img src="https://img.shields.io/badge/Caroline-BF3338">
+</a>
+<a href="https://github.com/MJordanBecode">
+  <img src="https://img.shields.io/badge/Jordan-BF3338">
+</a>
+
+
+
