@@ -70,23 +70,24 @@ En équipe de 2 fronts, nous avons réalisé ce projet avec :
 
 ## Author
 
-#### Front
 
 <a href="https://github.com/manu-cj">
-  <img src="https://img.shields.io/badge/Manu-4E7CCC">
-</a>
-<a href="https://github.com/HappyFeys">
-  <img src="https://img.shields.io/badge/Dylan-4E7CCC">
+    <img src="https://img.shields.io/badge/Front-Manu--cj-blue?style=for-the-badge&logo=github&logoColor=white" alt="Manu-cj" />
 </a>
 
-#### Back
+<a href="https://github.com/HappyFeys">
+    <img src="https://img.shields.io/badge/Front-Dylan-blue?style=for-the-badge&logo=github&logoColor=white" alt="Dylan" />
+</a>
 
 <a href="https://github.com/Caroline1123">
-  <img src="https://img.shields.io/badge/Caroline-BF3338">
+    <img src="https://img.shields.io/badge/Back-Caroline-red?style=for-the-badge&logo=github&logoColor=white" alt="Caroline" />
 </a>
+
 <a href="https://github.com/MJordanBecode">
-  <img src="https://img.shields.io/badge/Jordan-BF3338">
+    <img src="https://img.shields.io/badge/Back-Jordan-red?style=for-the-badge&logo=github&logoColor=white" alt="Caroline" />
 </a>
+
+
 
 
 
